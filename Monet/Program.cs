@@ -8,15 +8,18 @@ namespace Monet
 {
     static class Program
     {
-        /// <summary>
-        /// 应用程序的主入口点。
-        /// </summary>
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn static void Main()
+        ///
+        /// \brief 应用程序的主入口点。
+        ///-------------------------------------------------------------------------------------------------
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainWin());
         }
     }
 }
