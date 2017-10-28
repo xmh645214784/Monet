@@ -10,12 +10,12 @@ namespace Monet
 {
     interface IDrawLiner
     {
-        void drawLine(Graphics g, Pen pen,Point p1, Point p2);
+        void DrawLine(Graphics g, Pen pen,Point p1, Point p2);
     }
 
     sealed class Dda : IDrawLiner
     {
-        private void drawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
             int YDis = (p2.Y - p1.Y);
@@ -23,8 +23,8 @@ namespace Monet
             int MaxStep = Math.Max(Math.Abs(XDis), Math.Abs(YDis));
             float fXUnitLen = 1.0f;  // X方向的单位步进  
             float fYUnitLen = 1.0f;  // Y方向的单位步进  
-            fYUnitLen = static_cast<float>(YDis) / static_cast<float>(MaxStep);
-            fXUnitLen = static_cast<float>(XDis) / static_cast<float>(MaxStep);
+            fYUnitLen = YDis / (float)MaxStep;
+            fXUnitLen = XDis / (float)MaxStep;
             // 设置起点像素颜色  
             Common.DrawPix(g, p1, pen);
             float x = p1.X;
@@ -34,18 +34,18 @@ namespace Monet
             {
                 x = x + fXUnitLen;
                 y = y + fYUnitLen;
-                Common.DrawPix(g, new Point(x, y), pen);
+                Common.DrawPix(g, new Point((int)x, (int)y), pen);
             }
         }
 
-        public void drawLine(Graphics g, Pen pen, Point p1, Point p2)
+        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             
         }
     }
     sealed class SystemDraw : IDrawLiner
     {
-        public void drawLine(Graphics g,  Pen pen, Point p1, Point p2)
+        public void DrawLine(Graphics g,  Pen pen, Point p1, Point p2)
         {
             g.DrawLine(pen, p1, p2);
         }
@@ -54,20 +54,65 @@ namespace Monet
 
     sealed class LineTool : DrawShapeTool
     {
-        IDrawLiner lineagent;
-        public override void Draw()
+        IDrawLiner lineAgent;
+        Point startPoint;
+        Point nowPoint;
+        Boolean isDrawing;
+
+        public LineTool(PictureBox mainView) : base(mainView)
         {
-          throw new NotImplementedException();
+            lineAgent = new SystemDraw();
+            isDrawing = false;
+        }
+
+        public override void Draw(ToolParameters toolParameters)
+        {
+            System.Diagnostics.Debug.Assert(toolParameters.coords.Length == 2);
+            lineAgent.DrawLine(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
         }
 
         public override void RegisterTool()
         {
-            throw new NotImplementedException();
+            mainView.Cursor = Cursors.Cross;
+            mainView.MouseDown += MainView_MouseDown;
+            mainView.MouseMove += MainView_MouseMove;
+            mainView.MouseUp += MainView_MouseUp;
         }
+
 
         public override void UnRegisterTool()
         {
-            panel.Cursor = Cursors.Default;
+            mainView.Cursor = Cursors.Default;
+            mainView.MouseDown -= MainView_MouseDown;
+            mainView.MouseMove -= MainView_MouseMove;
+        }
+
+        
+        private void MainView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDrawing)
+            { 
+
+                nowPoint = e.Location;
+                lineAgent.DrawLine(g, SettingPanel.GetInstance().Pen, startPoint, nowPoint);
+            }
+        }
+        private void MainView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button==MouseButtons.Left)
+            {
+                startPoint = e.Location;
+                isDrawing = true;
+            }
+        }
+
+        private void MainView_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(e.Button==MouseButtons.Left)
+            {
+                isDrawing = false;
+                throw new NotImplementedException();
+            }
         }
     }
 }

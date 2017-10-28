@@ -10,7 +10,7 @@ namespace Monet
 {
     class ToolParameters
     {
-        Point[] coords
+        internal Point[] coords
         {
             set
             {
@@ -19,8 +19,7 @@ namespace Monet
             }
             get =>  coords;
         }
-        public int width;
-        public Color color;
+        internal Pen pen;
 
     }
 }

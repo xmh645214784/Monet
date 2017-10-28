@@ -9,15 +9,25 @@ namespace Monet
 {
     abstract class Tool
     {
-        protected Panel panel;
+        protected PictureBox mainView;
+        protected Graphics g;
 
+
+        public Tool(PictureBox mainView)
+        {
+            this.mainView = mainView;
+            this.g = mainView.CreateGraphics();
+        }
         abstract public void RegisterTool();
         abstract public void UnRegisterTool();
     }
     abstract class DrawShapeTool:Tool
     {
-
-        abstract public void Draw();
+        public DrawShapeTool(PictureBox mainView) : base(mainView)
+        {
+            
+        }
+        abstract public void Draw(ToolParameters toolParameters);
     }
 }
 

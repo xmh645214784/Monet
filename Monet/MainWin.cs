@@ -14,7 +14,7 @@ namespace Monet
     public partial class MainWin : Form
     {
         Tool currentTool;
-
+        ToolKit toolKit;
         ///-------------------------------------------------------------------------------------------------
         /// \fn public MainWin()
         ///
@@ -25,6 +25,9 @@ namespace Monet
         {
             InitializeComponent();
             //some initialize progress
+            toolKit = new ToolKit(mainView);
+            currentTool = toolKit.PointerTool;
+            currentTool.RegisterTool();
         }
 
         private void panel_MouseMove(object sender, MouseEventArgs e)
@@ -34,10 +37,24 @@ namespace Monet
 
         private void lineButton_Click(object sender, EventArgs e)
         {
-
+            currentTool.UnRegisterTool();
+            currentTool = toolKit.LineTool;
+            currentTool.RegisterTool();
         }
 
         private void MainWin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pointerButton_Click(object sender, EventArgs e)
+        {
+            currentTool.UnRegisterTool();
+            currentTool = toolKit.PointerTool;
+            currentTool.RegisterTool();
+        }
+
+        private void MainWin_Load(object sender, EventArgs e)
         {
 
         }
