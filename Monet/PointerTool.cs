@@ -19,10 +19,5 @@ namespace Monet
             mainView.Cursor = Cursors.Default;
             base.RegisterTool();
         }
-
-        public override void UnRegisterTool()
-        {
-            
-        }
     }
 }

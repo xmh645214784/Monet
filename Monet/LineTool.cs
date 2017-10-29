@@ -73,6 +73,7 @@ namespace Monet
 
         public override void RegisterTool()
         {
+            base.RegisterTool();
             mainView.Cursor = Cursors.Cross;
             mainView.MouseDown += MainView_MouseDown;
             mainView.MouseMove += MainView_MouseMove;
@@ -82,6 +83,7 @@ namespace Monet
 
         public override void UnRegisterTool()
         {
+            base.UnRegisterTool();
             mainView.Cursor = Cursors.Default;
             mainView.MouseDown -= MainView_MouseDown;
             mainView.MouseMove -= MainView_MouseMove;

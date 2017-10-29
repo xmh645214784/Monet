@@ -34,9 +34,10 @@ namespace Monet
         {
             InitializeComponent();
             // some initialize progress. 
-            toolKit = new ToolKit(mainView,
+            toolKit = ToolKit.GetInstance(mainView,
                                   pointerButton,
-                                  lineButton
+                                  lineButton,
+                                  pencilButton
                                   );
             // set default tool. 
             toolKit.currentTool = toolKit.PointerTool;
@@ -46,22 +47,22 @@ namespace Monet
 
         }
 
-
-
         ///-------------------------------------------------------------------------------------------------
-        /// \fn private void panel_MouseMove(object sender, MouseEventArgs e)
+        /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)
         ///
-        /// \brief Event handler. Called by panel for mouse move events to show current
+        /// \brief Event handler. Called by mainView for mouse move events to show current
         ///        mouse position in the status bar.
         ///
         /// \param sender Source of the event.
         /// \param e      Mouse event information.
         ///-------------------------------------------------------------------------------------------------
 
-        private void panel_MouseMove(object sender, MouseEventArgs e)
+        private void mainView_MouseMove(object sender, MouseEventArgs e)
         {
-            statusLabelText1.Text = String.Format("({0},{1})pix",e.X.ToString(),e.Y.ToString());
+            statusLabelText1.Text = String.Format("({0},{1})pix", e.X.ToString(), e.Y.ToString());
         }
+
+
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void changeTool(Tool newTool)
@@ -100,6 +101,8 @@ namespace Monet
 
         private void pointerButton_Click(object sender, EventArgs e) => changeTool(toolKit.PointerTool);
 
+        private void pencilButton_Click(object sender, EventArgs e) => changeTool(toolKit.PencilTool);
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///
@@ -122,5 +125,7 @@ namespace Monet
                 currentSettingColorBox.BackColor= colorDialog.Color;
             }
         }
+
+
     }
 }

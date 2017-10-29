@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PencilTool.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="History.cs" />
     <Compile Include="LineTool.cs" />
@@ -102,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\pencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pencilCursor.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

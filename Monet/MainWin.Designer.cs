@@ -264,6 +264,7 @@
             this.pencilButton.Size = new System.Drawing.Size(34, 34);
             this.pencilButton.TabIndex = 2;
             this.pencilButton.UseVisualStyleBackColor = false;
+            this.pencilButton.Click += new System.EventHandler(this.pencilButton_Click);
             // 
             // colorTableLayoutPanel
             // 
@@ -452,12 +453,14 @@
             // 
             this.mainView.BackColor = System.Drawing.Color.White;
             this.tableLayoutWhole.SetColumnSpan(this.mainView, 2);
+            this.mainView.Cursor = System.Windows.Forms.Cursors.Default;
             this.mainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainView.Location = new System.Drawing.Point(3, 153);
             this.mainView.Name = "mainView";
             this.mainView.Size = new System.Drawing.Size(1093, 546);
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
+            this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
             // 
             // MainWin
             // 

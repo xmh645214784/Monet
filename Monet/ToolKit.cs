@@ -18,6 +18,8 @@ namespace Monet
         static Tool pointerTool;
         /// \brief The line tool
         static Tool lineTool;
+        /// \brief The pencil tool
+        static Tool pencilTool;
 
         ///-------------------------------------------------------------------------------------------------
         /// \property internal Tool LineTool
@@ -37,7 +39,39 @@ namespace Monet
         /// \return The pointer tool.
         ///-------------------------------------------------------------------------------------------------
 
-        internal Tool PointerTool { get => pointerTool;}
+        internal Tool PointerTool { get => pointerTool; }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \property public Tool PencilTool
+        ///
+        /// \brief Gets the pencil tool
+        ///
+        /// \return The pencil tool.
+        ///-------------------------------------------------------------------------------------------------
+
+        internal Tool PencilTool { get => pencilTool; }
+
+        static ToolKit mInstance;
+
+        public static ToolKit GetInstance()
+        {
+            if (mInstance == null)
+                throw new NullReferenceException();
+            return mInstance;
+        }
+
+        public static ToolKit GetInstance(PictureBox mainView,
+                         Button pointerButton,
+                         Button lineButton,
+                         Button pencilButton)
+        {
+            if (mInstance == null)
+                mInstance = new ToolKit(mainView, 
+                                        pointerButton, 
+                                        lineButton, 
+                                        pencilButton);
+            return mInstance;
+        }
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn internal ToolKit(PictureBox mainView, Button pointerButton, Button lineButton)
@@ -49,13 +83,15 @@ namespace Monet
         /// \param lineButton    The line control.
         ///-------------------------------------------------------------------------------------------------
 
-        internal ToolKit(PictureBox mainView,
+        private ToolKit(PictureBox mainView,
                          Button pointerButton,
-                         Button lineButton)
+                         Button lineButton,
+                         Button pencilButton)
         {
             this.mainView = mainView;
             pointerTool = new PointerTool   (mainView,pointerButton);
             lineTool    = new LineTool      (mainView,lineButton);
+            pencilTool  = new PencilTool    (mainView, pencilButton);
         }
         
     }
