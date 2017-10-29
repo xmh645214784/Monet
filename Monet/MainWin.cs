@@ -11,10 +11,19 @@ using System.Diagnostics;
 using System.IO;
 namespace Monet
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class MainWin
+    ///
+    /// \brief The application's main form.
+    ///-------------------------------------------------------------------------------------------------
+
     public partial class MainWin : Form
     {
-        Tool currentTool;
+        /// \brief The tool kit which contains all tools(line,rectangle,circle etc.)
         ToolKit toolKit;
+        /// \brief This variable shows which colorBox is now setting.
+        PictureBox currentSettingColorBox;
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn public MainWin()
         ///
@@ -24,39 +33,94 @@ namespace Monet
         public MainWin()
         {
             InitializeComponent();
-            //some initialize progress
-            toolKit = new ToolKit(mainView);
-            currentTool = toolKit.PointerTool;
-            currentTool.RegisterTool();
+            // some initialize progress. 
+            toolKit = new ToolKit(mainView,
+                                  pointerButton,
+                                  lineButton
+                                  );
+            // set default tool. 
+            toolKit.currentTool = toolKit.PointerTool;
+            toolKit.currentTool.RegisterTool();
+            // set default color box button, to emphasize the colorBox which is currently being used. 
+            currentSettingColorBox = colorBoxButton1;
+
         }
+
+
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void panel_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by panel for mouse move events to show current
+        ///        mouse position in the status bar.
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void panel_MouseMove(object sender, MouseEventArgs e)
         {
             statusLabelText1.Text = String.Format("({0},{1})pix",e.X.ToString(),e.Y.ToString());
         }
 
-        private void lineButton_Click(object sender, EventArgs e)
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void changeTool(Tool newTool)
+        ///
+        /// \brief Change the current tool to the new tool specified by param1
+        ///
+        /// \param newTool The new tool.
+        ///-------------------------------------------------------------------------------------------------
+
+        private void changeTool(Tool newTool)
         {
-            currentTool.UnRegisterTool();
-            currentTool = toolKit.LineTool;
-            currentTool.RegisterTool();
+            toolKit.currentTool.UnRegisterTool();
+            toolKit.currentTool = newTool;
+            toolKit.currentTool.RegisterTool();
         }
 
-        private void MainWin_Paint(object sender, PaintEventArgs e)
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void lineButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by lineButton for click events to use the TOOL line.
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
+        private void lineButton_Click(object sender, EventArgs e) => changeTool(toolKit.LineTool);
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void pointerButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by pointerButton for click events to use the TOOL pointer.
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
+        private void pointerButton_Click(object sender, EventArgs e) => changeTool(toolKit.PointerTool);
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void colorButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by colorButton for click events to set the front and
+        ///        background color.
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
+        private void colorButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void pointerButton_Click(object sender, EventArgs e)
-        {
-            currentTool.UnRegisterTool();
-            currentTool = toolKit.PointerTool;
-            currentTool.RegisterTool();
-        }
-
-        private void MainWin_Load(object sender, EventArgs e)
-        {
-
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.Color = SettingPanel.GetInstance().Pen.Color;
+            colorDialog.FullOpen = true;
+            colorDialog.AnyColor = true;
+            if(colorDialog.ShowDialog()==DialogResult.OK)
+            {
+                SettingPanel.GetInstance().Pen.Color = colorDialog.Color;
+                currentSettingColorBox.BackColor= colorDialog.Color;
+            }
         }
     }
 }

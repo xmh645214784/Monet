@@ -16,7 +16,7 @@ namespace Monet
 
         private SettingPanel()
         {
-            Pen=new Pen(Color.FromName("black"));
+            Pen=new Pen(Color.FromName("red"));
         }
         public static SettingPanel GetInstance()
         {
@@ -25,15 +25,6 @@ namespace Monet
                 mInstance = new SettingPanel();
             }
             return mInstance;
-        }
-        public void SettingPenColor(Color color)
-        {
-            pen.Color = color;
-        }
-
-        public void SettingPenWidth(int width)
-        {
-            pen.Width = width;
         }
     }
 }

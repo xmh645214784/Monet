@@ -1,0 +1,72 @@
+D:\Project\Monet\Monet\Monet\MainWin.cs
+
+D:\Project\Monet\Monet\Monet\MainWin.Designer.cs
+System.Windows.Forms.ToolStripItem[]
+Changed System.Windows.Forms.ToolStripItem with Telerik.WinControls.RadItem
+private System.Windows.Forms.StatusStrip statusStrip1;
+Changed System.Windows.Forms.StatusStrip with Telerik.WinControls.UI.RadStatusStrip
+private System.Windows.Forms.ToolStripStatusLabel StatusLabel1;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.ToolStripStatusLabel statusBarLabel1;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.ToolStripStatusLabel statusImageLabel1;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.ToolStripStatusLabel statusLabelText1;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+Changed System.Windows.Forms.ToolStripStatusLabel with Telerik.WinControls.UI.RadLabelElement
+private System.Windows.Forms.Button lineButton;
+Changed System.Windows.Forms.Button with Telerik.WinControls.UI.RadButton
+private System.Windows.Forms.TabControl tabControl1;
+Changed System.Windows.Forms.TabControl with Telerik.WinControls.UI.RadPageView
+private System.Windows.Forms.TabPage tabPage1_Home;
+Changed System.Windows.Forms.TabPage with Telerik.WinControls.UI.RadPageViewPage
+private System.Windows.Forms.TabPage tabPage2_View;
+Changed System.Windows.Forms.TabPage with Telerik.WinControls.UI.RadPageViewPage
+private System.Windows.Forms.Button pointerButton;
+Changed System.Windows.Forms.Button with Telerik.WinControls.UI.RadButton
+private System.Windows.Forms.Label label1;
+Changed System.Windows.Forms.Label with Telerik.WinControls.UI.RadLabel
+private System.Windows.Forms.Label label2;
+Changed System.Windows.Forms.Label with Telerik.WinControls.UI.RadLabel
+private System.Windows.Forms.Label label3;
+Changed System.Windows.Forms.Label with Telerik.WinControls.UI.RadLabel
+private System.Windows.Forms.Label label4;
+Changed System.Windows.Forms.Label with Telerik.WinControls.UI.RadLabel
+private System.Windows.Forms.Label label5;
+Changed System.Windows.Forms.Label with Telerik.WinControls.UI.RadLabel
+this.statusImageLabel1.DisplayStyle
+Changed this.statusImageLabel1.DisplayStyle to DisplayStyle
+this.toolStripStatusLabel1.DisplayStyle
+Changed this.toolStripStatusLabel1.DisplayStyle to DisplayStyle
+this.toolStripStatusLabel2.DisplayStyle
+Changed this.toolStripStatusLabel2.DisplayStyle to DisplayStyle
+this.label1.TextAlign
+Changed this.label1.TextAlign to TextAlignment
+this.label2.TextAlign
+Changed this.label2.TextAlign to TextAlignment
+this.label3.TextAlign
+Changed this.label3.TextAlign to TextAlignment
+this.label4.TextAlign
+Changed this.label4.TextAlign to TextAlignment
+this.label5.TextAlign
+Changed this.label5.TextAlign to TextAlignment
+this.tabPage1_Home.UseVisualStyleBackColor = true;
+Removed UseVisualStyleBackColor
+this.lineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+Removed FlatStyle
+this.lineButton.UseVisualStyleBackColor = false;
+Removed UseVisualStyleBackColor
+this.pointerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+Removed FlatStyle
+this.pointerButton.UseVisualStyleBackColor = false;
+Removed UseVisualStyleBackColor
+this.lineButton.Click += new System.EventHandler(this.lineButton_Click)
+Changed this.lineButton_Click
+this.pointerButton.Click += new System.EventHandler(this.pointerButton_Click)
+Changed this.pointerButton_Click
+this.Paint += new System.Windows.Forms.PaintEventHandler(this.MainWin_Paint)
+Changed this.MainWin_Paint
+

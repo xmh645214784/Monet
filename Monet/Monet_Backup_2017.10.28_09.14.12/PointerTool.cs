@@ -9,7 +9,7 @@ namespace Monet
 {
     class PointerTool:Tool
     {
-        public PointerTool(PictureBox mainView, Button button) : base(mainView,button)
+        public PointerTool(PictureBox mainView) : base(mainView)
         {
 
         }
@@ -17,7 +17,6 @@ namespace Monet
         public override void RegisterTool()
         {
             mainView.Cursor = Cursors.Default;
-            base.RegisterTool();
         }
 
         public override void UnRegisterTool()

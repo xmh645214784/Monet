@@ -59,7 +59,7 @@ namespace Monet
         Point nowPoint;
         Boolean isDrawing;
 
-        public LineTool(PictureBox mainView, Button button) : base(mainView,button)
+        public LineTool(PictureBox mainView) : base(mainView)
         {
             lineAgent = new SystemDraw();
             isDrawing = false;
@@ -111,9 +111,7 @@ namespace Monet
             if(e.Button==MouseButtons.Left)
             {
                 isDrawing = false;
-            }
-            else if(e.Button==MouseButtons.Right)
-            {
+                throw new NotImplementedException();
             }
         }
     }

@@ -11,29 +11,19 @@ namespace Monet
     {
         protected PictureBox mainView;
         protected Graphics g;
-        protected Button bindingButton;
 
-        public Tool(PictureBox mainView,Button button)
+
+        public Tool(PictureBox mainView)
         {
             this.mainView = mainView;
             this.g = mainView.CreateGraphics();
-            this.bindingButton = button;
         }
-
-        public Button BindingButton { get => bindingButton;}
-
-        virtual public void RegisterTool()
-        {
-           bindingButton.BackColor = Color.Cornsilk;
-        }
-        virtual public void UnRegisterTool()
-        {
-
-        }
+        abstract public void RegisterTool();
+        abstract public void UnRegisterTool();
     }
     abstract class DrawShapeTool:Tool
     {
-        public DrawShapeTool(PictureBox mainView, Button button) : base(mainView,button)
+        public DrawShapeTool(PictureBox mainView) : base(mainView)
         {
             
         }

@@ -97,11 +97,5 @@
   <ItemGroup>
     <None Include="icon\arrow.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="icon\color.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icon\pencil.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
