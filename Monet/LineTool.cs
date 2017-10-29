@@ -54,10 +54,9 @@ namespace Monet
 
     sealed class LineTool : DrawShapeTool
     {
-        IDrawLiner lineAgent;
+        public IDrawLiner lineAgent;
         Point startPoint;
         Point nowPoint;
-        Boolean isDrawing;
 
         public LineTool(PictureBox mainView, Button button) : base(mainView,button)
         {
@@ -75,9 +74,9 @@ namespace Monet
         {
             base.RegisterTool();
             mainView.Cursor = Cursors.Cross;
-            mainView.MouseDown += MainView_MouseDown;
-            mainView.MouseMove += MainView_MouseMove;
-            mainView.MouseUp += MainView_MouseUp;
+            mainView.MouseDown  += MainView_MouseDown;
+            mainView.MouseMove  += MainView_MouseMove;
+            mainView.MouseUp    += MainView_MouseUp;
         }
 
 
@@ -85,8 +84,9 @@ namespace Monet
         {
             base.UnRegisterTool();
             mainView.Cursor = Cursors.Default;
-            mainView.MouseDown -= MainView_MouseDown;
-            mainView.MouseMove -= MainView_MouseMove;
+            mainView.MouseDown  -= MainView_MouseDown;
+            mainView.MouseMove  -= MainView_MouseMove;
+            mainView.MouseUp    -= MainView_MouseUp;
         }
 
         
@@ -113,9 +113,6 @@ namespace Monet
             if(e.Button==MouseButtons.Left)
             {
                 isDrawing = false;
-            }
-            else if(e.Button==MouseButtons.Right)
-            {
             }
         }
     }

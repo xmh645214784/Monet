@@ -35,9 +35,10 @@ namespace Monet
     }
     abstract class DrawShapeTool:Tool
     {
+        protected bool isDrawing;
         public DrawShapeTool(PictureBox mainView, Button button) : base(mainView,button)
         {
-            
+            isDrawing = false;
         }
         abstract public void Draw(ToolParameters toolParameters);
     }

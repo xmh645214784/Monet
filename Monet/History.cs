@@ -4,16 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
+using System.Drawing;
+
 namespace Monet
 {
-    class Action
-    {
-        Tool tool;
-        ToolParameters toolParameters;
-        internal Tool Tool { get => tool; set => tool = value; }
-        internal ToolParameters ToolParameters { get => toolParameters; set => toolParameters = value; }
-    }
-
     ///-------------------------------------------------------------------------------------------------
     /// \class History
     ///
@@ -23,7 +17,9 @@ namespace Monet
 
     class History
     {
-        private ArrayList actionsArray;
+        /// \brief Array of histories images. 
+        ///        We record the image after user's each step.
+        private ArrayList historyArray;
         /// \brief Zero-based index of the last valid element in array.
         int index;
         /// \brief The instance.
@@ -39,7 +35,7 @@ namespace Monet
         {
             index = 0 ;
             canUndo = canRedo = false;
-            actionsArray = new ArrayList();
+            historyArray = new ArrayList();
         }
         public static History GetInstance()
         {
@@ -50,21 +46,21 @@ namespace Monet
             return mInstance;
         }
 
-        public void PushBackAction(Action action)
+        public void PushBackAction(Image action)
         {
-            if (index == actionsArray.Capacity - 1)
+            if (index == historyArray.Capacity - 1)
             {
-                actionsArray.Add(action);
+                historyArray.Add(action);
                 index++;
             }
             else
             {
-                actionsArray[++index] = action;
+                historyArray[++index] = action;
             }
             canUndo = true;
         }
 
-        public Action UndoAction()
+        public Image UndoAction()
         {
             if (index <= 0)
             {
@@ -74,17 +70,17 @@ namespace Monet
                 canUndo = false;
 
             canRedo = true;
-            return actionsArray[--index] as Action;
+            return historyArray[--index] as Image;
         }
 
-        public Action RedoAction()
+        public Image RedoAction()
         {
-            if (index == actionsArray.Count - 1)
+            if (index == historyArray.Count - 1)
                 throw new ArgumentOutOfRangeException();
-            else if (index == actionsArray.Count - 2)
+            else if (index == historyArray.Count - 2)
                 canRedo = false;
 
-            return actionsArray[++index] as Action;
+            return historyArray[++index] as Image;
         }
     }
 }
