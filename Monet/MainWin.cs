@@ -37,7 +37,8 @@ namespace Monet
             toolKit = ToolKit.GetInstance(mainView,
                                   pointerButton,
                                   lineButton,
-                                  pencilButton
+                                  pencilButton,
+                                  circleButton
                                   );
             
             // set default tool. 
@@ -106,6 +107,7 @@ namespace Monet
 
         private void pencilButton_Click(object sender, EventArgs e) => changeTool(toolKit.PencilTool);
 
+        private void circleButton_Click(object sender, EventArgs e) => changeTool(toolKit.CircleTool);
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///
@@ -129,6 +131,7 @@ namespace Monet
             }
         }
 
-
+       
+       
     }
 }

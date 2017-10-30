@@ -23,14 +23,13 @@ namespace Monet
 
     sealed class LineTool : DrawShapeTool
     {
-        int FORdebug = 0;
         public DrawLinerAdapter lineAgent;
         Point startPoint;
         Point nowPoint;
         public LineTool(PictureBox mainView, Button button) : base(mainView, button)
         {
             lineAgent = new Dda();
-            isDrawing = false;
+            isEnabled = false;
         }
 
         public void ChangeImplementMethod(LineImplementMethod newmtd)
@@ -82,17 +81,21 @@ namespace Monet
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isDrawing)
+            if (isEnabled)
             {
+                //take out the last but two valid image, take clone of it ,push it into stack.
                 History.GetInstance().UndoAction();
                 Image lastValidClone= (Image)History.GetInstance().TopAction().Clone();
                 History.GetInstance().PushBackAction(lastValidClone); 
                 mainView.Image = lastValidClone;
-                Graphics g = Graphics.FromImage(mainView.Image);
-                nowPoint = e.Location;
-                lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                mainView.Invalidate();
-                g.Dispose();
+
+                //draw
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                { 
+                    nowPoint = e.Location;
+                    lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                    mainView.Invalidate();
+                }
             }
         }
         private void MainView_MouseDown(object sender, MouseEventArgs e)
@@ -100,7 +103,7 @@ namespace Monet
             if (e.Button == MouseButtons.Left) 
             {
                 startPoint = e.Location;
-                isDrawing = true;
+                isEnabled = true;
                 Image newClone = (Image)mainView.Image.Clone();
                 History.GetInstance().PushBackAction(newClone);
                 mainView.Image = newClone;
@@ -111,11 +114,11 @@ namespace Monet
         {
             if (e.Button == MouseButtons.Left)
             {
-                Graphics g = mainView.CreateGraphics();
-                isDrawing = false;
-                lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                g.Dispose();
-                //System.Diagnostics.Debug.WriteLine(History.GetInstance().historyArray.Count);
+                using (Graphics g = mainView.CreateGraphics())
+                { 
+                    isEnabled = false;
+                    lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                }
             }
         }
     }
@@ -142,7 +145,7 @@ namespace Monet
             }
         }
 
-        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        void DrawLinerAdapter.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
@@ -181,7 +184,7 @@ namespace Monet
         
         }
 
-        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        void DrawLinerAdapter.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }

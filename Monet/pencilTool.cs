@@ -81,7 +81,7 @@ namespace Monet
 
         private void MainView_MouseUp(object sender, MouseEventArgs e)
         {
-            isDrawing = false;
+            isEnabled = false;
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -95,14 +95,15 @@ namespace Monet
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {    
-            if(isDrawing)
+            if(isEnabled)
             {
-                Graphics g = Graphics.FromImage(mainView.Image);
-                LineTool lt = (LineTool)(ToolKit.GetInstance().LineTool);
-                lt.lineAgent.DrawLine(g, Setting.GetInstance().Pen, oldLocation, e.Location);
-                oldLocation = e.Location;
-                mainView.Invalidate();
-                g.Dispose();
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    LineTool lt = (LineTool)(ToolKit.GetInstance().LineTool);
+                    lt.lineAgent.DrawLine(g, Setting.GetInstance().Pen, oldLocation, e.Location);
+                    oldLocation = e.Location;
+                    mainView.Invalidate();
+                }
             }
         }
 
@@ -119,7 +120,7 @@ namespace Monet
         {
             if(e.Button==MouseButtons.Left)
             {
-                isDrawing = true;
+                isEnabled = true;
                 oldLocation = e.Location;
             }
             

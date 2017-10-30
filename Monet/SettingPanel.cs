@@ -20,7 +20,7 @@ namespace Monet
         {
             Pen=new Pen(Color.FromName("black"));
             // set the default implementing method.
-            LineImplementMethod = LineImplementMethod.LINE_SYSTEM;
+            LineImplementMethod = LineImplementMethod.LINE_DDA;
         }
         public static Setting GetInstance()
         {

@@ -33,10 +33,10 @@ namespace Monet
     }
     abstract class DrawShapeTool:Tool
     {
-        protected bool isDrawing;
+        protected bool isEnabled;
         public DrawShapeTool(PictureBox mainView, Button button) : base(mainView,button)
         {
-            isDrawing = false;
+            isEnabled = false;
         }
     }
 }

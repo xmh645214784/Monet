@@ -13,13 +13,14 @@ namespace Monet
         PictureBox mainView;
         /// \brief The current tool
         public Tool currentTool;
-
         /// \brief The pointer tool
         static Tool pointerTool;
         /// \brief The line tool
         static Tool lineTool;
         /// \brief The pencil tool
         static Tool pencilTool;
+        /// \brief The circle tool
+        static Tool circleTool;
 
         ///-------------------------------------------------------------------------------------------------
         /// \property internal Tool LineTool
@@ -51,6 +52,16 @@ namespace Monet
 
         internal Tool PencilTool { get => pencilTool; }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \property internal static Tool CircleTool
+        ///
+        /// \brief Gets the circle tool
+        ///
+        /// \return The circle tool.
+        ///-------------------------------------------------------------------------------------------------
+
+        internal Tool CircleTool { get => circleTool;}
+
         static ToolKit mInstance;
 
         public static ToolKit GetInstance()
@@ -63,35 +74,41 @@ namespace Monet
         public static ToolKit GetInstance(PictureBox mainView,
                          Button pointerButton,
                          Button lineButton,
-                         Button pencilButton)
+                         Button pencilButton,
+                         Button circleButton)
         {
             if (mInstance == null)
                 mInstance = new ToolKit(mainView, 
                                         pointerButton, 
                                         lineButton, 
-                                        pencilButton);
+                                        pencilButton,
+                                        circleButton);
             return mInstance;
         }
 
         ///-------------------------------------------------------------------------------------------------
-        /// \fn internal ToolKit(PictureBox mainView, Button pointerButton, Button lineButton)
+        /// \fn private ToolKit(PictureBox mainView, Button pointerButton, Button lineButton, Button pencilButton, Button circleButton)
         ///
         /// \brief Constructor
         ///
         /// \param mainView      The main view control.
         /// \param pointerButton The pointer control.
         /// \param lineButton    The line control.
+        /// \param pencilButton  The pencil control.
+        /// \param circleButton  The circle control.
         ///-------------------------------------------------------------------------------------------------
 
         private ToolKit(PictureBox mainView,
                          Button pointerButton,
                          Button lineButton,
-                         Button pencilButton)
+                         Button pencilButton,
+                         Button circleButton)
         {
             this.mainView = mainView;
             pointerTool = new PointerTool   (mainView,pointerButton);
             lineTool    = new LineTool      (mainView,lineButton);
             pencilTool  = new PencilTool    (mainView, pencilButton);
+            circleTool  = new CircleTool    (mainView, circleButton);
         }
         
     }
