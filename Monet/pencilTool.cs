@@ -82,6 +82,11 @@ namespace Monet
         private void MainView_MouseUp(object sender, MouseEventArgs e)
         {
             isEnabled = false;
+
+            History.GetInstance().UndoAction();
+            Image lastValidClone = (Image)mainView.Image.Clone();
+            History.GetInstance().PushBackAction(lastValidClone);
+            mainView.Image = lastValidClone;
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -122,6 +127,9 @@ namespace Monet
             {
                 isEnabled = true;
                 oldLocation = e.Location;
+                Image newClone = (Image)mainView.Image.Clone();
+                History.GetInstance().PushBackAction(newClone);
+                mainView.Image = newClone;
             }
             
         }

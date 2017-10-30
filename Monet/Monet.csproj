@@ -114,5 +114,11 @@
   <ItemGroup>
     <None Include="icon\circle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\redo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

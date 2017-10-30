@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWin));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -45,11 +46,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1_Home = new System.Windows.Forms.TabPage();
             this.tableLayoutTabPage1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutTabPage1_3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pointerButton = new System.Windows.Forms.Button();
-            this.lineButton = new System.Windows.Forms.Button();
-            this.pencilButton = new System.Windows.Forms.Button();
-            this.circleButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +60,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.thickButton = new System.Windows.Forms.Button();
+            this.tableLayoutTabPage1_3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pointerButton = new System.Windows.Forms.Button();
+            this.lineButton = new System.Windows.Forms.Button();
+            this.pencilButton = new System.Windows.Forms.Button();
+            this.circleButton = new System.Windows.Forms.Button();
+            this.unDoButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.redoButton = new System.Windows.Forms.Button();
             this.tabPage2_View = new System.Windows.Forms.TabPage();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.statusStrip1.SuspendLayout();
@@ -71,13 +75,13 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1_Home.SuspendLayout();
             this.tableLayoutTabPage1.SuspendLayout();
-            this.tableLayoutTabPage1_3.SuspendLayout();
             this.colorTableLayoutPanel.SuspendLayout();
             this.colorTableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorBoxButton2)).BeginInit();
             this.colorTableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.colorBoxButton1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutTabPage1_3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -189,7 +193,10 @@
             this.tableLayoutTabPage1.Controls.Add(this.label2, 3, 1);
             this.tableLayoutTabPage1.Controls.Add(this.label3, 4, 1);
             this.tableLayoutTabPage1.Controls.Add(this.thickButton, 3, 0);
-            this.tableLayoutTabPage1.Controls.Add(this.tableLayoutTabPage1_3, 1, 0);
+            this.tableLayoutTabPage1.Controls.Add(this.tableLayoutTabPage1_3, 2, 0);
+            this.tableLayoutTabPage1.Controls.Add(this.unDoButton, 0, 0);
+            this.tableLayoutTabPage1.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutTabPage1.Controls.Add(this.redoButton, 1, 0);
             this.tableLayoutTabPage1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutTabPage1.Name = "tableLayoutTabPage1";
             this.tableLayoutTabPage1.RowCount = 2;
@@ -197,90 +204,6 @@
             this.tableLayoutTabPage1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutTabPage1.Size = new System.Drawing.Size(1079, 116);
             this.tableLayoutTabPage1.TabIndex = 0;
-            // 
-            // tableLayoutTabPage1_3
-            // 
-            this.tableLayoutTabPage1_3.ColumnCount = 6;
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutTabPage1_3.Controls.Add(this.pointerButton, 0, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 1, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
-            this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(220, 6);
-            this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
-            this.tableLayoutTabPage1_3.RowCount = 2;
-            this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutTabPage1_3.Size = new System.Drawing.Size(160, 74);
-            this.tableLayoutTabPage1_3.TabIndex = 2;
-            // 
-            // pointerButton
-            // 
-            this.pointerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pointerButton.AutoSize = true;
-            this.pointerButton.BackColor = System.Drawing.Color.Cornsilk;
-            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
-            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pointerButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pointerButton.FlatAppearance.BorderSize = 0;
-            this.pointerButton.ForeColor = System.Drawing.Color.Black;
-            this.pointerButton.Location = new System.Drawing.Point(3, 3);
-            this.pointerButton.Name = "pointerButton";
-            this.pointerButton.Size = new System.Drawing.Size(34, 34);
-            this.pointerButton.TabIndex = 1;
-            this.pointerButton.UseVisualStyleBackColor = false;
-            this.pointerButton.Click += new System.EventHandler(this.pointerButton_Click);
-            // 
-            // lineButton
-            // 
-            this.lineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineButton.AutoSize = true;
-            this.lineButton.BackColor = System.Drawing.Color.Transparent;
-            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
-            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.lineButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lineButton.FlatAppearance.BorderSize = 0;
-            this.lineButton.Location = new System.Drawing.Point(83, 3);
-            this.lineButton.Name = "lineButton";
-            this.lineButton.Size = new System.Drawing.Size(34, 34);
-            this.lineButton.TabIndex = 0;
-            this.lineButton.UseVisualStyleBackColor = false;
-            this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
-            // 
-            // pencilButton
-            // 
-            this.pencilButton.BackColor = System.Drawing.Color.Transparent;
-            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
-            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pencilButton.FlatAppearance.BorderSize = 0;
-            this.pencilButton.Location = new System.Drawing.Point(43, 3);
-            this.pencilButton.Name = "pencilButton";
-            this.pencilButton.Size = new System.Drawing.Size(34, 34);
-            this.pencilButton.TabIndex = 2;
-            this.pencilButton.UseVisualStyleBackColor = false;
-            this.pencilButton.Click += new System.EventHandler(this.pencilButton_Click);
-            // 
-            // circleButton
-            // 
-            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
-            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.circleButton.Location = new System.Drawing.Point(123, 3);
-            this.circleButton.Name = "circleButton";
-            this.circleButton.Size = new System.Drawing.Size(34, 34);
-            this.circleButton.TabIndex = 3;
-            this.circleButton.UseVisualStyleBackColor = true;
-            this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
             // 
             // colorTableLayoutPanel
             // 
@@ -466,6 +389,121 @@
             this.thickButton.TabIndex = 7;
             this.thickButton.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutTabPage1_3
+            // 
+            this.tableLayoutTabPage1_3.ColumnCount = 6;
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.tableLayoutTabPage1_3.Controls.Add(this.pointerButton, 0, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 1, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
+            this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(389, 6);
+            this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
+            this.tableLayoutTabPage1_3.RowCount = 2;
+            this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutTabPage1_3.Size = new System.Drawing.Size(160, 74);
+            this.tableLayoutTabPage1_3.TabIndex = 2;
+            // 
+            // pointerButton
+            // 
+            this.pointerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pointerButton.AutoSize = true;
+            this.pointerButton.BackColor = System.Drawing.Color.Cornsilk;
+            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
+            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pointerButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pointerButton.FlatAppearance.BorderSize = 0;
+            this.pointerButton.ForeColor = System.Drawing.Color.Black;
+            this.pointerButton.Location = new System.Drawing.Point(3, 3);
+            this.pointerButton.Name = "pointerButton";
+            this.pointerButton.Size = new System.Drawing.Size(34, 34);
+            this.pointerButton.TabIndex = 1;
+            this.pointerButton.UseVisualStyleBackColor = false;
+            this.pointerButton.Click += new System.EventHandler(this.pointerButton_Click);
+            // 
+            // lineButton
+            // 
+            this.lineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lineButton.AutoSize = true;
+            this.lineButton.BackColor = System.Drawing.Color.Transparent;
+            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
+            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lineButton.FlatAppearance.BorderSize = 0;
+            this.lineButton.Location = new System.Drawing.Point(83, 3);
+            this.lineButton.Name = "lineButton";
+            this.lineButton.Size = new System.Drawing.Size(34, 34);
+            this.lineButton.TabIndex = 0;
+            this.lineButton.UseVisualStyleBackColor = false;
+            this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
+            // 
+            // pencilButton
+            // 
+            this.pencilButton.BackColor = System.Drawing.Color.Transparent;
+            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
+            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pencilButton.FlatAppearance.BorderSize = 0;
+            this.pencilButton.Location = new System.Drawing.Point(43, 3);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(34, 34);
+            this.pencilButton.TabIndex = 2;
+            this.pencilButton.UseVisualStyleBackColor = false;
+            this.pencilButton.Click += new System.EventHandler(this.pencilButton_Click);
+            // 
+            // circleButton
+            // 
+            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
+            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.circleButton.Location = new System.Drawing.Point(123, 3);
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(34, 34);
+            this.circleButton.TabIndex = 3;
+            this.circleButton.UseVisualStyleBackColor = true;
+            this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
+            // 
+            // unDoButton
+            // 
+            this.unDoButton.BackgroundImage = global::Monet.Properties.Resources.undo;
+            this.unDoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.unDoButton.Location = new System.Drawing.Point(6, 6);
+            this.unDoButton.Name = "unDoButton";
+            this.unDoButton.Size = new System.Drawing.Size(73, 71);
+            this.unDoButton.TabIndex = 8;
+            this.unDoButton.UseVisualStyleBackColor = true;
+            this.unDoButton.Click += new System.EventHandler(this.unDoButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 86);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(196, 15);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "撤销：（暂时的） 需优化UI";
+            // 
+            // redoButton
+            // 
+            this.redoButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("redoButton.BackgroundImage")));
+            this.redoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.redoButton.Location = new System.Drawing.Point(220, 6);
+            this.redoButton.Name = "redoButton";
+            this.redoButton.Size = new System.Drawing.Size(81, 74);
+            this.redoButton.TabIndex = 10;
+            this.redoButton.UseVisualStyleBackColor = true;
+            this.redoButton.Click += new System.EventHandler(this.redoButton_Click);
+            // 
             // tabPage2_View
             // 
             this.tabPage2_View.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(247)))));
@@ -507,8 +545,6 @@
             this.tabPage1_Home.ResumeLayout(false);
             this.tableLayoutTabPage1.ResumeLayout(false);
             this.tableLayoutTabPage1.PerformLayout();
-            this.tableLayoutTabPage1_3.ResumeLayout(false);
-            this.tableLayoutTabPage1_3.PerformLayout();
             this.colorTableLayoutPanel.ResumeLayout(false);
             this.colorTableLayoutPanel2.ResumeLayout(false);
             this.colorTableLayoutPanel2.PerformLayout();
@@ -518,6 +554,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.colorBoxButton1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.tableLayoutTabPage1_3.ResumeLayout(false);
+            this.tableLayoutTabPage1_3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -558,5 +596,8 @@
         private System.Windows.Forms.Button pencilButton;
         private System.Windows.Forms.Button thickButton;
         private System.Windows.Forms.Button circleButton;
+        private System.Windows.Forms.Button unDoButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button redoButton;
     }
 }

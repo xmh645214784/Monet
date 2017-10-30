@@ -131,7 +131,15 @@ namespace Monet
             }
         }
 
-       
-       
+        private void unDoButton_Click(object sender, EventArgs e)
+        {
+            //take out the last but two valid image
+            mainView.Image = History.GetInstance().UndoAction();
+        }
+
+        private void redoButton_Click(object sender, EventArgs e)
+        {
+            mainView.Image = History.GetInstance().RedoAction();
+        }
     }
 }
