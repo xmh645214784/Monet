@@ -39,11 +39,14 @@ namespace Monet
                                   lineButton,
                                   pencilButton
                                   );
+            
             // set default tool. 
             toolKit.currentTool = toolKit.PointerTool;
             toolKit.currentTool.RegisterTool();
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorBox = colorBoxButton1;
+            mainView.Image = new Bitmap(mainView.Width, mainView.Height);
+            History.GetInstance().PushBackAction(mainView.Image as Image);
 
         }
 

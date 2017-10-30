@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace Monet
 {
+
     public enum LineImplementMethod
     {
         LINE_SYSTEM, LINE_DDA, LINE_BRESENHAM, LINE_MIDPOINT
@@ -22,12 +23,13 @@ namespace Monet
 
     sealed class LineTool : DrawShapeTool
     {
+        int FORdebug = 0;
         public DrawLinerAdapter lineAgent;
         Point startPoint;
         Point nowPoint;
         public LineTool(PictureBox mainView, Button button) : base(mainView, button)
         {
-            lineAgent = new Midpoint();
+            lineAgent = new Dda();
             isDrawing = false;
         }
 
@@ -82,16 +84,26 @@ namespace Monet
         {
             if (isDrawing)
             {
+                History.GetInstance().UndoAction();
+                Image lastValidClone= (Image)History.GetInstance().TopAction().Clone();
+                History.GetInstance().PushBackAction(lastValidClone); 
+                mainView.Image = lastValidClone;
+                Graphics g = Graphics.FromImage(mainView.Image);
                 nowPoint = e.Location;
                 lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                mainView.Invalidate();
+                g.Dispose();
             }
         }
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            if (e.Button == MouseButtons.Left) 
             {
                 startPoint = e.Location;
                 isDrawing = true;
+                Image newClone = (Image)mainView.Image.Clone();
+                History.GetInstance().PushBackAction(newClone);
+                mainView.Image = newClone;
             }
         }
 
@@ -99,7 +111,11 @@ namespace Monet
         {
             if (e.Button == MouseButtons.Left)
             {
+                Graphics g = mainView.CreateGraphics();
                 isDrawing = false;
+                lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                g.Dispose();
+                //System.Diagnostics.Debug.WriteLine(History.GetInstance().historyArray.Count);
             }
         }
     }

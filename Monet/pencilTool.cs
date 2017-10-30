@@ -20,7 +20,7 @@ namespace Monet
     /// \brief A pencil tool.
     ///-------------------------------------------------------------------------------------------------
 
-    class PencilTool : DrawShapeTool
+    sealed class PencilTool : DrawShapeTool
     {
         /// \brief The old location
         Point oldLocation;
@@ -97,9 +97,12 @@ namespace Monet
         {    
             if(isDrawing)
             {
+                Graphics g = Graphics.FromImage(mainView.Image);
                 LineTool lt = (LineTool)(ToolKit.GetInstance().LineTool);
                 lt.lineAgent.DrawLine(g, Setting.GetInstance().Pen, oldLocation, e.Location);
                 oldLocation = e.Location;
+                mainView.Invalidate();
+                g.Dispose();
             }
         }
 

@@ -10,13 +10,11 @@ namespace Monet
     abstract class Tool
     {
         protected PictureBox mainView;
-        protected Graphics g;
         protected Button bindingButton;
 
         public Tool(PictureBox mainView,Button button)
         {
             this.mainView = mainView;
-            this.g = mainView.CreateGraphics();
             this.bindingButton = button;
         }
 
