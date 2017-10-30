@@ -128,7 +128,7 @@ namespace Monet
     {
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
-            System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
+            //System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
             double dx, dy, e, x, y;
             int x1 = p1.X, y1 = p1.Y, x2 = p2.X, y2 = p2.Y;
             dx = x2 - x1;

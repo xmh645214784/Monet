@@ -1,4 +1,10 @@
-﻿using System;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file CircleTool.cs.
+///
+/// \brief Implements the circle tool class
+///-------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,34 +14,92 @@ using System.Windows.Forms;
 
 namespace Monet
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class DrawCircleAdapter
+    ///
+    /// \brief A draw circle adapter.
+    ///-------------------------------------------------------------------------------------------------
+
     abstract class DrawCircleAdapter
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border);
+        ///
+        /// \brief Draw circle
+        ///
+        /// \param g      The Graphics to process.
+        /// \param pen    The pen.
+        /// \param center The cirle center point.
+        /// \param border The border point.
+        ///-------------------------------------------------------------------------------------------------
+
         abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border);
-        static public void drawEightPix(Graphics g, Pen pen, Point offset, Point p)
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn static public void drawEightPix(Graphics g, Pen pen, Point center, Point p)
+        ///
+        /// \brief Draw eight pix
+        ///
+        /// \param g      The Graphics to process.
+        /// \param pen    The pen.
+        /// \param center The offset point (center point).
+        /// \param p      A Point to process based on the origin of coordinates.
+        ///-------------------------------------------------------------------------------------------------
+
+        static public void drawEightPix(Graphics g, Pen pen, Point center, Point p)
         {
             int x = p.X;
             int y = p.Y;
-            Common.DrawPix(g, new Point(x + offset.X, y + offset.Y), pen);
-            Common.DrawPix(g, new Point(-x + offset.X, y + offset.Y), pen);
-            Common.DrawPix(g, new Point(x + offset.X, -y + offset.Y), pen);
-            Common.DrawPix(g, new Point(-x + offset.X, -y + offset.Y), pen);
+            Common.DrawPix(g, new Point(x + center.X, y + center.Y), pen);
+            Common.DrawPix(g, new Point(-x + center.X, y + center.Y), pen);
+            Common.DrawPix(g, new Point(x + center.X, -y + center.Y), pen);
+            Common.DrawPix(g, new Point(-x + center.X, -y + center.Y), pen);
 
-            Common.DrawPix(g, new Point(y + offset.X, x + offset.Y), pen);
-            Common.DrawPix(g, new Point(-y + offset.X, x + offset.Y), pen);
-            Common.DrawPix(g, new Point(y + offset.X, -x + offset.Y), pen);
-            Common.DrawPix(g, new Point(-y + offset.X, -x + offset.Y), pen);
+            Common.DrawPix(g, new Point(y + center.X, x + center.Y), pen);
+            Common.DrawPix(g, new Point(-y + center.X, x + center.Y), pen);
+            Common.DrawPix(g, new Point(y + center.X, -x + center.Y), pen);
+            Common.DrawPix(g, new Point(-y + center.X, -x + center.Y), pen);
         }
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class CircleTool
+    ///
+    /// \brief A circle tool. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class CircleTool : DrawShapeTool { 
+        /// \brief The circle agent
         public DrawCircleAdapter circleAgent;
+        /// \brief The start point
         Point startPoint;
+        /// \brief The now point
         Point nowPoint;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public CircleTool(PictureBox mainView, Button button) : base(mainView, button)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        /// \param button   The button control.
+        ///-------------------------------------------------------------------------------------------------
+
         public CircleTool(PictureBox mainView, Button button) : base(mainView, button)
         {
-            circleAgent = new MidPointCircle();
+            circleAgent = new BresenhamCircle();
             isEnabled = false;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ChangeImplementMethod(LineImplementMethod newmtd)
+        ///
+        /// \brief Change implement method
+        ///
+        /// \exception Exception Thrown when an exception error condition occurs.
+        ///
+        /// \param newmtd The newmtd.
+        ///-------------------------------------------------------------------------------------------------
 
         public void ChangeImplementMethod(LineImplementMethod newmtd)
         {
@@ -46,11 +110,27 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint)
+        ///
+        /// \brief Draws
+        ///
+        /// \param g           The Graphics to process.
+        /// \param pen         The pen.
+        /// \param centerPoint The circle center Point.
+        /// \param borderPoint The circle border Point.
+        ///-------------------------------------------------------------------------------------------------
 
-        public void Draw(Graphics g, Pen pen, Point p1, Point p2)
+        public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint)
         {
-            circleAgent.DrawCircle(g, pen, p1, p2);
+            circleAgent.DrawCircle(g, pen, centerPoint, borderPoint);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void RegisterTool()
         {
@@ -61,6 +141,11 @@ namespace Monet
             mainView.MouseUp += MainView_MouseUp;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void UnRegisterTool()
         {
@@ -71,6 +156,14 @@ namespace Monet
             mainView.MouseUp -= MainView_MouseUp;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -91,6 +184,16 @@ namespace Monet
                 }
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -102,6 +205,15 @@ namespace Monet
                 mainView.Image = newClone;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseUp(object sender, MouseEventArgs e)
         {
@@ -117,17 +229,23 @@ namespace Monet
         }
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class MidPointCircle
+    ///
+    /// \brief A middle point circle. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class MidPointCircle : DrawCircleAdapter
     {
         ///-------------------------------------------------------------------------------------------------
-        /// \fn void DrawCircleAdapter.DrawCircle(Graphics g, Pen pen, Point p1, Point p2)
+        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point boader)
         ///
         /// \brief Draw circle.
         ///
-        /// \param g   The Graphics to process.
-        /// \param pen The pen.
-        /// \param p1  The circle center Point.
-        /// \param p2  The border Point.
+        /// \param g      The Graphics to process.
+        /// \param pen    The pen.
+        /// \param center The circle center Point.
+        /// \param boader The border Point.
         ///-------------------------------------------------------------------------------------------------
 
         override public sealed 
@@ -162,8 +280,26 @@ namespace Monet
         }
 
     }
+
+    ///-------------------------------------------------------------------------------------------------
+    /// \class BresenhamCircle
+    ///
+    /// \brief A bresenham circle. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class BresenhamCircle : DrawCircleAdapter
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point border)
+        ///
+        /// \brief Draw circle
+        ///
+        /// \param g      The Graphics to process.
+        /// \param pen    The pen.
+        /// \param center The center.
+        /// \param border The border.
+        ///-------------------------------------------------------------------------------------------------
+
         override public sealed
             void DrawCircle(Graphics g, Pen pen, Point center, Point border)
         {
