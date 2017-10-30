@@ -1,4 +1,11 @@
-﻿using System;
+﻿//Line: Alternative
+//  LINE_SYSTEM 
+//  LINE_DDA 
+//  LINE_MIDPOINT 
+//  LINE_BRESENHAM
+#define LINE_DDA
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

@@ -40,7 +40,6 @@ namespace Monet
         {
             isDrawing = false;
         }
-        abstract public void Draw(ToolParameters toolParameters);
     }
 }
 

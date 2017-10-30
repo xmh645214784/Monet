@@ -7,22 +7,26 @@ using System.Threading.Tasks;
 
 namespace Monet
 {
-    class SettingPanel
+    class Setting
     {
+        private LineImplementMethod lineImplementMethod;
+
         Pen pen;
-        static SettingPanel mInstance;
+        static Setting mInstance;
 
         public Pen Pen { get => pen; set => pen = value; }
 
-        private SettingPanel()
+        private Setting()
         {
             Pen=new Pen(Color.FromName("black"));
+            // set the default implementing method.
+            LineImplementMethod = LineImplementMethod.LINE_DDA;
         }
-        public static SettingPanel GetInstance()
+        public static Setting GetInstance()
         {
             if (mInstance == null)
             {
-                mInstance = new SettingPanel();
+                mInstance = new Setting();
             }
             return mInstance;
         }
@@ -34,6 +38,18 @@ namespace Monet
         public void SettingPenWidth(int width)
         {
             pen.Width = width;
+        }
+
+        public LineImplementMethod LineImplementMethod
+        {
+            get => lineImplementMethod;
+            set
+            {
+                lineImplementMethod = value;
+                LineTool lt = (LineTool)(ToolKit.GetInstance().LineTool);
+                lt.ChangeImplementMethod(value);
+            }
+
         }
     }
 }

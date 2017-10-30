@@ -1,82 +1,70 @@
-﻿using System;
+﻿#define DDA
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+ 
 
 namespace Monet
 {
-    interface IDrawLiner
+    public enum LineImplementMethod
     {
-        void DrawLine(Graphics g, Pen pen,Point p1, Point p2);
+        LINE_SYSTEM, LINE_DDA, LINE_BRESENHAM, LINE_MIDPOINT
     }
 
-    sealed class Dda : IDrawLiner
+    interface DrawLinerAdapter
     {
-        private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
-        {
-            System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
-            int YDis = (p2.Y - p1.Y);
-            int XDis = (p2.X - p1.X);
-            int MaxStep = Math.Max(Math.Abs(XDis), Math.Abs(YDis));
-            float fXUnitLen = 1.0f;  // X方向的单位步进  
-            float fYUnitLen = 1.0f;  // Y方向的单位步进  
-            fYUnitLen = YDis / (float)MaxStep;
-            fXUnitLen = XDis / (float)MaxStep;
-            // 设置起点像素颜色  
-            Common.DrawPix(g, p1, pen);
-            float x = p1.X;
-            float y = p1.Y;
-            // 循环步进  
-            for (long i = 1; i <= MaxStep; i++)
-            {
-                x = x + fXUnitLen;
-                y = y + fYUnitLen;
-                Common.DrawPix(g, new Point((int)x, (int)y), pen);
-            }
-        }
-
-        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
-        {
-            
-        }
+        void DrawLine(Graphics g, Pen pen, Point p1, Point p2);
     }
-    sealed class SystemDraw : IDrawLiner
-    {
-        public void DrawLine(Graphics g,  Pen pen, Point p1, Point p2)
-        {
-            g.DrawLine(pen, p1, p2);
-        }
-    }
-
 
     sealed class LineTool : DrawShapeTool
     {
-        public IDrawLiner lineAgent;
+        public DrawLinerAdapter lineAgent;
         Point startPoint;
         Point nowPoint;
-
-        public LineTool(PictureBox mainView, Button button) : base(mainView,button)
+        public LineTool(PictureBox mainView, Button button) : base(mainView, button)
         {
-            lineAgent = new SystemDraw();
+            lineAgent = new Midpoint();
             isDrawing = false;
         }
 
-        public override void Draw(ToolParameters toolParameters)
+        public void ChangeImplementMethod(LineImplementMethod newmtd)
         {
-            System.Diagnostics.Debug.Assert(toolParameters.coords.Length == 2);
-            lineAgent.DrawLine(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
+            switch (newmtd)
+            {
+                case LineImplementMethod.LINE_SYSTEM:
+                    lineAgent = new SystemDraw();
+                    break;
+                case LineImplementMethod.LINE_DDA:
+                    lineAgent = new Dda();
+                    break;
+                case LineImplementMethod.LINE_BRESENHAM:
+                    lineAgent = new Bresenham();
+                    break;
+                case LineImplementMethod.LINE_MIDPOINT:
+                    lineAgent = new Midpoint();
+                    break;
+                default:
+                    throw new Exception("UnKnown lineImplement method");
+            }
+        }
+
+
+        public void Draw(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            lineAgent.DrawLine(g, pen, p1, p2);
         }
 
         public override void RegisterTool()
         {
             base.RegisterTool();
             mainView.Cursor = Cursors.Cross;
-            mainView.MouseDown  += MainView_MouseDown;
-            mainView.MouseMove  += MainView_MouseMove;
-            mainView.MouseUp    += MainView_MouseUp;
+            mainView.MouseDown += MainView_MouseDown;
+            mainView.MouseMove += MainView_MouseMove;
+            mainView.MouseUp += MainView_MouseUp;
         }
 
 
@@ -84,24 +72,23 @@ namespace Monet
         {
             base.UnRegisterTool();
             mainView.Cursor = Cursors.Default;
-            mainView.MouseDown  -= MainView_MouseDown;
-            mainView.MouseMove  -= MainView_MouseMove;
-            mainView.MouseUp    -= MainView_MouseUp;
+            mainView.MouseDown -= MainView_MouseDown;
+            mainView.MouseMove -= MainView_MouseMove;
+            mainView.MouseUp -= MainView_MouseUp;
         }
 
-        
+
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDrawing)
-            { 
-
+            {
                 nowPoint = e.Location;
-                lineAgent.DrawLine(g, SettingPanel.GetInstance().Pen, startPoint, nowPoint);
+                lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
             }
         }
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button==MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 startPoint = e.Location;
                 isDrawing = true;
@@ -110,10 +97,123 @@ namespace Monet
 
         private void MainView_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button==MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 isDrawing = false;
             }
         }
     }
+
+
+    sealed class Dda : DrawLinerAdapter
+    {
+        private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
+            double dx, dy, e, x, y;
+            int x1 = p1.X, y1 = p1.Y, x2 = p2.X, y2 = p2.Y;
+            dx = x2 - x1;
+            dy = y2 - y1;
+            e = (Math.Abs(dx) > Math.Abs(dy)) ? Math.Abs(dx) : Math.Abs(dy);
+            dx /= e; dy /= e;
+            x = x1;
+            y = y1;
+            for (int i = 1; i <= e; i++)
+            {
+                Common.DrawPix(g, new Point((int)(x + 0.5), (int)(y + 0.5)), pen);
+                x += dx;
+                y += dy;
+            }
+        }
+
+        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            DrawWidEqOneLine(g, pen, p1, p2);
+        }
+    }
+
+    sealed class Midpoint : DrawLinerAdapter
+    {
+        private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
+            int a, b, delta1, delta2, d, x, y;
+            int x1 = p1.X, y1 = p1.Y, x2 = p2.X, y2 = p2.Y;
+            a = y1 - y2;
+            b = x2 - x1;
+            d = 2 * a + b;
+            delta1 = 2 * a;
+            delta2 = 2 * (a + b);
+            x = x1;
+            y = y1;
+            Common.DrawPix(g,new Point(x,y),pen);
+            while (x < x1)
+            {
+                if (d < 0)
+                {
+                    x++;
+                    y++;
+                    d += delta2;
+                }
+                else
+                {
+                    x++;
+                    d += delta1;
+                }
+                Common.DrawPix(g, new Point(x, y), pen);
+            } /* while */
+        
+        }
+
+        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            DrawWidEqOneLine(g, pen, p1, p2);
+        }
+    }
+
+
+    sealed class Bresenham : DrawLinerAdapter
+    {
+        private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
+            int x, y, dx, dy, p;
+            int x1 = p1.X, y1 = p1.Y, x2 = p2.X, y2 = p2.Y;
+            x = x1;
+            y = y1;
+            dx = x2 - x1;
+            dy = y2 - y1;
+            p = 2 * dy - dx;
+            for (; x <= x2; x++)
+            {
+                Common.DrawPix(g, new Point(x, y), pen);
+                if (p >= 0)
+                {
+                    y++;
+                    p += 2 * (dy - dx);
+                }
+                else
+                {
+                    p += 2 * dy;
+                }
+            }
+
+        }
+
+        public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        {
+            DrawWidEqOneLine(g, pen, p1, p2);
+        }
+    }
+
+    sealed class SystemDraw : DrawLinerAdapter
+    {
+        public void DrawLine(Graphics g,  Pen pen, Point p1, Point p2)
+        {
+            g.DrawLine(pen, p1, p2);
+        }
+    }
+
+
+
 }

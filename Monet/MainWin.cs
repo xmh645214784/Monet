@@ -116,12 +116,12 @@ namespace Monet
         private void colorButton_Click(object sender, EventArgs e)
         {
             ColorDialog colorDialog = new ColorDialog();
-            colorDialog.Color = SettingPanel.GetInstance().Pen.Color;
+            colorDialog.Color = Setting.GetInstance().Pen.Color;
             colorDialog.FullOpen = true;
             colorDialog.AnyColor = true;
             if(colorDialog.ShowDialog()==DialogResult.OK)
             {
-                SettingPanel.GetInstance().Pen.Color = colorDialog.Color;
+                Setting.GetInstance().Pen.Color = colorDialog.Color;
                 currentSettingColorBox.BackColor= colorDialog.Color;
             }
         }
