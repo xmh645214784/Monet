@@ -52,6 +52,7 @@
     <Compile Include="History.cs" />
     <Compile Include="LineTool.cs" />
     <Compile Include="PointerTool.cs" />
+    <Compile Include="SelectTool.cs" />
     <Compile Include="SettingPanel.cs" />
     <Compile Include="Tool.cs" />
     <Compile Include="MainWin.cs">
@@ -119,6 +120,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\redo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\rectangular.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

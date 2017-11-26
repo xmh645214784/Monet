@@ -114,11 +114,7 @@ namespace Monet
         {
             if (e.Button == MouseButtons.Left)
             {
-                using (Graphics g = mainView.CreateGraphics())
-                { 
-                    isEnabled = false;
-                    lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                }
+                isEnabled = false;
             }
         }
     }

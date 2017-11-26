@@ -219,12 +219,7 @@ namespace Monet
         {
             if (e.Button == MouseButtons.Left)
             {
-                using (Graphics g = mainView.CreateGraphics())
-                { 
-                    isEnabled = false;
-                    circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                    g.Dispose();
-                }
+                isEnabled = false;
             }
         }
     }

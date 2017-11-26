@@ -38,7 +38,8 @@ namespace Monet
                                   pointerButton,
                                   lineButton,
                                   pencilButton,
-                                  circleButton
+                                  circleButton,
+                                  selectButton
                                   );
             
             // set default tool. 
@@ -108,6 +109,8 @@ namespace Monet
         private void pencilButton_Click(object sender, EventArgs e) => changeTool(toolKit.PencilTool);
 
         private void circleButton_Click(object sender, EventArgs e) => changeTool(toolKit.CircleTool);
+
+        private void selectButton_Click(object sender, EventArgs e) => changeTool(toolKit.SelectTool);
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///

@@ -21,6 +21,8 @@ namespace Monet
         static Tool pencilTool;
         /// \brief The circle tool
         static Tool circleTool;
+        /// \brief The select tool
+        static Tool selectTool;
 
         ///-------------------------------------------------------------------------------------------------
         /// \property internal Tool LineTool
@@ -61,6 +63,7 @@ namespace Monet
         ///-------------------------------------------------------------------------------------------------
 
         internal Tool CircleTool { get => circleTool;}
+        internal Tool SelectTool { get => selectTool;}
 
         static ToolKit mInstance;
 
@@ -75,14 +78,16 @@ namespace Monet
                          Button pointerButton,
                          Button lineButton,
                          Button pencilButton,
-                         Button circleButton)
+                         Button circleButton,
+                         Button selectButton)
         {
             if (mInstance == null)
                 mInstance = new ToolKit(mainView, 
                                         pointerButton, 
                                         lineButton, 
                                         pencilButton,
-                                        circleButton);
+                                        circleButton,
+                                        selectButton);
             return mInstance;
         }
 
@@ -102,13 +107,15 @@ namespace Monet
                          Button pointerButton,
                          Button lineButton,
                          Button pencilButton,
-                         Button circleButton)
+                         Button circleButton,
+                         Button selectButton)
         {
             this.mainView = mainView;
             pointerTool = new PointerTool   (mainView,pointerButton);
             lineTool    = new LineTool      (mainView,lineButton);
             pencilTool  = new PencilTool    (mainView, pencilButton);
             circleTool  = new CircleTool    (mainView, circleButton);
+            selectTool = new SelectTool   (mainView, selectButton);
         }
         
     }
