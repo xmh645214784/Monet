@@ -88,6 +88,7 @@ namespace Monet
         {
             return historyArray[index] as Image;
         }
+
     }
 }
 

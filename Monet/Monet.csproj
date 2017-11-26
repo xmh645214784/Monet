@@ -46,26 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CircleTool.cs" />
-    <Compile Include="PencilTool.cs" />
-    <Compile Include="Common.cs" />
-    <Compile Include="History.cs" />
-    <Compile Include="LineTool.cs" />
-    <Compile Include="PointerTool.cs" />
-    <Compile Include="SelectTool.cs" />
-    <Compile Include="SettingPanel.cs" />
-    <Compile Include="Tool.cs" />
-    <Compile Include="MainWin.cs">
+    <Compile Include="src\tools\CircleTool.cs" />
+    <Compile Include="src\tools\PencilTool.cs" />
+    <Compile Include="src\Common.cs" />
+    <Compile Include="src\History.cs" />
+    <Compile Include="src\tools\LineTool.cs" />
+    <Compile Include="src\tools\PointerTool.cs" />
+    <Compile Include="src\tools\SelectTool.cs" />
+    <Compile Include="src\SettingPanel.cs" />
+    <Compile Include="src\tools\Tool.cs" />
+    <Compile Include="src\MainWin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWin.Designer.cs">
+    <Compile Include="src\MainWin.Designer.cs">
       <DependentUpon>MainWin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToolKit.cs" />
-    <Compile Include="ToolParameters.cs" />
-    <EmbeddedResource Include="MainWin.resx">
+    <Compile Include="src\tools\ToolKit.cs" />
+    <Compile Include="src\tools\ToolParameters.cs" />
+    <EmbeddedResource Include="src\MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -123,6 +123,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\rectangular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\fill.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -29,5 +29,13 @@ namespace Monet
         {
             g.DrawRectangle(pen, p.X, p.Y, 1, 1);
         }
+
+        public static Rectangle Rectangle(Point p1,Point p2)
+        {
+            int width = Math.Abs(p1.X - p2.X);
+            int height = Math.Abs(p1.Y - p2.Y);
+            Point start = new Point(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
+            return new Rectangle(start, new Size(width, height));
+        }
     }
 }

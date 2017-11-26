@@ -22,7 +22,7 @@ namespace Monet
         /// \brief The tool kit which contains all tools(line,rectangle,circle etc.)
         ToolKit toolKit;
         /// \brief This variable shows which colorBox is now setting.
-        PictureBox currentSettingColorBox;
+        Button currentSettingColorButton;
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn public MainWin()
@@ -46,7 +46,7 @@ namespace Monet
             toolKit.currentTool = toolKit.PointerTool;
             toolKit.currentTool.RegisterTool();
             // set default color box button, to emphasize the colorBox which is currently being used. 
-            currentSettingColorBox = colorBoxButton1;
+            currentSettingColorButton = colorBoxButton1;
             mainView.Image = new Bitmap(mainView.Width, mainView.Height);
             History.GetInstance().PushBackAction(mainView.Image as Image);
 
@@ -130,7 +130,7 @@ namespace Monet
             if(colorDialog.ShowDialog()==DialogResult.OK)
             {
                 Setting.GetInstance().Pen.Color = colorDialog.Color;
-                currentSettingColorBox.BackColor= colorDialog.Color;
+                currentSettingColorButton.BackColor= colorDialog.Color;
             }
         }
 
@@ -143,6 +143,30 @@ namespace Monet
         private void redoButton_Click(object sender, EventArgs e)
         {
             mainView.Image = History.GetInstance().RedoAction();
+        }
+
+        private void mainView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            throw new Exception("UnImplement Method");
+        }
+
+        private void colorTableLayoutPanel_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void colorBoxButton1_Click(object sender, EventArgs e)
+        {
+            currentSettingColorButton = colorBoxButton1;
+            colorTableLayoutPanel1.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
+            colorTableLayoutPanel2.BackColor = Color.FromArgb(245, 246, 247);
+        }
+
+        private void colorBoxButton2_Click(object sender, EventArgs e)
+        {
+            currentSettingColorButton = colorBoxButton2;
+            colorTableLayoutPanel2.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
+            colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
     }
 }
