@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\tools\CircleTool.cs" />
+    <Compile Include="src\tools\FillTool.cs" />
     <Compile Include="src\tools\PencilTool.cs" />
     <Compile Include="src\Common.cs" />
     <Compile Include="src\History.cs" />

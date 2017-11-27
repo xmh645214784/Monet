@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monet.src.tools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Monet
         static Tool circleTool;
         /// \brief The select tool
         static Tool selectTool;
+
+        static Tool fillTool;
 
         ///-------------------------------------------------------------------------------------------------
         /// \property internal Tool LineTool
@@ -64,6 +67,7 @@ namespace Monet
 
         internal Tool CircleTool { get => circleTool;}
         internal Tool SelectTool { get => selectTool;}
+        internal Tool FillTool { get => fillTool;}
 
         static ToolKit mInstance;
 
@@ -79,7 +83,8 @@ namespace Monet
                          Button lineButton,
                          Button pencilButton,
                          Button circleButton,
-                         Button selectButton)
+                         Button selectButton,
+                         Button fillButton)
         {
             if (mInstance == null)
                 mInstance = new ToolKit(mainView, 
@@ -87,7 +92,8 @@ namespace Monet
                                         lineButton, 
                                         pencilButton,
                                         circleButton,
-                                        selectButton);
+                                        selectButton,
+                                        fillButton);
             return mInstance;
         }
 
@@ -108,7 +114,8 @@ namespace Monet
                          Button lineButton,
                          Button pencilButton,
                          Button circleButton,
-                         Button selectButton)
+                         Button selectButton,
+                         Button fillButton)
         {
             this.mainView = mainView;
             pointerTool = new PointerTool   (mainView,pointerButton);
@@ -116,6 +123,7 @@ namespace Monet
             pencilTool  = new PencilTool    (mainView, pencilButton);
             circleTool  = new CircleTool    (mainView, circleButton);
             selectTool = new SelectTool   (mainView, selectButton);
+            fillTool = new FillTool(mainView, fillButton);
         }
         
     }

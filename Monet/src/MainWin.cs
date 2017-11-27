@@ -39,7 +39,8 @@ namespace Monet
                                   lineButton,
                                   pencilButton,
                                   circleButton,
-                                  selectButton
+                                  selectButton,
+                                  fillButton
                                   );
             
             // set default tool. 
@@ -111,6 +112,9 @@ namespace Monet
         private void circleButton_Click(object sender, EventArgs e) => changeTool(toolKit.CircleTool);
 
         private void selectButton_Click(object sender, EventArgs e) => changeTool(toolKit.SelectTool);
+
+
+        private void fillButton_Click(object sender, EventArgs e) => changeTool(toolKit.FillTool);
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///
@@ -129,8 +133,19 @@ namespace Monet
             colorDialog.AnyColor = true;
             if(colorDialog.ShowDialog()==DialogResult.OK)
             {
-                Setting.GetInstance().Pen.Color = colorDialog.Color;
+                //set the button color.
                 currentSettingColorButton.BackColor= colorDialog.Color;
+
+                //set the setting singleton's color
+                if(currentSettingColorButton.Equals(colorBoxButton1))
+                {
+                    Setting.GetInstance().Pen.Color = colorDialog.Color;
+                    Setting.GetInstance().FrontColor = colorDialog.Color;
+                }
+                else
+                {
+                    Setting.GetInstance().BackgroundColor = colorDialog.Color;
+                }
             }
         }
 
@@ -144,17 +159,8 @@ namespace Monet
         {
             mainView.Image = History.GetInstance().RedoAction();
         }
-
-        private void mainView_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        {
-            throw new Exception("UnImplement Method");
-        }
-
-        private void colorTableLayoutPanel_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        
+        
         private void colorBoxButton1_Click(object sender, EventArgs e)
         {
             currentSettingColorButton = colorBoxButton1;
@@ -168,5 +174,7 @@ namespace Monet
             colorTableLayoutPanel2.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
+
+        
     }
 }

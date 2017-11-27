@@ -45,14 +45,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1_Home = new System.Windows.Forms.TabPage();
             this.tableLayoutTabPage1 = new System.Windows.Forms.TableLayoutPanel();
-            this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.colorTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.colorButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -68,23 +60,31 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.fillButton = new System.Windows.Forms.Button();
+            this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.colorBoxButton1 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.colorTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.colorBoxButton2 = new System.Windows.Forms.Button();
             this.tabPage2_View = new System.Windows.Forms.TabPage();
             this.mainView = new System.Windows.Forms.PictureBox();
-            this.colorBoxButton1 = new System.Windows.Forms.Button();
-            this.colorBoxButton2 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1_Home.SuspendLayout();
             this.tableLayoutTabPage1.SuspendLayout();
-            this.colorTableLayoutPanel.SuspendLayout();
-            this.colorTableLayoutPanel2.SuspendLayout();
-            this.colorTableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutTabPage1_3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.colorTableLayoutPanel.SuspendLayout();
+            this.colorTableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.colorTableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,9 +98,9 @@
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
             this.statusLabelText1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 638);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 738);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1285, 25);
+            this.statusStrip1.Size = new System.Drawing.Size(1136, 25);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -155,7 +155,7 @@
             this.tableLayoutWhole.RowCount = 2;
             this.tableLayoutWhole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 160F));
             this.tableLayoutWhole.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 81.67006F));
-            this.tableLayoutWhole.Size = new System.Drawing.Size(1285, 638);
+            this.tableLayoutWhole.Size = new System.Drawing.Size(1136, 738);
             this.tableLayoutWhole.TabIndex = 5;
             // 
             // tabControl1
@@ -206,122 +206,6 @@
             this.tableLayoutTabPage1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutTabPage1.Size = new System.Drawing.Size(1079, 116);
             this.tableLayoutTabPage1.TabIndex = 0;
-            // 
-            // colorTableLayoutPanel
-            // 
-            this.colorTableLayoutPanel.ColumnCount = 4;
-            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.colorTableLayoutPanel.Controls.Add(this.colorTableLayoutPanel1, 0, 0);
-            this.colorTableLayoutPanel.Controls.Add(this.tableLayoutPanel4, 2, 0);
-            this.colorTableLayoutPanel.Controls.Add(this.colorTableLayoutPanel2, 1, 0);
-            this.colorTableLayoutPanel.Location = new System.Drawing.Point(752, 6);
-            this.colorTableLayoutPanel.Name = "colorTableLayoutPanel";
-            this.colorTableLayoutPanel.RowCount = 1;
-            this.colorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.colorTableLayoutPanel.Size = new System.Drawing.Size(288, 74);
-            this.colorTableLayoutPanel.TabIndex = 3;
-            this.colorTableLayoutPanel.Click += new System.EventHandler(this.colorTableLayoutPanel_Click);
-            // 
-            // colorTableLayoutPanel2
-            // 
-            this.colorTableLayoutPanel2.ColumnCount = 1;
-            this.colorTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.colorTableLayoutPanel2.Controls.Add(this.label5, 0, 1);
-            this.colorTableLayoutPanel2.Controls.Add(this.colorBoxButton2, 0, 0);
-            this.colorTableLayoutPanel2.Location = new System.Drawing.Point(63, 3);
-            this.colorTableLayoutPanel2.Name = "colorTableLayoutPanel2";
-            this.colorTableLayoutPanel2.RowCount = 2;
-            this.colorTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.colorTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.colorTableLayoutPanel2.Size = new System.Drawing.Size(53, 68);
-            this.colorTableLayoutPanel2.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(3, 50);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 18);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "2";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // colorTableLayoutPanel1
-            // 
-            this.colorTableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.colorTableLayoutPanel1.ColumnCount = 1;
-            this.colorTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.colorTableLayoutPanel1.Controls.Add(this.label4, 0, 1);
-            this.colorTableLayoutPanel1.Controls.Add(this.colorBoxButton1, 0, 0);
-            this.colorTableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.colorTableLayoutPanel1.Name = "colorTableLayoutPanel1";
-            this.colorTableLayoutPanel1.RowCount = 2;
-            this.colorTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.colorTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.colorTableLayoutPanel1.Size = new System.Drawing.Size(54, 68);
-            this.colorTableLayoutPanel1.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("宋体", 9F);
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(3, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 18);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "1";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.label6, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.colorButton, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(123, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(62, 68);
-            this.tableLayoutPanel4.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(3, 50);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 18);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "编辑颜色";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // colorButton
-            // 
-            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
-            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorButton.Location = new System.Drawing.Point(3, 3);
-            this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(56, 44);
-            this.colorButton.TabIndex = 3;
-            this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
             // 
             // label1
             // 
@@ -491,6 +375,7 @@
             // 
             this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
             this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.selectButton.Cursor = System.Windows.Forms.Cursors.Default;
             this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.selectButton.Location = new System.Drawing.Point(3, 3);
             this.selectButton.Name = "selectButton";
@@ -542,6 +427,142 @@
             this.fillButton.Size = new System.Drawing.Size(34, 34);
             this.fillButton.TabIndex = 1;
             this.fillButton.UseVisualStyleBackColor = false;
+            this.fillButton.Click += new System.EventHandler(this.fillButton_Click);
+            // 
+            // colorTableLayoutPanel
+            // 
+            this.colorTableLayoutPanel.ColumnCount = 4;
+            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.colorTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.colorTableLayoutPanel.Controls.Add(this.colorTableLayoutPanel1, 0, 0);
+            this.colorTableLayoutPanel.Controls.Add(this.tableLayoutPanel4, 2, 0);
+            this.colorTableLayoutPanel.Controls.Add(this.colorTableLayoutPanel2, 1, 0);
+            this.colorTableLayoutPanel.Location = new System.Drawing.Point(752, 6);
+            this.colorTableLayoutPanel.Name = "colorTableLayoutPanel";
+            this.colorTableLayoutPanel.RowCount = 1;
+            this.colorTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.colorTableLayoutPanel.Size = new System.Drawing.Size(288, 74);
+            this.colorTableLayoutPanel.TabIndex = 3;
+            // 
+            // colorTableLayoutPanel1
+            // 
+            this.colorTableLayoutPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.colorTableLayoutPanel1.ColumnCount = 1;
+            this.colorTableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.colorTableLayoutPanel1.Controls.Add(this.label4, 0, 1);
+            this.colorTableLayoutPanel1.Controls.Add(this.colorBoxButton1, 0, 0);
+            this.colorTableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.colorTableLayoutPanel1.Name = "colorTableLayoutPanel1";
+            this.colorTableLayoutPanel1.RowCount = 2;
+            this.colorTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.colorTableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.colorTableLayoutPanel1.Size = new System.Drawing.Size(54, 68);
+            this.colorTableLayoutPanel1.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("宋体", 9F);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(3, 50);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(48, 18);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "1";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // colorBoxButton1
+            // 
+            this.colorBoxButton1.BackColor = System.Drawing.Color.Black;
+            this.colorBoxButton1.Location = new System.Drawing.Point(3, 3);
+            this.colorBoxButton1.Name = "colorBoxButton1";
+            this.colorBoxButton1.Size = new System.Drawing.Size(48, 44);
+            this.colorBoxButton1.TabIndex = 2;
+            this.colorBoxButton1.UseVisualStyleBackColor = false;
+            this.colorBoxButton1.Click += new System.EventHandler(this.colorBoxButton1_Click);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.label6, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.colorButton, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(123, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(62, 68);
+            this.tableLayoutPanel4.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label6.Font = new System.Drawing.Font("宋体", 6.6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(3, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 18);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "编辑颜色";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // colorButton
+            // 
+            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
+            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.colorButton.Location = new System.Drawing.Point(3, 3);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(56, 44);
+            this.colorButton.TabIndex = 3;
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
+            // colorTableLayoutPanel2
+            // 
+            this.colorTableLayoutPanel2.ColumnCount = 1;
+            this.colorTableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.colorTableLayoutPanel2.Controls.Add(this.label5, 0, 1);
+            this.colorTableLayoutPanel2.Controls.Add(this.colorBoxButton2, 0, 0);
+            this.colorTableLayoutPanel2.Location = new System.Drawing.Point(63, 3);
+            this.colorTableLayoutPanel2.Name = "colorTableLayoutPanel2";
+            this.colorTableLayoutPanel2.RowCount = 2;
+            this.colorTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.colorTableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.colorTableLayoutPanel2.Size = new System.Drawing.Size(53, 68);
+            this.colorTableLayoutPanel2.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(3, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 18);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "2";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // colorBoxButton2
+            // 
+            this.colorBoxButton2.BackColor = System.Drawing.Color.White;
+            this.colorBoxButton2.Location = new System.Drawing.Point(3, 3);
+            this.colorBoxButton2.Name = "colorBoxButton2";
+            this.colorBoxButton2.Size = new System.Drawing.Size(47, 44);
+            this.colorBoxButton2.TabIndex = 3;
+            this.colorBoxButton2.UseVisualStyleBackColor = false;
+            this.colorBoxButton2.Click += new System.EventHandler(this.colorBoxButton2_Click);
             // 
             // tabPage2_View
             // 
@@ -549,7 +570,7 @@
             this.tabPage2_View.Location = new System.Drawing.Point(4, 25);
             this.tabPage2_View.Name = "tabPage2_View";
             this.tabPage2_View.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2_View.Size = new System.Drawing.Size(1085, 112);
+            this.tabPage2_View.Size = new System.Drawing.Size(1085, 125);
             this.tabPage2_View.TabIndex = 1;
             this.tabPage2_View.Text = "View";
             // 
@@ -564,34 +585,13 @@
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
-            this.mainView.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.mainView_PreviewKeyDown);
-            // 
-            // colorBoxButton1
-            // 
-            this.colorBoxButton1.BackColor = System.Drawing.Color.Black;
-            this.colorBoxButton1.Location = new System.Drawing.Point(3, 3);
-            this.colorBoxButton1.Name = "colorBoxButton1";
-            this.colorBoxButton1.Size = new System.Drawing.Size(48, 44);
-            this.colorBoxButton1.TabIndex = 2;
-            this.colorBoxButton1.UseVisualStyleBackColor = false;
-            this.colorBoxButton1.Click += new System.EventHandler(this.colorBoxButton1_Click);
-            // 
-            // colorBoxButton2
-            // 
-            this.colorBoxButton2.BackColor = System.Drawing.Color.White;
-            this.colorBoxButton2.Location = new System.Drawing.Point(3, 3);
-            this.colorBoxButton2.Name = "colorBoxButton2";
-            this.colorBoxButton2.Size = new System.Drawing.Size(47, 44);
-            this.colorBoxButton2.TabIndex = 3;
-            this.colorBoxButton2.UseVisualStyleBackColor = false;
-            this.colorBoxButton2.Click += new System.EventHandler(this.colorBoxButton2_Click);
             // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1285, 663);
+            this.ClientSize = new System.Drawing.Size(1136, 763);
             this.Controls.Add(this.tableLayoutWhole);
             this.Controls.Add(this.statusStrip1);
             this.Name = "MainWin";
@@ -603,13 +603,6 @@
             this.tabPage1_Home.ResumeLayout(false);
             this.tableLayoutTabPage1.ResumeLayout(false);
             this.tableLayoutTabPage1.PerformLayout();
-            this.colorTableLayoutPanel.ResumeLayout(false);
-            this.colorTableLayoutPanel2.ResumeLayout(false);
-            this.colorTableLayoutPanel2.PerformLayout();
-            this.colorTableLayoutPanel1.ResumeLayout(false);
-            this.colorTableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutTabPage1_3.ResumeLayout(false);
             this.tableLayoutTabPage1_3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -617,6 +610,13 @@
             this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.colorTableLayoutPanel.ResumeLayout(false);
+            this.colorTableLayoutPanel1.ResumeLayout(false);
+            this.colorTableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
+            this.colorTableLayoutPanel2.ResumeLayout(false);
+            this.colorTableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

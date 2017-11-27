@@ -12,6 +12,8 @@ namespace Monet
         private LineImplementMethod lineImplementMethod;
 
         Pen pen;
+        Color frontColor;
+        Color backgroundColor;
         static Setting mInstance;
 
         public Pen Pen { get => pen; set => pen = value; }
@@ -19,6 +21,8 @@ namespace Monet
         private Setting()
         {
             Pen=new Pen(Color.FromName("black"));
+            FrontColor = Color.FromName("black");
+            BackgroundColor = Color.FromName("white");
             // set the default implementing method.
             LineImplementMethod = LineImplementMethod.LINE_DDA;
         }
@@ -51,5 +55,8 @@ namespace Monet
             }
 
         }
+
+        public Color FrontColor { get => frontColor; set => frontColor = value; }
+        public Color BackgroundColor { get => backgroundColor; set => backgroundColor = value; }
     }
 }
