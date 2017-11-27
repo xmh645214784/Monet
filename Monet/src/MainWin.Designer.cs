@@ -251,13 +251,13 @@
             // 
             // thickButton
             // 
-            this.thickButton.BackgroundImage = global::Monet.Properties.Resources.thickDegree;
             this.thickButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.thickButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.thickButton.Location = new System.Drawing.Point(692, 6);
             this.thickButton.Name = "thickButton";
             this.thickButton.Size = new System.Drawing.Size(51, 50);
             this.thickButton.TabIndex = 7;
+            this.thickButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.thickButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutTabPage1_3
@@ -576,12 +576,13 @@
             // 
             // mainView
             // 
-            this.mainView.BackColor = System.Drawing.Color.White;
+            this.mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(240)))));
             this.mainView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.mainView.Cursor = System.Windows.Forms.Cursors.Default;
+            this.mainView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainView.Location = new System.Drawing.Point(3, 163);
             this.mainView.Name = "mainView";
-            this.mainView.Size = new System.Drawing.Size(1017, 428);
+            this.mainView.Size = new System.Drawing.Size(1130, 572);
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);

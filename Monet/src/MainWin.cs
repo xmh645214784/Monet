@@ -49,6 +49,12 @@ namespace Monet
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
             mainView.Image = new Bitmap(mainView.Width, mainView.Height);
+
+            //fill the image with white
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                g.FillRectangle(Brushes.White, 0, 0, mainView.Image.Width, mainView.Image.Height);
+            }
             History.GetInstance().PushBackAction(mainView.Image as Image);
 
         }
@@ -112,8 +118,7 @@ namespace Monet
         private void circleButton_Click(object sender, EventArgs e) => changeTool(toolKit.CircleTool);
 
         private void selectButton_Click(object sender, EventArgs e) => changeTool(toolKit.SelectTool);
-
-
+        
         private void fillButton_Click(object sender, EventArgs e) => changeTool(toolKit.FillTool);
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
@@ -174,7 +179,6 @@ namespace Monet
             colorTableLayoutPanel2.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
-
         
     }
 }
