@@ -21,7 +21,7 @@ namespace Monet
         bool isExistOneRect;
         bool isMove;
 
-        public SelectTool(PictureBox mainView, Button button) : base(mainView, button)
+        public SelectTool(PictureBox mainView) : base(mainView)
         {
             isNewARect = false;
             isExistOneRect = false;
@@ -156,6 +156,11 @@ namespace Monet
                     }
                 }
             }
+        }
+
+        public override void MakeAction(ToolParameters toolParameters)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -51,6 +51,7 @@ namespace Monet
             pencilButton.BindingTool = toolKit.pencilTool;
             lineButton.BindingTool = toolKit.lineTool;
             circleButton.BindingTool = toolKit.circleTool;
+            fillButton.BindingTool = toolKit.fillTool;
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
@@ -171,9 +172,5 @@ namespace Monet
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
 
-        private void mainView_Paint(object sender, PaintEventArgs e)
-        {
-            History.GetInstance().RedrawAllActions();
-        }
     }
 }

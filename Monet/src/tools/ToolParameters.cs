@@ -20,5 +20,7 @@ namespace Monet
         }
 
         internal Pen pen;
+
+        internal Color color;
     }
 }

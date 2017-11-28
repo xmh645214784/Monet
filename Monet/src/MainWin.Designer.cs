@@ -70,6 +70,8 @@
             this.pencilButton = new Monet.src.tools.ToolButton();
             this.lineButton = new Monet.src.tools.ToolButton();
             this.circleButton = new Monet.src.tools.ToolButton();
+            this.selectButton = new Monet.src.tools.ToolButton();
+            this.fillButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -78,6 +80,7 @@
             this.tableLayoutTabPage1_3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.colorTableLayoutPanel.SuspendLayout();
             this.colorTableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -240,6 +243,7 @@
             // 
             // thickButton
             // 
+            this.thickButton.BackgroundImage = global::Monet.Properties.Resources.thickDegree;
             this.thickButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.thickButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.thickButton.Location = new System.Drawing.Point(692, 6);
@@ -288,6 +292,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.selectButton, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
@@ -314,6 +319,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
+            this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(281, 6);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -478,7 +484,6 @@
             this.mainView.Size = new System.Drawing.Size(1130, 572);
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
-            this.mainView.Paint += new System.Windows.Forms.PaintEventHandler(this.mainView_Paint);
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
             // 
             // toolStripStatusLabel2
@@ -532,6 +537,28 @@
             this.circleButton.TabIndex = 3;
             this.circleButton.UseVisualStyleBackColor = true;
             // 
+            // selectButton
+            // 
+            this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
+            this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selectButton.Location = new System.Drawing.Point(3, 3);
+            this.selectButton.Name = "selectButton";
+            this.selectButton.Size = new System.Drawing.Size(53, 46);
+            this.selectButton.TabIndex = 2;
+            this.selectButton.UseVisualStyleBackColor = true;
+            // 
+            // fillButton
+            // 
+            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
+            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fillButton.Location = new System.Drawing.Point(3, 3);
+            this.fillButton.Name = "fillButton";
+            this.fillButton.Size = new System.Drawing.Size(34, 34);
+            this.fillButton.TabIndex = 0;
+            this.fillButton.UseVisualStyleBackColor = true;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -553,6 +580,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.colorTableLayoutPanel.ResumeLayout(false);
             this.colorTableLayoutPanel1.ResumeLayout(false);
             this.colorTableLayoutPanel1.PerformLayout();
@@ -604,5 +632,7 @@
         private src.tools.ToolButton pencilButton;
         private src.tools.ToolButton lineButton;
         private src.tools.ToolButton circleButton;
+        private src.tools.ToolButton selectButton;
+        private src.tools.ToolButton fillButton;
     }
 }

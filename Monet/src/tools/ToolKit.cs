@@ -63,7 +63,7 @@ namespace Monet
             //pencilTool  = new PencilTool    (mainView);
             circleTool  = new CircleTool    (mainView);
             //selectTool = new SelectTool   (mainView);
-            //fillTool = new FillTool(mainView);
+            fillTool = new FillTool(mainView);
         }
         
     }

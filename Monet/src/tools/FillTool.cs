@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monet.src.history;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,7 +13,7 @@ namespace Monet.src.tools
     sealed class FillTool : Tool
     {
         static Queue<Point> queue = new Queue<Point>(capacity: 1000000);
-        public FillTool(PictureBox mainView, Button button) : base(mainView, button)
+        public FillTool(PictureBox mainView) : base(mainView)
         {
         }
         public override void RegisterTool()
@@ -25,7 +26,7 @@ namespace Monet.src.tools
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
             Color newColor;
-            if(e.Button==MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 newColor = Setting.GetInstance().FrontColor;
             }
@@ -33,29 +34,40 @@ namespace Monet.src.tools
             {
                 newColor = Setting.GetInstance().BackgroundColor;
             }
+            Fill(e.Location, newColor);
+
+            ToolParameters p = new ToolParameters();
+            p.coords[0] = e.Location;
+            p.color = newColor;
+
+            History.GetInstance().PushBackAction(
+                new ToolAction(this, p));
+        }
+
+        private void Fill(Point p,Color newColor)
+        {
             queue.Clear();
             Bitmap bitmap = new Bitmap(mainView.Image);
-            Color posColor = bitmap.GetPixel(e.Location.X,e.Location.Y);
-            queue.Enqueue(e.Location);
+            Color posColor = bitmap.GetPixel(p.X, p.Y);
+            queue.Enqueue(p);
             GraphicsUnit units = GraphicsUnit.Pixel;
             while (queue.Count != 0)
             {
-                Point p = queue.Dequeue();
+                Point q = queue.Dequeue();
                 //if out of bounds
-                if (!bitmap.GetBounds(ref units).Contains(p))
+                if (!bitmap.GetBounds(ref units).Contains(q))
                     continue;
-                if (bitmap.GetPixel(p.X, p.Y) == posColor
-                    && bitmap.GetPixel(p.X, p.Y) != newColor)
+                if (bitmap.GetPixel(q.X, q.Y) == posColor
+                    && bitmap.GetPixel(q.X, q.Y) != newColor)
                 {
-                    bitmap.SetPixel(p.X, p.Y, newColor);
-                    queue.Enqueue(new Point(p.X-1, p.Y));
-                    queue.Enqueue(new Point(p.X, p.Y-1));
-                    queue.Enqueue(new Point(p.X+1, p.Y));
-                    queue.Enqueue(new Point(p.X, p.Y+1));
+                    bitmap.SetPixel(q.X, q.Y, newColor);
+                    queue.Enqueue(new Point(q.X - 1, q.Y));
+                    queue.Enqueue(new Point(q.X, q.Y - 1));
+                    queue.Enqueue(new Point(q.X + 1, q.Y));
+                    queue.Enqueue(new Point(q.X, q.Y + 1));
                 }
             }
             mainView.Image = bitmap;
-            History.GetInstance().PushBackAction(mainView.Image);
         }
 
         public override void UnRegisterTool()
@@ -63,6 +75,13 @@ namespace Monet.src.tools
             base.UnRegisterTool();
             mainView.Cursor = Cursors.Default;
             mainView.MouseClick -= MainView_MouseClick;
+        }
+
+
+
+        public override void MakeAction(ToolParameters toolParameters)
+        {
+            Fill(toolParameters.coords[0], toolParameters.color);
         }
     }
 }

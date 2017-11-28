@@ -50,6 +50,7 @@
     <Compile Include="src\Common.cs" />
     <Compile Include="src\history\History.cs" />
     <Compile Include="src\tools\CircleTool.cs" />
+    <Compile Include="src\tools\FillTool.cs" />
     <Compile Include="src\ui\ToolButton.cs">
       <SubType>Component</SubType>
     </Compile>
