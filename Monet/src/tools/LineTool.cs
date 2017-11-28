@@ -84,9 +84,7 @@ namespace Monet
             if (isEnabled)
             {
                 mainView.Image.Dispose();
-                mainView.Image = Common.background.Clone() as Image;
-                //mainView.Refresh();
-                History.GetInstance().RedrawAllActions();
+                mainView.Image = (Image)doubleBuffer.Clone();
 
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
@@ -100,6 +98,7 @@ namespace Monet
             {
                 startPoint = e.Location;
                 isEnabled = true;
+                doubleBuffer = (Image)mainView.Image.Clone();
             }
         }
 
@@ -109,17 +108,12 @@ namespace Monet
             {
                 isEnabled = false;
 
-                mainView.Image.Dispose();
-                mainView.Image = Common.background.Clone() as Image;
-                //mainView.Refresh();
-                History.GetInstance().RedrawAllActions();
+                mainView.Image = (Image)doubleBuffer.Clone();
 
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
                 }
-
-
 
                 ToolParameters p = new ToolParameters();
                 p.coords[0] = startPoint;
@@ -128,6 +122,8 @@ namespace Monet
 
                 History.GetInstance().PushBackAction(
                     new ToolAction(this, p));
+
+                doubleBuffer.Dispose();
             }
         }
 

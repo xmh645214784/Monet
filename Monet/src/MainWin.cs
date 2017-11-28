@@ -50,6 +50,7 @@ namespace Monet
             pointerButton.BindingTool = toolKit.pointerTool;
             pencilButton.BindingTool = toolKit.pencilTool;
             lineButton.BindingTool = toolKit.lineTool;
+            circleButton.BindingTool = toolKit.circleTool;
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;

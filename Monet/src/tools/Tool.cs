@@ -34,6 +34,7 @@ namespace Monet
     abstract class DrawShapeTool:Tool
     {
         protected bool isEnabled;
+        protected Image doubleBuffer;
         public DrawShapeTool(PictureBox mainView) : base(mainView)
         {
             isEnabled = false;

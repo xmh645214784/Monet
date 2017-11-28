@@ -4,6 +4,7 @@
 /// \brief Implements the circle tool class
 ///-------------------------------------------------------------------------------------------------
 
+using Monet.src.history;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -85,7 +86,7 @@ namespace Monet
         /// \param button   The button control.
         ///-------------------------------------------------------------------------------------------------
 
-        public CircleTool(PictureBox mainView, Button button) : base(mainView, button)
+        public CircleTool(PictureBox mainView) : base(mainView)
         {
             circleAgent = new BresenhamCircle();
             isEnabled = false;
@@ -169,18 +170,14 @@ namespace Monet
         {
             if (isEnabled)
             {
-                //take out the last but two valid image, take clone of it ,push it into stack.
-                History.GetInstance().UndoAction();
-                Image lastValidClone = (Image)History.GetInstance().TopAction().Clone();
-                History.GetInstance().PushBackAction(lastValidClone);
-                mainView.Image = lastValidClone;
+                mainView.Image.Dispose();
+                mainView.Image = (Image)doubleBuffer.Clone();
 
                 //draw
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 { 
                     nowPoint = e.Location;
                     circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                    mainView.Invalidate();
                 }
             }
         }
@@ -200,9 +197,7 @@ namespace Monet
             {
                 startPoint = e.Location;
                 isEnabled = true;
-                Image newClone = (Image)mainView.Image.Clone();
-                History.GetInstance().PushBackAction(newClone);
-                mainView.Image = newClone;
+                doubleBuffer = (Image)mainView.Image.Clone();
             }
         }
 
@@ -220,6 +215,31 @@ namespace Monet
             if (e.Button == MouseButtons.Left)
             {
                 isEnabled = false;
+
+                mainView.Image = (Image)doubleBuffer.Clone();
+
+                //draw
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    nowPoint = e.Location;
+                    circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                }
+
+                ToolParameters p = new ToolParameters();
+                p.coords[0] = startPoint;
+                p.coords[1] = nowPoint;
+                p.pen = Setting.GetInstance().Pen.Clone() as Pen;
+
+                History.GetInstance().PushBackAction(
+                    new ToolAction(this, p));
+            }
+        }
+
+        public override void MakeAction(ToolParameters toolParameters)
+        {
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                circleAgent.DrawCircle(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
             }
         }
     }

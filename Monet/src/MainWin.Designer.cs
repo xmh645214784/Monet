@@ -69,6 +69,7 @@
             this.pointerButton = new Monet.src.tools.ToolButton();
             this.pencilButton = new Monet.src.tools.ToolButton();
             this.lineButton = new Monet.src.tools.ToolButton();
+            this.circleButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -260,6 +261,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.pointerButton, 0, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 1, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(442, 6);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
             this.tableLayoutTabPage1_3.RowCount = 2;
@@ -519,6 +521,17 @@
             this.lineButton.TabIndex = 2;
             this.lineButton.UseVisualStyleBackColor = true;
             // 
+            // circleButton
+            // 
+            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
+            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.circleButton.Location = new System.Drawing.Point(123, 3);
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(34, 34);
+            this.circleButton.TabIndex = 3;
+            this.circleButton.UseVisualStyleBackColor = true;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -590,5 +603,6 @@
         private src.tools.ToolButton pointerButton;
         private src.tools.ToolButton pencilButton;
         private src.tools.ToolButton lineButton;
+        private src.tools.ToolButton circleButton;
     }
 }
