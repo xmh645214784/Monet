@@ -476,6 +476,7 @@
             this.mainView.Size = new System.Drawing.Size(1130, 572);
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
+            this.mainView.Paint += new System.Windows.Forms.PaintEventHandler(this.mainView_Paint);
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
             // 
             // toolStripStatusLabel2

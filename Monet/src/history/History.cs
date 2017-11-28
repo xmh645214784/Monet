@@ -64,7 +64,7 @@ namespace Monet
 
         public void UndoAction()
         {
-            if (index <= 0)
+            if (index < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
@@ -72,6 +72,7 @@ namespace Monet
                 canUndo = false;
 
             canRedo = true;
+
             --index;
         }
 
@@ -85,6 +86,13 @@ namespace Monet
             ++index;
         }
 
-
+        public void RedrawAllActions()
+        {
+            for (int i=0;i<=index;i++)
+            {
+                ToolAction p = (ToolAction)historyArray[i];
+                p.Action();
+            }
+        }
     }
 }

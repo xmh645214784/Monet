@@ -23,20 +23,13 @@ namespace Monet
 
         virtual public void RegisterTool()
         {
-
         }
-        //{
-        //   ToolKit.GetInstance().currentTool.bindingButton.BackColor = Color.Transparent;
-        //   bindingButton.BackColor = Color.Cornsilk;
-
-        //}
+        
         virtual public void UnRegisterTool()
         {
 
         }
-        //{
-        //    bindingButton.BackColor = Color.Transparent;
-        //}
+        
     }
     abstract class DrawShapeTool:Tool
     {

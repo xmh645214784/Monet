@@ -20,7 +20,14 @@ namespace Monet.src.history
 
         internal ToolParameters ToolParameters { get => toolParameters; set => toolParameters = value; }
         internal Tool Tool { get => tool; set => tool = value; }
+
+        internal void Action()
+        {
+            tool.MakeAction(toolParameters);
+        }
     }
+
+
     interface Actionable
     {
         void MakeAction(ToolParameters toolParameters);

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using Monet.src.tools;
+
 namespace Monet
 {
     ///-------------------------------------------------------------------------------------------------
@@ -42,6 +44,7 @@ namespace Monet
             // set default tool. 
             toolKit.currentTool = toolKit.pointerTool;
             toolKit.currentTool.RegisterTool();
+            ToolButton.currentButton = pointerButton;
 
             // init buttons
             pointerButton.BindingTool = toolKit.pointerTool;
@@ -57,8 +60,8 @@ namespace Monet
             {
                 g.FillRectangle(Brushes.White, 0, 0, mainView.Image.Width, mainView.Image.Height);
             }
-            
 
+            Common.background=(Image)mainView.Image.Clone();
             //set the resize button to the lower right corner.
             resizePictureBoxButton = new Button();
             resizePictureBoxButton.Size = new Size(6, 6);
@@ -166,6 +169,10 @@ namespace Monet
             colorTableLayoutPanel2.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
-        
+
+        private void mainView_Paint(object sender, PaintEventArgs e)
+        {
+            History.GetInstance().RedrawAllActions();
+        }
     }
 }

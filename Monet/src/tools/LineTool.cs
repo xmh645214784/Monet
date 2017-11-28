@@ -83,14 +83,15 @@ namespace Monet
         {
             if (isEnabled)
             {
-                //take out the last but two valid image, take clone of it ,push it into stack.
+                mainView.Image.Dispose();
+                mainView.Image = Common.background.Clone() as Image;
+                //mainView.Refresh();
+                History.GetInstance().RedrawAllActions();
 
-                ToolParameters p= new ToolParameters();
-                p.Coords = new Point[] {startPoint,e.Location};
-                History.GetInstance().PushBackAction(
-                    new ToolAction(this,p)); 
-                mainView.Invalidate();
-                
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
+                }
             }
         }
         private void MainView_MouseDown(object sender, MouseEventArgs e)
@@ -107,6 +108,26 @@ namespace Monet
             if (e.Button == MouseButtons.Left)
             {
                 isEnabled = false;
+
+                mainView.Image.Dispose();
+                mainView.Image = Common.background.Clone() as Image;
+                //mainView.Refresh();
+                History.GetInstance().RedrawAllActions();
+
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
+                }
+
+
+
+                ToolParameters p = new ToolParameters();
+                p.coords[0] = startPoint;
+                p.coords[1]=e.Location ;
+                p.pen = Setting.GetInstance().Pen.Clone() as Pen;
+
+                History.GetInstance().PushBackAction(
+                    new ToolAction(this, p));
             }
         }
 
@@ -114,7 +135,7 @@ namespace Monet
         {
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {
-                Draw(g, toolParameters.Pen, toolParameters.Coords[0], toolParameters.Coords[1]);
+                Draw(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
             }
         }
     }

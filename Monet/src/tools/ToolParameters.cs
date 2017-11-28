@@ -10,16 +10,15 @@ namespace Monet
 {
     sealed class ToolParameters
     {
-        internal Point[] Coords
+
+        internal Point[] coords;
+
+        public ToolParameters()
         {
-            set
-            {
-                System.Diagnostics.Debug.Assert(Coords.Length <= 2, "nr of coords out of size");
-                Coords = value;
-            }
-            get => Coords;
+            coords = new Point[3];
+            pen = new Pen(Color.Black);
         }
 
-        internal Pen Pen { get => Pen; set => Pen = value; }
+        internal Pen pen;
     }
 }
