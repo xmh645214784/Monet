@@ -24,6 +24,15 @@ namespace Monet.src.tools
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
+            Color newColor;
+            if(e.Button==MouseButtons.Left)
+            {
+                newColor = Setting.GetInstance().FrontColor;
+            }
+            else
+            {
+                newColor = Setting.GetInstance().BackgroundColor;
+            }
             queue.Clear();
             Bitmap bitmap = new Bitmap(mainView.Image);
             Color posColor = bitmap.GetPixel(e.Location.X,e.Location.Y);
@@ -36,9 +45,9 @@ namespace Monet.src.tools
                 if (!bitmap.GetBounds(ref units).Contains(p))
                     continue;
                 if (bitmap.GetPixel(p.X, p.Y) == posColor
-                    && bitmap.GetPixel(p.X, p.Y) != Setting.GetInstance().FrontColor)
+                    && bitmap.GetPixel(p.X, p.Y) != newColor)
                 {
-                    bitmap.SetPixel(p.X, p.Y, Setting.GetInstance().FrontColor);
+                    bitmap.SetPixel(p.X, p.Y, newColor);
                     queue.Enqueue(new Point(p.X-1, p.Y));
                     queue.Enqueue(new Point(p.X, p.Y-1));
                     queue.Enqueue(new Point(p.X+1, p.Y));
