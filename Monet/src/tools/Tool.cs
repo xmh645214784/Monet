@@ -5,36 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using Monet.src.history;
+
 namespace Monet
 {
-    abstract class Tool
+    abstract class Tool: Actionable
     {
         protected PictureBox mainView;
-        protected Button bindingButton;
 
-        public Tool(PictureBox mainView,Button button)
+        public Tool(PictureBox mainView)
         {
             this.mainView = mainView;
-            this.bindingButton = button;
         }
 
-        public Button BindingButton { get => bindingButton;}
+        abstract public void MakeAction(ToolParameters toolParameters);
+
 
         virtual public void RegisterTool()
         {
-           ToolKit.GetInstance().currentTool.bindingButton.BackColor = Color.Transparent;
-           bindingButton.BackColor = Color.Cornsilk;
 
         }
+        //{
+        //   ToolKit.GetInstance().currentTool.bindingButton.BackColor = Color.Transparent;
+        //   bindingButton.BackColor = Color.Cornsilk;
+
+        //}
         virtual public void UnRegisterTool()
         {
-            bindingButton.BackColor = Color.Transparent;
+
         }
+        //{
+        //    bindingButton.BackColor = Color.Transparent;
+        //}
     }
     abstract class DrawShapeTool:Tool
     {
         protected bool isEnabled;
-        public DrawShapeTool(PictureBox mainView, Button button) : base(mainView,button)
+        public DrawShapeTool(PictureBox mainView) : base(mainView)
         {
             isEnabled = false;
         }

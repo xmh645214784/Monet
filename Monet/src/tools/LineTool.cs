@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
- 
+using Monet.src.history;
 
 namespace Monet
 {
@@ -26,7 +26,7 @@ namespace Monet
         public DrawLinerAdapter lineAgent;
         Point startPoint;
         Point nowPoint;
-        public LineTool(PictureBox mainView, Button button) : base(mainView, button)
+        public LineTool(PictureBox mainView) : base(mainView)
         {
             lineAgent = new Dda();
             isEnabled = false;
@@ -84,18 +84,13 @@ namespace Monet
             if (isEnabled)
             {
                 //take out the last but two valid image, take clone of it ,push it into stack.
-                History.GetInstance().UndoAction();
-                Image lastValidClone= (Image)History.GetInstance().TopAction().Clone();
-                History.GetInstance().PushBackAction(lastValidClone); 
-                mainView.Image = lastValidClone;
 
-                //draw
-                using (Graphics g = Graphics.FromImage(mainView.Image))
-                { 
-                    nowPoint = e.Location;
-                    lineAgent.DrawLine(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                    mainView.Invalidate();
-                }
+                ToolParameters p= new ToolParameters();
+                p.Coords = new Point[] {startPoint,e.Location};
+                History.GetInstance().PushBackAction(
+                    new ToolAction(this,p)); 
+                mainView.Invalidate();
+                
             }
         }
         private void MainView_MouseDown(object sender, MouseEventArgs e)
@@ -104,9 +99,6 @@ namespace Monet
             {
                 startPoint = e.Location;
                 isEnabled = true;
-                Image newClone = (Image)mainView.Image.Clone();
-                History.GetInstance().PushBackAction(newClone);
-                mainView.Image = newClone;
             }
         }
 
@@ -115,6 +107,14 @@ namespace Monet
             if (e.Button == MouseButtons.Left)
             {
                 isEnabled = false;
+            }
+        }
+
+        public override void MakeAction(ToolParameters toolParameters)
+        {
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                Draw(g, toolParameters.Pen, toolParameters.Coords[0], toolParameters.Coords[1]);
             }
         }
     }

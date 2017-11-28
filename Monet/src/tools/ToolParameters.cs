@@ -8,18 +8,18 @@ using System.Drawing;
 
 namespace Monet
 {
-    class ToolParameters
+    sealed class ToolParameters
     {
-        internal Point[] coords
+        internal Point[] Coords
         {
             set
             {
-                System.Diagnostics.Debug.Assert(coords.Length <= 2, "nr of coords out of size");
-                coords = value;
+                System.Diagnostics.Debug.Assert(Coords.Length <= 2, "nr of coords out of size");
+                Coords = value;
             }
-            get =>  coords;
+            get => Coords;
         }
-        internal Pen pen;
 
+        internal Pen Pen { get => Pen; set => Pen = value; }
     }
 }

@@ -9,9 +9,14 @@ namespace Monet
 {
     class PointerTool:Tool
     {
-        public PointerTool(PictureBox mainView, Button button) : base(mainView,button)
+        public PointerTool(PictureBox mainView) : base(mainView)
         {
 
+        }
+
+        public override void MakeAction(ToolParameters toolParameters)
+        {
+            ;
         }
 
         public override void RegisterTool()

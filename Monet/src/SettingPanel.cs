@@ -50,7 +50,7 @@ namespace Monet
             set
             {
                 lineImplementMethod = value;
-                LineTool lt = (LineTool)(ToolKit.GetInstance().LineTool);
+                LineTool lt = (LineTool)(ToolKit.GetInstance().lineTool);
                 lt.ChangeImplementMethod(value);
             }
 

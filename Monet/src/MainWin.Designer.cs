@@ -39,7 +39,6 @@
             this.statusBarLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusImageLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabelText1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutWhole = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -50,28 +49,26 @@
             this.label3 = new System.Windows.Forms.Label();
             this.thickButton = new System.Windows.Forms.Button();
             this.tableLayoutTabPage1_3 = new System.Windows.Forms.TableLayoutPanel();
-            this.pointerButton = new System.Windows.Forms.Button();
-            this.lineButton = new System.Windows.Forms.Button();
-            this.pencilButton = new System.Windows.Forms.Button();
-            this.circleButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.selectButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.fillButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.colorBoxButton1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
-            this.colorButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.colorBoxButton2 = new System.Windows.Forms.Button();
             this.tabPage2_View = new System.Windows.Forms.TabPage();
+            this.colorButton = new System.Windows.Forms.Button();
             this.mainView = new System.Windows.Forms.PictureBox();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.pointerButton = new Monet.src.tools.ToolButton();
+            this.pencilButton = new Monet.src.tools.ToolButton();
+            this.lineButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -80,7 +77,6 @@
             this.tableLayoutTabPage1_3.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.colorTableLayoutPanel.SuspendLayout();
             this.colorTableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -127,14 +123,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripStatusLabel2.Image = global::Monet.Properties.Resources.cross;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 20);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // statusLabelText1
             // 
@@ -270,9 +258,8 @@
             this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutTabPage1_3.Controls.Add(this.pointerButton, 0, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 1, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(442, 6);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
             this.tableLayoutTabPage1_3.RowCount = 2;
@@ -280,69 +267,6 @@
             this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutTabPage1_3.Size = new System.Drawing.Size(239, 74);
             this.tableLayoutTabPage1_3.TabIndex = 2;
-            // 
-            // pointerButton
-            // 
-            this.pointerButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pointerButton.AutoSize = true;
-            this.pointerButton.BackColor = System.Drawing.Color.Cornsilk;
-            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
-            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pointerButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pointerButton.FlatAppearance.BorderSize = 0;
-            this.pointerButton.ForeColor = System.Drawing.Color.Black;
-            this.pointerButton.Location = new System.Drawing.Point(3, 3);
-            this.pointerButton.Name = "pointerButton";
-            this.pointerButton.Size = new System.Drawing.Size(34, 34);
-            this.pointerButton.TabIndex = 1;
-            this.pointerButton.UseVisualStyleBackColor = false;
-            this.pointerButton.Click += new System.EventHandler(this.pointerButton_Click);
-            // 
-            // lineButton
-            // 
-            this.lineButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lineButton.AutoSize = true;
-            this.lineButton.BackColor = System.Drawing.Color.Transparent;
-            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
-            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.lineButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lineButton.FlatAppearance.BorderSize = 0;
-            this.lineButton.Location = new System.Drawing.Point(83, 3);
-            this.lineButton.Name = "lineButton";
-            this.lineButton.Size = new System.Drawing.Size(34, 34);
-            this.lineButton.TabIndex = 0;
-            this.lineButton.UseVisualStyleBackColor = false;
-            this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
-            // 
-            // pencilButton
-            // 
-            this.pencilButton.BackColor = System.Drawing.Color.Transparent;
-            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
-            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pencilButton.FlatAppearance.BorderSize = 0;
-            this.pencilButton.Location = new System.Drawing.Point(43, 3);
-            this.pencilButton.Name = "pencilButton";
-            this.pencilButton.Size = new System.Drawing.Size(34, 34);
-            this.pencilButton.TabIndex = 2;
-            this.pencilButton.UseVisualStyleBackColor = false;
-            this.pencilButton.Click += new System.EventHandler(this.pencilButton_Click);
-            // 
-            // circleButton
-            // 
-            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
-            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.circleButton.Location = new System.Drawing.Point(123, 3);
-            this.circleButton.Name = "circleButton";
-            this.circleButton.Size = new System.Drawing.Size(34, 34);
-            this.circleButton.TabIndex = 3;
-            this.circleButton.UseVisualStyleBackColor = true;
-            this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -361,7 +285,6 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.selectButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -370,19 +293,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.52941F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(59, 68);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // selectButton
-            // 
-            this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
-            this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.selectButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectButton.Location = new System.Drawing.Point(3, 3);
-            this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(53, 46);
-            this.selectButton.TabIndex = 0;
-            this.selectButton.UseVisualStyleBackColor = true;
-            this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
             // 
             // label7
             // 
@@ -402,7 +312,6 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(281, 6);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
@@ -410,24 +319,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(124, 74);
             this.tableLayoutPanel3.TabIndex = 9;
-            // 
-            // fillButton
-            // 
-            this.fillButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.fillButton.AutoSize = true;
-            this.fillButton.BackColor = System.Drawing.Color.Transparent;
-            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
-            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fillButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.fillButton.FlatAppearance.BorderSize = 0;
-            this.fillButton.Location = new System.Drawing.Point(3, 3);
-            this.fillButton.Name = "fillButton";
-            this.fillButton.Size = new System.Drawing.Size(34, 34);
-            this.fillButton.TabIndex = 1;
-            this.fillButton.UseVisualStyleBackColor = false;
-            this.fillButton.Click += new System.EventHandler(this.fillButton_Click);
             // 
             // colorTableLayoutPanel
             // 
@@ -515,18 +406,6 @@
             this.label6.Text = "编辑颜色";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // colorButton
-            // 
-            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
-            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorButton.Location = new System.Drawing.Point(3, 3);
-            this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(56, 44);
-            this.colorButton.TabIndex = 3;
-            this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
-            // 
             // colorTableLayoutPanel2
             // 
             this.colorTableLayoutPanel2.ColumnCount = 1;
@@ -574,6 +453,18 @@
             this.tabPage2_View.TabIndex = 1;
             this.tabPage2_View.Text = "View";
             // 
+            // colorButton
+            // 
+            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
+            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.colorButton.Location = new System.Drawing.Point(3, 3);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(56, 44);
+            this.colorButton.TabIndex = 3;
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
             // mainView
             // 
             this.mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(240)))));
@@ -586,6 +477,46 @@
             this.mainView.TabIndex = 3;
             this.mainView.TabStop = false;
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripStatusLabel2.Image = global::Monet.Properties.Resources.cross;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 20);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            // 
+            // pointerButton
+            // 
+            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
+            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pointerButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pointerButton.Location = new System.Drawing.Point(3, 3);
+            this.pointerButton.Name = "pointerButton";
+            this.pointerButton.Size = new System.Drawing.Size(34, 34);
+            this.pointerButton.TabIndex = 0;
+            // 
+            // pencilButton
+            // 
+            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
+            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pencilButton.Location = new System.Drawing.Point(43, 3);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(34, 34);
+            this.pencilButton.TabIndex = 1;
+            this.pencilButton.UseVisualStyleBackColor = true;
+            // 
+            // lineButton
+            // 
+            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
+            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lineButton.Location = new System.Drawing.Point(83, 3);
+            this.lineButton.Name = "lineButton";
+            this.lineButton.Size = new System.Drawing.Size(34, 34);
+            this.lineButton.TabIndex = 2;
+            this.lineButton.UseVisualStyleBackColor = true;
             // 
             // MainWin
             // 
@@ -605,12 +536,9 @@
             this.tableLayoutTabPage1.ResumeLayout(false);
             this.tableLayoutTabPage1.PerformLayout();
             this.tableLayoutTabPage1_3.ResumeLayout(false);
-            this.tableLayoutTabPage1_3.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.colorTableLayoutPanel.ResumeLayout(false);
             this.colorTableLayoutPanel1.ResumeLayout(false);
             this.colorTableLayoutPanel1.PerformLayout();
@@ -652,17 +580,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button thickButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutTabPage1_3;
-        private System.Windows.Forms.Button pointerButton;
-        private System.Windows.Forms.Button lineButton;
-        private System.Windows.Forms.Button pencilButton;
-        private System.Windows.Forms.Button circleButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        public System.Windows.Forms.Button selectButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button fillButton;
         private System.Windows.Forms.Button colorBoxButton2;
         private System.Windows.Forms.Button colorBoxButton1;
+        private src.tools.ToolButton pointerButton;
+        private src.tools.ToolButton pencilButton;
+        private src.tools.ToolButton lineButton;
     }
 }

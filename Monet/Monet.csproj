@@ -46,15 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\tools\CircleTool.cs" />
-    <Compile Include="src\tools\FillTool.cs" />
-    <Compile Include="src\tools\PencilTool.cs" />
+    <Compile Include="src\history\ToolAction.cs" />
     <Compile Include="src\Common.cs" />
-    <Compile Include="src\History.cs" />
+    <Compile Include="src\history\History.cs" />
+    <Compile Include="src\ui\ToolButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\tools\LineTool.cs" />
-    <Compile Include="src\tools\PointerTool.cs" />
-    <Compile Include="src\tools\SelectTool.cs" />
     <Compile Include="src\SettingPanel.cs" />
+    <Compile Include="src\tools\PointerTool.cs" />
     <Compile Include="src\tools\Tool.cs" />
     <Compile Include="src\MainWin.cs">
       <SubType>Form</SubType>

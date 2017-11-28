@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Drawing;
+using Monet.src.history;
 
 namespace Monet
 {
@@ -15,7 +16,7 @@ namespace Monet
     ///        And it can be used to undo and redo operations
     ///-------------------------------------------------------------------------------------------------
 
-       class History
+     class History
      {
         /// \brief Array of histories images. 
         ///        We record the image after user's each step.
@@ -46,7 +47,7 @@ namespace Monet
             return mInstance;
         }
 
-        public void PushBackAction(Image action)
+        public void PushBackAction(ToolAction action)
         {
             if (index == historyArray.Count - 1)
             {
@@ -61,7 +62,7 @@ namespace Monet
                 canUndo = true;
         }
 
-        public Image UndoAction()
+        public void UndoAction()
         {
             if (index <= 0)
             {
@@ -71,59 +72,19 @@ namespace Monet
                 canUndo = false;
 
             canRedo = true;
-            return historyArray[--index] as Image;
+            --index;
         }
 
-        public Image RedoAction()
+        public void RedoAction()
         {
             if (index == historyArray.Count - 1)
                 throw new ArgumentOutOfRangeException();
             else if (index == historyArray.Count - 2)
                 canRedo = false;
 
-            return historyArray[++index] as Image;
+            ++index;
         }
 
-        public Image TopAction()
-        {
-            return historyArray[index] as Image;
-        }
 
     }
 }
-
-//    class History
-//    {
-//        public ArrayList historyArray ;
-//        static History mInstance;
-//        private History()
-//        {
-//            historyArray = new ArrayList();
-//        }
-//        public static History GetInstance()
-//        {
-//            if (mInstance == null)
-//            {
-//                mInstance = new History();
-//            }
-//            return mInstance;
-//        }
-//        public void PushBackAction(Image action)
-//        {
-//            historyArray.Add(action);
-//        }
-
-//        public Image UndoAction()
-//        {
-//            Image result=historyArray[historyArray.Count - 1] as Image;
-//            historyArray.RemoveAt(historyArray.Count - 1);
-//            return result;
-//        }
-
-
-//        public Image TopAction()
-//        {
-//            return historyArray[historyArray.Count - 1] as Image;
-//        }
-//    }
-//}

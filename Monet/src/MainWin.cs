@@ -36,18 +36,18 @@ namespace Monet
         {
             InitializeComponent();
             // some initialize progress. 
-            toolKit = ToolKit.GetInstance(mainView,
-                                  pointerButton,
-                                  lineButton,
-                                  pencilButton,
-                                  circleButton,
-                                  selectButton,
-                                  fillButton
-                                  );
-            
+            // initialize the toolKit
+            toolKit = ToolKit.GetInstance(mainView);
+
             // set default tool. 
-            toolKit.currentTool = toolKit.PointerTool;
+            toolKit.currentTool = toolKit.pointerTool;
             toolKit.currentTool.RegisterTool();
+
+            // init buttons
+            pointerButton.BindingTool = toolKit.pointerTool;
+            pencilButton.BindingTool = toolKit.pencilTool;
+            lineButton.BindingTool = toolKit.lineTool;
+
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
             mainView.Image = new Bitmap(mainView.Width, mainView.Height);
@@ -57,7 +57,7 @@ namespace Monet
             {
                 g.FillRectangle(Brushes.White, 0, 0, mainView.Image.Width, mainView.Image.Height);
             }
-            History.GetInstance().PushBackAction(mainView.Image as Image);
+            
 
             //set the resize button to the lower right corner.
             resizePictureBoxButton = new Button();
@@ -105,53 +105,7 @@ namespace Monet
             statusLabelText1.Text = String.Format("({0},{1})pix", e.X.ToString(), e.Y.ToString());
         }
 
-
-
-        ///-------------------------------------------------------------------------------------------------
-        /// \fn private void changeTool(Tool newTool)
-        ///
-        /// \brief Change the current tool to the new tool specified by param1
-        ///
-        /// \param newTool The new tool.
-        ///-------------------------------------------------------------------------------------------------
-
-        private void changeTool(Tool newTool)
-        {
-            toolKit.currentTool.UnRegisterTool();
-            toolKit.currentTool = newTool;
-            toolKit.currentTool.RegisterTool();
-        }
-
-        ///-------------------------------------------------------------------------------------------------
-        /// \fn private void lineButton_Click(object sender, EventArgs e)
-        ///
-        /// \brief Event handler. Called by lineButton for click events to use the TOOL line.
-        ///
-        /// \param sender Source of the event.
-        /// \param e      Event information.
-        ///-------------------------------------------------------------------------------------------------
-
-        private void lineButton_Click(object sender, EventArgs e) => changeTool(toolKit.LineTool);
-
-        ///-------------------------------------------------------------------------------------------------
-        /// \fn private void pointerButton_Click(object sender, EventArgs e)
-        ///
-        /// \brief Event handler. Called by pointerButton for click events to use the TOOL pointer.
-        ///
-        /// \param sender Source of the event.
-        /// \param e      Event information.
-        ///-------------------------------------------------------------------------------------------------
-
-        private void pointerButton_Click(object sender, EventArgs e) => changeTool(toolKit.PointerTool);
-
-        private void pencilButton_Click(object sender, EventArgs e) => changeTool(toolKit.PencilTool);
-
-        private void circleButton_Click(object sender, EventArgs e) => changeTool(toolKit.CircleTool);
-
-        private void selectButton_Click(object sender, EventArgs e) => changeTool(toolKit.SelectTool);
-        
-        private void fillButton_Click(object sender, EventArgs e) => changeTool(toolKit.FillTool);
-        ///-------------------------------------------------------------------------------------------------
+         ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///
         /// \brief Event handler. Called by colorButton for click events to set the front and
@@ -188,12 +142,14 @@ namespace Monet
         private void unDoButton_Click(object sender, EventArgs e)
         {
             //take out the last but two valid image
-            mainView.Image = History.GetInstance().UndoAction();
+            History.GetInstance().UndoAction();
+            mainView.Invalidate();
         }
 
         private void redoButton_Click(object sender, EventArgs e)
         {
-            mainView.Image = History.GetInstance().RedoAction();
+            History.GetInstance().RedoAction();
+            mainView.Invalidate();
         }
         
         
