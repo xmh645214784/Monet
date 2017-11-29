@@ -12,13 +12,13 @@ namespace Monet
     abstract class Tool: Actionable
     {
         protected PictureBox mainView;
-
+        protected Image doubleBuffer;
         public Tool(PictureBox mainView)
         {
             this.mainView = mainView;
         }
 
-        abstract public void MakeAction(ToolParameters toolParameters);
+        abstract public void MakeAction(ActionParameters toolParameters);
 
 
         virtual public void RegisterTool()
@@ -34,7 +34,6 @@ namespace Monet
     abstract class DrawShapeTool:Tool
     {
         protected bool isEnabled;
-        protected Image doubleBuffer;
         public DrawShapeTool(PictureBox mainView) : base(mainView)
         {
             isEnabled = false;

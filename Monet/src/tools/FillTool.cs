@@ -36,12 +36,12 @@ namespace Monet.src.tools
             }
             Fill(e.Location, newColor);
 
-            ToolParameters p = new ToolParameters();
+            ActionParameters p = new ActionParameters();
             p.coords[0] = e.Location;
             p.color = newColor;
 
             History.GetInstance().PushBackAction(
-                new ToolAction(this, p));
+                new history.MAction((Tool)this, (ActionParameters)p));
         }
 
         private void Fill(Point p,Color newColor)
@@ -79,7 +79,7 @@ namespace Monet.src.tools
 
 
 
-        public override void MakeAction(ToolParameters toolParameters)
+        public override void MakeAction(ActionParameters toolParameters)
         {
             Fill(toolParameters.coords[0], toolParameters.color);
         }

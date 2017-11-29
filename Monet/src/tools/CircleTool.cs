@@ -225,17 +225,17 @@ namespace Monet
                     circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
                 }
 
-                ToolParameters p = new ToolParameters();
+                ActionParameters p = new ActionParameters();
                 p.coords[0] = startPoint;
                 p.coords[1] = nowPoint;
                 p.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new ToolAction(this, p));
+                    new src.history.MAction((Tool)this, (ActionParameters)p));
             }
         }
 
-        public override void MakeAction(ToolParameters toolParameters)
+        public override void MakeAction(ActionParameters toolParameters)
         {
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {

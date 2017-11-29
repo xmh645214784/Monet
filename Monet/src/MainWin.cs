@@ -52,6 +52,7 @@ namespace Monet
             lineButton.BindingTool = toolKit.lineTool;
             circleButton.BindingTool = toolKit.circleTool;
             fillButton.BindingTool = toolKit.fillTool;
+            selectButton.BindingTool = toolKit.selectTool;
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
@@ -65,36 +66,9 @@ namespace Monet
 
             Common.background=(Image)mainView.Image.Clone();
             //set the resize button to the lower right corner.
-            resizePictureBoxButton = new Button();
-            resizePictureBoxButton.Size = new Size(6, 6);
-            resizePictureBoxButton.Location = new Point(mainView.Image.Width, mainView.Image.Height);
-            resizePictureBoxButton.Cursor = Cursors.SizeNWSE;
-            resizePictureBoxButton.MouseDown += ResizePictureBoxButton_MouseDown;
-            resizePictureBoxButton.MouseMove += ResizePictureBoxButton_MouseMove;
-            resizePictureBoxButton.MouseUp += ResizePictureBoxButton_MouseUp;
-            mainView.Controls.Add(resizePictureBoxButton);
+            resizePictureBoxButton = new ResizeButton(mainView);
+            resizePictureBoxButton.Size = new Size(7, 7);
         }
-
-        private void ResizePictureBoxButton_MouseUp(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void ResizePictureBoxButton_MouseMove(object sender, MouseEventArgs e)
-        {
-            mainView.Image = new Bitmap(mainView.Image.Width+ e.Location.X - p.X, mainView.Image.Height+ e.Location.Y - p.Y);
-            using (Graphics g = Graphics.FromImage(mainView.Image))
-            {
-                g.FillRectangle(Brushes.White, 0, 0, mainView.Image.Width, mainView.Image.Height);
-            }
-            resizePictureBoxButton.Location.Offset(e.Location.X - p.X, e.Location.Y - p.Y);
-        }
-        Point p;
-        private void ResizePictureBoxButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            p = e.Location;
-        }
-
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)
         ///

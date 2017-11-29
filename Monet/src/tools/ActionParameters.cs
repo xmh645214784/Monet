@@ -8,12 +8,12 @@ using System.Drawing;
 
 namespace Monet
 {
-    sealed class ToolParameters
+    sealed class ActionParameters
     {
 
         internal Point[] coords;
 
-        public ToolParameters()
+        public ActionParameters()
         {
             coords = new Point[3];
             pen = new Pen(Color.Black);
@@ -22,5 +22,6 @@ namespace Monet
         internal Pen pen;
 
         internal Color color;
+        internal Color backgroundColor;
     }
 }

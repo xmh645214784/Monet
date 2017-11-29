@@ -47,7 +47,7 @@ namespace Monet
             return mInstance;
         }
 
-        public void PushBackAction(ToolAction action)
+        public void PushBackAction(src.history.MAction action)
         {
             if (index == historyArray.Count - 1)
             {
@@ -90,7 +90,7 @@ namespace Monet
         {
             for (int i=0;i<=index;i++)
             {
-                ToolAction p = (ToolAction)historyArray[i];
+                src.history.MAction p = (src.history.MAction)historyArray[i];
                 p.Action();
             }
         }

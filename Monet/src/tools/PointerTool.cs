@@ -14,15 +14,28 @@ namespace Monet
 
         }
 
-        public override void MakeAction(ToolParameters toolParameters)
+        public override void MakeAction(ActionParameters toolParameters)
         {
             ;
         }
 
         public override void RegisterTool()
         {
-            mainView.Cursor = Cursors.Default;
+            mainView.Cursor = Cursors.Default;       
             base.RegisterTool();
+            mainView.MouseClick += MainView_MouseClick;
+
+        }
+
+        private void MainView_MouseClick(object sender, MouseEventArgs e)
+        {
+            ;
+        }
+
+        public override void UnRegisterTool()
+        {
+            base.UnRegisterTool();
+            mainView.MouseClick -= MainView_MouseClick;
         }
     }
 }

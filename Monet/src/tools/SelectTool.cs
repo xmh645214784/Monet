@@ -71,22 +71,19 @@ namespace Monet
             }
             if (isNewARect||isMove)
             {
-                //take out the last but two valid image, take clone of it ,push it into stack.
-                History.GetInstance().UndoAction();
-                Image lastValidClone = (Image)History.GetInstance().TopAction().Clone();
-                History.GetInstance().PushBackAction(lastValidClone);
-                mainView.Image = lastValidClone;
-
+                
                 //either new a select rect or move an exist rect
                 System.Diagnostics.Debug.Assert((isNewARect && isMove) == false);
                 if(isNewARect)
                 {
+                    mainView.Image.Dispose();
+                    mainView.Image = doubleBuffer.Clone() as Image;
+                   
                     //draw a new one
                     using (Graphics g = Graphics.FromImage(mainView.Image))
                     {
                         endPoint = e.Location;
                         g.DrawRectangle(solidPen, Common.Rectangle(startPoint, endPoint));
-                        mainView.Invalidate();
                     }
                 }
                 else if(isMove)
@@ -100,36 +97,23 @@ namespace Monet
             if (e.Button == MouseButtons.Left)
             {
                 startPoint = e.Location;
-                
                 if (isExistOneRect)
                 {
                     if(selectRect.Contains(e.Location))//move select part
                     {
                         isMove = true;
-                        Image newClone = (Image)mainView.Image.Clone();
-                        History.GetInstance().PushBackAction(newClone);
-                        mainView.Image = newClone;
-                        using (Graphics g = Graphics.FromImage(mainView.Image))
-                        {
-                            ;
-                        }
                     }
                     else //cancel the previous rect which user has selected before.And select a new one
                     {
-                        //take out the last but two valid image, take clone of it ,push it into stack.
-                        History.GetInstance().UndoAction();
-                        Image lastValidClone = (Image)History.GetInstance().TopAction().Clone();
-                        History.GetInstance().PushBackAction(lastValidClone);
-                        mainView.Image = lastValidClone;
+                        mainView.Image.Dispose();
+                        mainView.Image = doubleBuffer.Clone() as Image;
                         isNewARect = true;
                     }
                 }
                 else//new a select rect
                 {
                     isNewARect = true;
-                    Image newClone = (Image)mainView.Image.Clone();
-                    History.GetInstance().PushBackAction(newClone);
-                    mainView.Image = newClone;
+                    doubleBuffer = (Image)mainView.Image.Clone();
                 }
             }
         }
@@ -143,6 +127,17 @@ namespace Monet
                     System.Diagnostics.Debug.Assert(isExistOneRect);
                     selectRect.Offset(endPoint.X-startPoint.X,endPoint.Y-startPoint.Y);
                     isMove = false;
+                    //push back action
+                    {
+                        ActionParameters p = new ActionParameters();
+                        p.coords[0] = selectRect.Location;
+
+                        Point temp = selectRect.Location;
+                        temp.Offset(selectRect.Width, selectRect.Height);
+                        p.coords[1] = temp;
+
+                        History.GetInstance().PushBackAction(new src.history.MAction(this, p));
+                    }
                 }
                 else// draw a new rect or cancel an exist rect
                 { 
@@ -158,9 +153,9 @@ namespace Monet
             }
         }
 
-        public override void MakeAction(ToolParameters toolParameters)
+        public override void MakeAction(ActionParameters toolParameters)
         {
-            throw new NotImplementedException();
+            selectRect = Common.Rectangle(toolParameters.coords[0], toolParameters.coords[1]);
         }
     }
 }

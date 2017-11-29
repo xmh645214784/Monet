@@ -115,19 +115,19 @@ namespace Monet
                     Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                ToolParameters p = new ToolParameters();
+                ActionParameters p = new ActionParameters();
                 p.coords[0] = startPoint;
                 p.coords[1]=e.Location ;
                 p.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new ToolAction(this, p));
+                    new src.history.MAction((Tool)this, (ActionParameters)p));
 
                 doubleBuffer.Dispose();
             }
         }
 
-        public override void MakeAction(ToolParameters toolParameters)
+        public override void MakeAction(ActionParameters toolParameters)
         {
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {
