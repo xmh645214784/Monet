@@ -150,7 +150,7 @@ namespace Monet
             {
                 g.Clear(Color.White);
             }
-                History.GetInstance().RedrawAllActions();
+            History.GetInstance().RedrawAllActions();
         }
 
         private void redoButton_Click(object sender, EventArgs e)

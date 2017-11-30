@@ -34,17 +34,17 @@ namespace Monet.src.tools
             {
                 newColor = Setting.GetInstance().BackgroundColor;
             }
-            Fill(e.Location, newColor);
+            FillAction(e.Location, newColor);
 
-            ActionParameters p = new ActionParameters();
-            p.coords[0] = e.Location;
+            FillParam p = new FillParam ();
+            p.point = e.Location;
             p.color = newColor;
 
             History.GetInstance().PushBackAction(
                 new history.MAction((Tool)this, (ActionParameters)p));
         }
 
-        private void Fill(Point p,Color newColor)
+        private void FillAction(Point p,Color newColor)
         {
             queue.Clear();
             Bitmap bitmap = new Bitmap(mainView.Image);
@@ -81,7 +81,24 @@ namespace Monet.src.tools
 
         public override void MakeAction(ActionParameters toolParameters)
         {
-            Fill(toolParameters.coords[0], toolParameters.color);
+            try
+            {
+                FillParam fillParam = (FillParam)toolParameters;
+                FillAction(fillParam.point, fillParam.color);
+            }
+            catch (InvalidCastException)
+            {
+
+                throw;
+            }
+            
+        }
+        private sealed class FillParam : ActionParameters
+        {
+            public Point point;
+            public Color color;
         }
     }
+
+
 }

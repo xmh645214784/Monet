@@ -32,9 +32,9 @@ namespace Monet.src.tools
         {
             isEnabled = false;
 
-            ActionParameters actionParameters = new ActionParameters();
+            ResizeParam actionParameters = new ResizeParam();
             actionParameters.backgroundColor = Setting.GetInstance().BackgroundColor;
-            actionParameters.coords[0] = e.Location;
+            actionParameters.size = new Size(e.Location);
             History.GetInstance().PushBackAction(new MAction(this, actionParameters));
 
         }
@@ -45,7 +45,7 @@ namespace Monet.src.tools
             {
                 this.Location = new Point(this.Left + (e.X - tempPoint.X),
                     this.Top + (e.Y - tempPoint.Y));
-                Resize(new Size(this.Location),Setting.GetInstance().BackgroundColor);
+                ResizeAction(new Size(this.Location),Setting.GetInstance().BackgroundColor);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Monet.src.tools
             isEnabled = true;
         }
 
-        void Resize(Size size,Color backgroundColor)
+        void ResizeAction(Size size,Color backgroundColor)
         {
             Bitmap newBitmap =new Bitmap(size.Width,size.Height);
             using (Graphics g = Graphics.FromImage(newBitmap))
@@ -69,7 +69,23 @@ namespace Monet.src.tools
 
         public void MakeAction(ActionParameters toolParameters)
         {
-            Resize(new Size(toolParameters.coords[0]), toolParameters.backgroundColor);
+            try
+            {
+                ResizeParam resizeParam = (ResizeParam)toolParameters;
+                ResizeAction(resizeParam.size, resizeParam.backgroundColor);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+        }
+
+        private sealed class ResizeParam:ActionParameters
+        {
+            public Size size;
+            public Color backgroundColor;
         }
     }
 }

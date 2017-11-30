@@ -8,20 +8,8 @@ using System.Drawing;
 
 namespace Monet
 {
-    sealed class ActionParameters
+    interface ActionParameters
     {
 
-        internal Point[] coords;
-
-        public ActionParameters()
-        {
-            coords = new Point[3];
-            pen = new Pen(Color.Black);
-        }
-
-        internal Pen pen;
-
-        internal Color color;
-        internal Color backgroundColor;
     }
 }

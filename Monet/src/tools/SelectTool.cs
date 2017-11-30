@@ -129,13 +129,8 @@ namespace Monet
                     isMove = false;
                     //push back action
                     {
-                        ActionParameters p = new ActionParameters();
-                        p.coords[0] = selectRect.Location;
-
-                        Point temp = selectRect.Location;
-                        temp.Offset(selectRect.Width, selectRect.Height);
-                        p.coords[1] = temp;
-
+                        Select p = new Select();
+                        p.rect = selectRect;
                         History.GetInstance().PushBackAction(new src.history.MAction(this, p));
                     }
                 }
@@ -155,7 +150,22 @@ namespace Monet
 
         public override void MakeAction(ActionParameters toolParameters)
         {
-            selectRect = Common.Rectangle(toolParameters.coords[0], toolParameters.coords[1]);
+            try
+            {
+                Select select = (Select)toolParameters;
+                selectRect = select.rect;
+            }
+            catch (InvalidCastException)
+            {
+
+                throw;
+            }
+            
+        }
+
+        private sealed class Select:ActionParameters
+        {
+            public Rectangle rect;
         }
     }
 }

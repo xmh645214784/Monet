@@ -225,9 +225,9 @@ namespace Monet
                     circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
                 }
 
-                ActionParameters p = new ActionParameters();
-                p.coords[0] = startPoint;
-                p.coords[1] = nowPoint;
+                Circle p = new Circle();
+                p.startPoint = startPoint;
+                p.endPoint = nowPoint;
                 p.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
@@ -237,10 +237,26 @@ namespace Monet
 
         public override void MakeAction(ActionParameters toolParameters)
         {
-            using (Graphics g = Graphics.FromImage(mainView.Image))
+            try
             {
-                circleAgent.DrawCircle(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
+                Circle circle = (Circle)toolParameters;
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    circleAgent.DrawCircle(g, circle.pen, circle.startPoint, circle.endPoint);
+                }
             }
+            catch (InvalidCastException)
+            {
+                throw;
+            }
+            
+        }
+
+        private sealed class Circle : ActionParameters
+        {
+            public Point startPoint;
+            public Point endPoint;
+            public Pen pen;
         }
     }
 
@@ -337,4 +353,6 @@ namespace Monet
             }
         }
     }
+
+
 }

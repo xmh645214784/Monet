@@ -115,13 +115,13 @@ namespace Monet
                     Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                ActionParameters p = new ActionParameters();
-                p.coords[0] = startPoint;
-                p.coords[1]=e.Location ;
+                Line p = new Line();
+                p.a = startPoint;
+                p.b=e.Location ;
                 p.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new src.history.MAction((Tool)this, (ActionParameters)p));
+                    new MAction(this, p));
 
                 doubleBuffer.Dispose();
             }
@@ -129,10 +129,25 @@ namespace Monet
 
         public override void MakeAction(ActionParameters toolParameters)
         {
-            using (Graphics g = Graphics.FromImage(mainView.Image))
+            try
             {
-                Draw(g, toolParameters.pen, toolParameters.coords[0], toolParameters.coords[1]);
+                Line line = (Line)toolParameters;
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    Draw(g, line.pen, line.a, line.b);
+                }
             }
+            catch (InvalidCastException)
+            {
+                throw;
+            }
+        }
+
+        private sealed class Line : ActionParameters
+        {
+            public Point a;
+            public Point b;
+            public Pen pen;
         }
     }
 
@@ -246,6 +261,6 @@ namespace Monet
         }
     }
 
-
+    
 
 }
