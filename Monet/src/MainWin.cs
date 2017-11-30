@@ -60,6 +60,8 @@ namespace Monet
             circleButton.BindingTool = toolKit.circleTool;
             fillButton.BindingTool = toolKit.fillTool;
             selectButton.BindingTool = toolKit.selectTool;
+            ellipseButton.BindingTool = toolKit.ellipseTool;
+
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
             // undo and redo button set unenabled
@@ -162,6 +164,28 @@ namespace Monet
                 g.Clear(Color.White);
             }
             History.GetInstance().RedrawAllActions();
+        }
+
+        private void openButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = ".";
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                mainView.Image.Dispose();
+                mainView.Image=new Bitmap(openFileDialog.FileName);
+            }
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.RestoreDirectory = true;
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                mainView.Image.Save(saveFileDialog.FileName);
+            }
         }
     }
 }

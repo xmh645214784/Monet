@@ -91,11 +91,69 @@ namespace Monet.src.tools
 
         private void DrawEllipse(Pen pen ,Point a,Point b)
         {
-            using (Graphics g = Graphics.FromImage(mainView.Image))
+            //using (Graphics g = Graphics.FromImage(mainView.Image))
+            //{
+            //   g.DrawEllipse(pen, Common.Rectangle(a,b));
+            //}
+            Rectangle rect = Common.Rectangle(a, b);
+            MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
+                , rect.Width / 2, rect.Height / 2);
+        }
+
+        void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b)
+        {
+            double sqa = a * a;
+            double sqb = b * b;
+
+            double d = sqb + sqa * (0.25 - b);
+            int x = 0;
+            int y = b;
+            Ellipsepot(pen,x0, y0, x, y);
+            // 1
+            while (sqb * (x + 1) < sqa * (y - 0.5))
             {
-                g.DrawEllipse(pen, Common.Rectangle(a,b));
+                if (d < 0)
+                {
+                    d += sqb * (2 * x + 3);
+                }
+                else
+                {
+                    d += (sqb * (2 * x + 3) + sqa * ((-2) * y + 2));
+                    --y;
+                }
+                ++x;
+                Ellipsepot(pen,x0, y0, x, y);
+            }
+            d = (b * (x + 0.5)) * 2 + (a * (y - 1)) * 2 - (a * b) * 2;
+            // 2
+            while (y > 0)
+            {
+                if (d < 0)
+                {
+                    d += sqb * (2 * x + 2) + sqa * ((-2) * y + 3);
+                    ++x;
+                }
+                else
+                {
+                    d += sqa * ((-2) * y + 3);
+                }
+                --y;
+                Ellipsepot(pen,x0, y0, x, y);
             }
         }
+
+        private void Ellipsepot(Pen pen,int x0, int y0, int x, int y)
+        {
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                Common.DrawPix(g, new Point(x0 + x, y0 + y), pen);
+                Common.DrawPix(g, new Point(x0 + x, y0 - y), pen);
+                Common.DrawPix(g, new Point(x0 - x, y0 + y), pen);
+                Common.DrawPix(g, new Point(x0 - x, y0 - y), pen);
+            }
+                
+        }
+
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void MainView_MouseDown(object sender, MouseEventArgs e)

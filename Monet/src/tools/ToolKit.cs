@@ -27,7 +27,10 @@ namespace Monet
 
         public Tool fillTool;
 
+        public Tool ellipseTool;
+
         static ToolKit mInstance;
+        
 
         public static ToolKit GetInstance()
         {
@@ -64,6 +67,7 @@ namespace Monet
             circleTool  = new CircleTool    (mainView);
             selectTool = new SelectTool   (mainView);
             fillTool = new FillTool(mainView);
+            ellipseTool = new EllipseTool(mainView);
         }
         
     }

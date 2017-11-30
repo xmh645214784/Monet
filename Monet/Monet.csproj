@@ -135,5 +135,14 @@
   <ItemGroup>
     <None Include="icon\fill.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\save .png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
