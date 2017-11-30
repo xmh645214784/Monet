@@ -24,7 +24,6 @@ namespace Monet
         /// \param p   A Point to process.
         /// \param pen The pen.
         ///-------------------------------------------------------------------------------------------------
-        public static Image background;
         public static void  DrawPix(Graphics g,Point p,Pen pen)
         {
             g.DrawRectangle(pen, p.X, p.Y, 1, 1);

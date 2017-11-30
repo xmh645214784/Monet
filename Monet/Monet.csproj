@@ -59,7 +59,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="src\tools\LineTool.cs" />
-    <Compile Include="src\SettingPanel.cs" />
+    <Compile Include="src\ui\SettingPanel.cs" />
     <Compile Include="src\tools\PointerTool.cs" />
     <Compile Include="src\tools\Tool.cs" />
     <Compile Include="src\MainWin.cs">

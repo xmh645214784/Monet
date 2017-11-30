@@ -25,8 +25,16 @@ namespace Monet
         ToolKit toolKit;
         /// \brief This variable shows which colorBox is now setting.
         Button currentSettingColorButton;
-
         Button resizePictureBoxButton;
+
+        static MainWin mInstance=null;
+
+        public static MainWin GetInstance()
+        {
+            if (mInstance == null)
+                mInstance = new MainWin();
+            return mInstance;
+        }
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn public MainWin()
@@ -39,8 +47,7 @@ namespace Monet
             InitializeComponent();
             // some initialize progress. 
             // initialize the toolKit
-            toolKit = ToolKit.GetInstance(mainView);
-
+            toolKit = ToolKit.GetInstance(mainView);        
             // set default tool. 
             toolKit.currentTool = toolKit.pointerTool;
             toolKit.currentTool.RegisterTool();
@@ -53,18 +60,20 @@ namespace Monet
             circleButton.BindingTool = toolKit.circleTool;
             fillButton.BindingTool = toolKit.fillTool;
             selectButton.BindingTool = toolKit.selectTool;
-
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
+            // undo and redo button set unenabled
+            redoButton.Enabled=undoButton.Enabled = false;
+            redoButton.Cursor = undoButton.Cursor = Cursors.No;
+            //image related
             mainView.Image = new Bitmap(mainView.Width, mainView.Height);
-
             //fill the image with white
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {
                 g.FillRectangle(Brushes.White, 0, 0, mainView.Image.Width, mainView.Image.Height);
             }
 
-            Common.background=(Image)mainView.Image.Clone();
+
             //set the resize button to the lower right corner.
             resizePictureBoxButton = new ResizeButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
@@ -117,20 +126,7 @@ namespace Monet
                 }
             }
         }
-
-        private void unDoButton_Click(object sender, EventArgs e)
-        {
-            //take out the last but two valid image
-            History.GetInstance().UndoAction();
-            mainView.Invalidate();
-        }
-
-        private void redoButton_Click(object sender, EventArgs e)
-        {
-            History.GetInstance().RedoAction();
-            mainView.Invalidate();
-        }
-        
+       
         
         private void colorBoxButton1_Click(object sender, EventArgs e)
         {
@@ -146,5 +142,26 @@ namespace Monet
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
 
+        private void undoButton_Click(object sender, EventArgs e)
+        {
+            History.GetInstance().UndoAction();
+            mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                g.Clear(Color.White);
+            }
+                History.GetInstance().RedrawAllActions();
+        }
+
+        private void redoButton_Click(object sender, EventArgs e)
+        {
+            History.GetInstance().RedoAction();
+            mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                g.Clear(Color.White);
+            }
+            History.GetInstance().RedrawAllActions();
+        }
     }
 }

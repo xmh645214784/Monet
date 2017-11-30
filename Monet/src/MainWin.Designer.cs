@@ -39,6 +39,7 @@
             this.statusBarLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusImageLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabelText1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutWhole = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -59,13 +60,15 @@
             this.colorBoxButton1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.label6 = new System.Windows.Forms.Label();
+            this.colorButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label5 = new System.Windows.Forms.Label();
             this.colorBoxButton2 = new System.Windows.Forms.Button();
             this.tabPage2_View = new System.Windows.Forms.TabPage();
-            this.colorButton = new System.Windows.Forms.Button();
             this.mainView = new System.Windows.Forms.PictureBox();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.undoButton = new System.Windows.Forms.Button();
+            this.redoButton = new System.Windows.Forms.Button();
             this.pointerButton = new Monet.src.tools.ToolButton();
             this.pencilButton = new Monet.src.tools.ToolButton();
             this.lineButton = new Monet.src.tools.ToolButton();
@@ -86,6 +89,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.colorTableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).BeginInit();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -127,6 +131,14 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripStatusLabel2.Image = global::Monet.Properties.Resources.cross;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 20);
+            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
             // 
             // statusLabelText1
             // 
@@ -280,6 +292,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.52941F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.47059F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel5, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(136, 6);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -414,6 +427,18 @@
             this.label6.Text = "编辑颜色";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // colorButton
+            // 
+            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
+            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.colorButton.Location = new System.Drawing.Point(3, 3);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(56, 44);
+            this.colorButton.TabIndex = 3;
+            this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
+            // 
             // colorTableLayoutPanel2
             // 
             this.colorTableLayoutPanel2.ColumnCount = 1;
@@ -461,18 +486,6 @@
             this.tabPage2_View.TabIndex = 1;
             this.tabPage2_View.Text = "View";
             // 
-            // colorButton
-            // 
-            this.colorButton.BackgroundImage = global::Monet.Properties.Resources.color;
-            this.colorButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.colorButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.colorButton.Location = new System.Drawing.Point(3, 3);
-            this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(56, 44);
-            this.colorButton.TabIndex = 3;
-            this.colorButton.UseVisualStyleBackColor = true;
-            this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
-            // 
             // mainView
             // 
             this.mainView.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(226)))), ((int)(((byte)(240)))));
@@ -486,13 +499,44 @@
             this.mainView.TabStop = false;
             this.mainView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainView_MouseMove);
             // 
-            // toolStripStatusLabel2
+            // tableLayoutPanel5
             // 
-            this.toolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripStatusLabel2.Image = global::Monet.Properties.Resources.cross;
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(20, 20);
-            this.toolStripStatusLabel2.Text = "toolStripStatusLabel2";
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Controls.Add(this.undoButton, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.redoButton, 1, 0);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(68, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(65, 68);
+            this.tableLayoutPanel5.TabIndex = 1;
+            // 
+            // undoButton
+            // 
+            this.undoButton.BackgroundImage = global::Monet.Properties.Resources.undo;
+            this.undoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.undoButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.undoButton.Location = new System.Drawing.Point(3, 3);
+            this.undoButton.Name = "undoButton";
+            this.undoButton.Size = new System.Drawing.Size(26, 28);
+            this.undoButton.TabIndex = 0;
+            this.undoButton.UseVisualStyleBackColor = true;
+            this.undoButton.Click += new System.EventHandler(this.undoButton_Click);
+            // 
+            // redoButton
+            // 
+            this.redoButton.BackgroundImage = global::Monet.Properties.Resources.redo;
+            this.redoButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.redoButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.redoButton.Location = new System.Drawing.Point(35, 3);
+            this.redoButton.Name = "redoButton";
+            this.redoButton.Size = new System.Drawing.Size(27, 28);
+            this.redoButton.TabIndex = 1;
+            this.redoButton.UseVisualStyleBackColor = true;
+            this.redoButton.Click += new System.EventHandler(this.redoButton_Click);
             // 
             // pointerButton
             // 
@@ -589,6 +633,7 @@
             this.colorTableLayoutPanel2.ResumeLayout(false);
             this.colorTableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).EndInit();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -634,5 +679,8 @@
         private src.tools.ToolButton circleButton;
         private src.tools.ToolButton selectButton;
         private src.tools.ToolButton fillButton;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        internal System.Windows.Forms.Button undoButton;
+        internal System.Windows.Forms.Button redoButton;
     }
 }

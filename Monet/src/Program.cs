@@ -19,7 +19,7 @@ namespace Monet
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWin());
+            Application.Run(MainWin.GetInstance());
         }
     }
 }
