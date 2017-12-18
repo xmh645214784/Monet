@@ -59,6 +59,9 @@
     <Compile Include="src\ui\ResizeButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="src\ui\ResizeCanvasButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\tools\SelectTool.cs" />
     <Compile Include="src\ui\ToolButton.cs">
       <SubType>Component</SubType>
@@ -76,7 +79,7 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\tools\ToolKit.cs" />
-    <Compile Include="src\tools\ActionParameters.cs" />
+    <Compile Include="src\history\ActionParameters.cs" />
     <EmbeddedResource Include="src\MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>

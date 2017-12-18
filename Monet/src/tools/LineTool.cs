@@ -116,15 +116,13 @@ namespace Monet
                     Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                DrawLine p = new DrawLine();
-                p.line = new Line();
-                p.line.a = startPoint;
-                p.line.b=e.Location ;
-                p.line.pen = Setting.GetInstance().Pen.Clone() as Pen;
+                Line line = new Line();
+                line.a = startPoint;
+                line.b=e.Location ;
+                line.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
-                History.GetInstance().shapeArray.Add(p.line);
                 History.GetInstance().PushBackAction(
-                    new MAction(this, p));
+                    new MAction(this, line));
 
                 doubleBuffer.Dispose();
             }
@@ -139,8 +137,6 @@ namespace Monet
                 {
                     Draw(g, line.pen, line.a, line.b);
                 }
-                //add into shape array
-                History.GetInstance().shapeArray.Add(line);
             }
             catch (InvalidCastException)
             {
@@ -148,11 +144,6 @@ namespace Monet
             }
         }
         
-
-        public sealed class DrawLine : ActionParameters
-        {
-            public Line line;
-        }
     }
 
 

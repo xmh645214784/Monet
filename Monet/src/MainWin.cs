@@ -25,7 +25,12 @@ namespace Monet
         ToolKit toolKit;
         /// \brief This variable shows which colorBox is now setting.
         Button currentSettingColorButton;
-        Button resizePictureBoxButton;
+        public ResizeCanvasButton resizePictureBoxButton;
+
+        public PictureBox MainView()
+        {
+            return mainView;
+        }
 
         static MainWin mInstance=null;
 
@@ -77,7 +82,7 @@ namespace Monet
 
 
             //set the resize button to the lower right corner.
-            resizePictureBoxButton = new ResizeButton(mainView);
+            resizePictureBoxButton = new ResizeCanvasButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
         }
         ///-------------------------------------------------------------------------------------------------

@@ -13,6 +13,7 @@ using System.Collections;
 using System.Drawing;
 using Monet.src.history;
 using System.Windows.Forms;
+using static Monet.src.tools.ResizeCanvasButton;
 
 namespace Monet
 {
@@ -26,13 +27,12 @@ namespace Monet
      class History
      {
         /// \brief Array of histories images. We record the image after user's each step.
-        private ArrayList historyArray;
-        public ArrayList shapeArray;
+        public ArrayList historyArray;
 
 
         /// \brief Zero-based index of the last valid element in array. 
         ///        【重要】index为当前最后的Action
-        int index = -1;
+        int index =-1;
 
         /// \brief The instance.
         static History mInstance;
@@ -91,6 +91,8 @@ namespace Monet
             }
         }
 
+        public int Index { get => index;}
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn private History()
         ///
@@ -101,7 +103,10 @@ namespace Monet
         {
             CanUndo = CanRedo = false;
             historyArray = new ArrayList();
-            shapeArray = new ArrayList();
+            ResizeParam actionParameters = new ResizeParam();
+            actionParameters.backgroundColor = Setting.GetInstance().BackgroundColor;
+            actionParameters.size = MainWin.GetInstance().MainView().Image.Size;
+            PushBackAction(new MAction(MainWin.GetInstance().resizePictureBoxButton, actionParameters));
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -140,7 +145,8 @@ namespace Monet
             {
                 historyArray[++index] = action;
             }
-            CanUndo = true;
+            if(index!=0)
+                CanUndo = true;
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -155,11 +161,11 @@ namespace Monet
 
         public void UndoAction()
         {
-            if (index < 0)
+            if (Index < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            else if (index == 0)
+            else if (Index == 1) //this is one because we have a empty resize
                 CanUndo = false;
 
             CanRedo = true;
@@ -179,9 +185,9 @@ namespace Monet
 
         public void RedoAction()
         {
-            if (index == historyArray.Count - 1)
+            if (Index == historyArray.Count - 1)
                 throw new ArgumentOutOfRangeException();
-            else if (index == historyArray.Count - 2)
+            else if (Index == historyArray.Count - 2)
                 CanRedo = false;
             CanUndo = true;
             ++index;
@@ -195,7 +201,7 @@ namespace Monet
 
         public void RedrawAllActions()
         {
-            for (int i=0;i<=index;i++)
+            for (int i=0;i<=Index;i++)
             {
                 src.history.MAction p = (src.history.MAction)historyArray[i];
                 p.Action();

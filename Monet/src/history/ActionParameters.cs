@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Monet
 {
-    interface ActionParameters
+    public interface ActionParameters
     {
 
     }

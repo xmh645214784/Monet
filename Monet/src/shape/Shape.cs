@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monet.src.history;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace Monet.src.shape
         void ShowAsSelected();
         void ShowAsNotSelected();
     }
-    public abstract class Shape: Selectable
+    public abstract class Shape: Selectable,ActionParameters
     {
         public abstract bool IsSelectMe(Point point);
 

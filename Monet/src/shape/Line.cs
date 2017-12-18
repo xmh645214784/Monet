@@ -5,6 +5,7 @@
 ///-------------------------------------------------------------------------------------------------
 
 using Monet.src.tools;
+using Monet.src.ui;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -30,6 +31,9 @@ namespace Monet.src.shape
         /// \brief The pen
         public Pen pen;
 
+        public ResizeButton resizeButtonA;
+        public ResizeButton resizeButtonB;
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn public override bool IsSelectMe(Point point)
         ///
@@ -42,7 +46,7 @@ namespace Monet.src.shape
 
         public override bool IsSelectMe(Point point)
         {
-            return DistanceOfPoint2Line(point) < 10 ? true : false;
+            return DistanceOfPoint2Line(point) < 30 ? true : false;
         }
 
         public override void ShowAsNotSelected()
@@ -52,11 +56,8 @@ namespace Monet.src.shape
 
         public override void ShowAsSelected()
         {
-            Button but_a = new Button();
-            Button but_b = new Button();
-            but_a.Location = a;
-            but_b.Location = b;
-            but_a.Size=
+            resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), a, Cursors.Cross);
+            resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), b, Cursors.Cross);
         }
 
         ///-------------------------------------------------------------------------------------------------

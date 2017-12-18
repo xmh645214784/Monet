@@ -25,11 +25,9 @@ namespace Monet.src.tools
         {
             try
             {
-                DrawEllipse drawEllipse = (DrawEllipse)toolParameters;
-                Ellipse ellipse = drawEllipse.ellipse;
+                Ellipse ellipse =(Ellipse)toolParameters;
                 Draw(ellipse.pen, ellipse.a, ellipse.b);
                 //add into shape array
-                History.GetInstance().shapeArray.Add(ellipse);
             }
             catch (InvalidCastException)
             {
@@ -202,19 +200,15 @@ namespace Monet.src.tools
                     Draw(Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                DrawEllipse drawEllipse = new DrawEllipse();
-                drawEllipse.ellipse = new Ellipse();
-                drawEllipse.ellipse.a = startPoint;
-                drawEllipse.ellipse.b = nowPoint;
-                drawEllipse.ellipse.pen = Setting.GetInstance().Pen.Clone() as Pen;
+               
+                Ellipse ellipse = new Ellipse();
+                ellipse.a = startPoint;
+                ellipse.b = nowPoint;
+                ellipse.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new src.history.MAction(this, drawEllipse));
+                    new src.history.MAction(this, ellipse));
             }
-        }
-        public sealed class DrawEllipse : ActionParameters
-        {
-            public Ellipse ellipse;
         }
     }
 

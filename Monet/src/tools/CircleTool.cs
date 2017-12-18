@@ -226,15 +226,13 @@ namespace Monet
                     circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
                 }
 
-                DrawCircle p = new DrawCircle();
-                p.circle = new Circle();
-                p.circle.startPoint = startPoint;
-                p.circle.endPoint = nowPoint;
-                p.circle.pen = Setting.GetInstance().Pen.Clone() as Pen;
-                History.GetInstance().shapeArray.Add(p.circle);
+                Circle circle = new Circle();
+                circle.startPoint = startPoint;
+                circle.endPoint = nowPoint;
+                circle.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new src.history.MAction((Tool)this, (ActionParameters)p));
+                    new src.history.MAction((Tool)this, circle));
             }
         }
 
@@ -242,25 +240,19 @@ namespace Monet
         {
             try
             {
-                DrawCircle drawCircle = (DrawCircle)toolParameters;
-                Circle circle = drawCircle.circle;
+                Circle circle = (Circle)toolParameters;
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     circleAgent.DrawCircle(g, circle.pen, circle.startPoint, circle.endPoint);
                 }
                 //add into shape array
-                History.GetInstance().shapeArray.Add(circle);
+
             }
             catch (InvalidCastException)
             {
                 throw;
             }
             
-        }
-
-        public sealed class DrawCircle : ActionParameters
-        {
-            public Circle circle;
         }
 
     }

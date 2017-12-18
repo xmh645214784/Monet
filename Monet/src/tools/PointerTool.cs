@@ -1,4 +1,5 @@
-﻿using Monet.src.shape;
+﻿using Monet.src.history;
+using Monet.src.shape;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,13 +32,22 @@ namespace Monet
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
-            ArrayList array = History.GetInstance().shapeArray;
-            foreach (Shape a in array)
+            ArrayList array = History.GetInstance().historyArray;
+            for(int i=0;i<=History.GetInstance().Index; i++)
             {
-                if(a.IsSelectMe(e.Location))
+                try
                 {
-                    a.ShowAsSelected();
-                    break;
+                    ActionParameters actionParameters = ((MAction)array[i]).ActionParameters;
+                    Shape shape = (Shape)actionParameters;
+                    if (shape.IsSelectMe(e.Location))
+                    {
+                        shape.ShowAsSelected();
+                        break;
+                    }
+                }
+                catch (InvalidCastException)
+                {
+                    ;
                 }
             }
         }
