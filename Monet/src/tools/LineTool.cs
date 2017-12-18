@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Monet.src.history;
+using Monet.src.shape;
 
 namespace Monet
 {
@@ -115,11 +116,13 @@ namespace Monet
                     Draw(g, Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                Line p = new Line();
-                p.a = startPoint;
-                p.b=e.Location ;
-                p.pen = Setting.GetInstance().Pen.Clone() as Pen;
+                DrawLine p = new DrawLine();
+                p.line = new Line();
+                p.line.a = startPoint;
+                p.line.b=e.Location ;
+                p.line.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
+                History.GetInstance().shapeArray.Add(p.line);
                 History.GetInstance().PushBackAction(
                     new MAction(this, p));
 
@@ -136,18 +139,19 @@ namespace Monet
                 {
                     Draw(g, line.pen, line.a, line.b);
                 }
+                //add into shape array
+                History.GetInstance().shapeArray.Add(line);
             }
             catch (InvalidCastException)
             {
                 throw;
             }
         }
+        
 
-        private sealed class Line : ActionParameters
+        public sealed class DrawLine : ActionParameters
         {
-            public Point a;
-            public Point b;
-            public Pen pen;
+            public Line line;
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monet.src.shape;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -24,8 +25,11 @@ namespace Monet.src.tools
         {
             try
             {
-                Ellipse ellipse = (Ellipse)toolParameters;
-                DrawEllipse(ellipse.pen, ellipse.a, ellipse.b);
+                DrawEllipse drawEllipse = (DrawEllipse)toolParameters;
+                Ellipse ellipse = drawEllipse.ellipse;
+                Draw(ellipse.pen, ellipse.a, ellipse.b);
+                //add into shape array
+                History.GetInstance().shapeArray.Add(ellipse);
             }
             catch (InvalidCastException)
             {
@@ -84,12 +88,12 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     nowPoint = e.Location;
-                    DrawEllipse(Setting.GetInstance().Pen,startPoint,e.Location);
+                    Draw(Setting.GetInstance().Pen,startPoint,e.Location);
                 }
             }
         }
 
-        private void DrawEllipse(Pen pen ,Point a,Point b)
+        private void Draw(Pen pen ,Point a,Point b)
         {
             //using (Graphics g = Graphics.FromImage(mainView.Image))
             //{
@@ -195,23 +199,23 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     nowPoint = e.Location;
-                    DrawEllipse(Setting.GetInstance().Pen, startPoint, e.Location);
+                    Draw(Setting.GetInstance().Pen, startPoint, e.Location);
                 }
 
-                Ellipse p = new Ellipse();
-                p.a = startPoint;
-                p.b = nowPoint;
-                p.pen = Setting.GetInstance().Pen.Clone() as Pen;
+                DrawEllipse drawEllipse = new DrawEllipse();
+                drawEllipse.ellipse = new Ellipse();
+                drawEllipse.ellipse.a = startPoint;
+                drawEllipse.ellipse.b = nowPoint;
+                drawEllipse.ellipse.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
-                    new src.history.MAction(this, p));
+                    new src.history.MAction(this, drawEllipse));
             }
         }
-        private sealed class Ellipse:ActionParameters
+        public sealed class DrawEllipse : ActionParameters
         {
-            public Point a;
-            public Point b;
-            public Pen pen;
+            public Ellipse ellipse;
         }
     }
+
 }

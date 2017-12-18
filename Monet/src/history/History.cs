@@ -27,6 +27,9 @@ namespace Monet
      {
         /// \brief Array of histories images. We record the image after user's each step.
         private ArrayList historyArray;
+        public ArrayList shapeArray;
+
+
         /// \brief Zero-based index of the last valid element in array. 
         ///        【重要】index为当前最后的Action
         int index = -1;
@@ -98,6 +101,7 @@ namespace Monet
         {
             CanUndo = CanRedo = false;
             historyArray = new ArrayList();
+            shapeArray = new ArrayList();
         }
 
         ///-------------------------------------------------------------------------------------------------

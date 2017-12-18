@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Monet.Properties.Resources" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAEACAAAAAEACEBGAAAAQQAAICgAAgAAAAIAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Properties.Settings" Collapsed="true">
+    <Position X="17.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Common" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Common.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.History" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQEEAAABAAAAAAAAAAAAAAABAAAAACAAQAAAAMBEAA=</HashCode>
+      <FileName>src\history\History.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.MainWin" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAEgACQASggAZBAFAGAAACTpEwIAAgggkYAQxAAXSE=</HashCode>
+      <FileName>src\MainWin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Program" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>src\Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.DrawCircleAdapter" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAEAAAA=</HashCode>
+      <FileName>src\tools\CircleTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.CircleTool" Collapsed="true">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAgAAACQgAAAAAAgAAUAAAAAAAAACAAQ=</HashCode>
+      <FileName>src\tools\CircleTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.MidPointCircle" Collapsed="true">
+    <Position X="7" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\CircleTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.BresenhamCircle" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <InheritanceLine Type="Monet.DrawCircleAdapter" FixedFromPoint="true">
+      <Path>
+        <Point X="8.562" Y="4.798" />
+        <Point X="8.562" Y="5.125" />
+        <Point X="9.5" Y="5.125" />
+        <Point X="9.5" Y="5.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\CircleTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.LineTool" Collapsed="true">
+    <Position X="5.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAgAAACQgAAAAAAgAAUAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Dda" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Monet.Midpoint" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Monet.Bresenham" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Monet.SystemDraw" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Monet.PointerTool" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAQAAAAQ=</HashCode>
+      <FileName>src\tools\PointerTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.SelectTool" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAAAGQAIAAACAgAARAAAAIAAAAAAAQ=</HashCode>
+      <FileName>src\tools\SelectTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Tool" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAECAAAAAAAAgAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\tools\Tool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Monet.DrawShapeTool" Collapsed="true">
+    <Position X="7.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.ToolKit" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAIAAAQEAAAAAEAAAAAAABBAAAAAAAAAQAgAAABE=</HashCode>
+      <FileName>src\tools\ToolKit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.Setting" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FAAAQCAAAAAgCAAAAAgAAAAADAAAAAoAAAABAAAAAAA=</HashCode>
+      <FileName>src\ui\SettingPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.src.history.MAction" Collapsed="true">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAAAAAAAAEAAAgBAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\history\MAction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.src.tools.EllipseTool" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAgAAAAAAACQAgCAAAAgAAUAAAAQAAAAAAAQ=</HashCode>
+      <FileName>src\tools\EllipseTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.src.tools.FillTool" Collapsed="true">
+    <Position X="12.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAACBAAAAAAAgAAAAAAAAAAQAAAAQ=</HashCode>
+      <FileName>src\tools\FillTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monet.src.tools.ResizeButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAEAIAACAAAQAAECAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>src\ui\ResizeButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Monet.src.tools.ToolButton" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAQAAAAAAAAAAAAAAAAQIAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\ui\ToolButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Monet.ActionParameters" Collapsed="true">
+    <Position X="2.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\tools\ActionParameters.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Monet.DrawLinerAdapter" Collapsed="true">
+    <Position X="3.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Monet.src.history.Actionable" Collapsed="true">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\history\MAction.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Monet.LineImplementMethod" Collapsed="true">
+    <Position X="18.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>src\tools\LineTool.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

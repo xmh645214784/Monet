@@ -5,6 +5,7 @@
 ///-------------------------------------------------------------------------------------------------
 
 using Monet.src.history;
+using Monet.src.shape;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -225,10 +226,12 @@ namespace Monet
                     circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
                 }
 
-                Circle p = new Circle();
-                p.startPoint = startPoint;
-                p.endPoint = nowPoint;
-                p.pen = Setting.GetInstance().Pen.Clone() as Pen;
+                DrawCircle p = new DrawCircle();
+                p.circle = new Circle();
+                p.circle.startPoint = startPoint;
+                p.circle.endPoint = nowPoint;
+                p.circle.pen = Setting.GetInstance().Pen.Clone() as Pen;
+                History.GetInstance().shapeArray.Add(p.circle);
 
                 History.GetInstance().PushBackAction(
                     new src.history.MAction((Tool)this, (ActionParameters)p));
@@ -239,11 +242,14 @@ namespace Monet
         {
             try
             {
-                Circle circle = (Circle)toolParameters;
+                DrawCircle drawCircle = (DrawCircle)toolParameters;
+                Circle circle = drawCircle.circle;
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     circleAgent.DrawCircle(g, circle.pen, circle.startPoint, circle.endPoint);
                 }
+                //add into shape array
+                History.GetInstance().shapeArray.Add(circle);
             }
             catch (InvalidCastException)
             {
@@ -252,12 +258,11 @@ namespace Monet
             
         }
 
-        private sealed class Circle : ActionParameters
+        public sealed class DrawCircle : ActionParameters
         {
-            public Point startPoint;
-            public Point endPoint;
-            public Pen pen;
+            public Circle circle;
         }
+
     }
 
     ///-------------------------------------------------------------------------------------------------

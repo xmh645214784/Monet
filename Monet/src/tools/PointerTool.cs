@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Monet.src.shape;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,7 +31,15 @@ namespace Monet
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
-            ;
+            ArrayList array = History.GetInstance().shapeArray;
+            foreach (Shape a in array)
+            {
+                if(a.IsSelectMe(e.Location))
+                {
+                    a.ShowAsSelected();
+                    break;
+                }
+            }
         }
 
         public override void UnRegisterTool()
