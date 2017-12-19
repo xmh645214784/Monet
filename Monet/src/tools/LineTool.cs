@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Monet.src.history;
 using Monet.src.shape;
+using Monet.src.ui;
 
 namespace Monet
 {
@@ -123,6 +124,7 @@ namespace Monet
 
                 History.GetInstance().PushBackAction(
                     new MAction(this, line));
+                Log.LogText(String.Format("Line :({0},{1}) to ({2},{3})", startPoint.X, startPoint.Y, e.Location.X, e.Location.Y));
 
                 doubleBuffer.Dispose();
             }

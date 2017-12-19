@@ -203,7 +203,7 @@ namespace Monet
         {
             for (int i=0;i<=Index;i++)
             {
-                src.history.MAction p = (src.history.MAction)historyArray[i];
+                MAction p = (MAction)historyArray[i];
                 p.Action();
             }
         }

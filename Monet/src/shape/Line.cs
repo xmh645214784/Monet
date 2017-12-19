@@ -34,6 +34,8 @@ namespace Monet.src.shape
         public ResizeButton resizeButtonA;
         public ResizeButton resizeButtonB;
 
+        private bool isResizing;
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn public override bool IsSelectMe(Point point)
         ///
@@ -46,18 +48,39 @@ namespace Monet.src.shape
 
         public override bool IsSelectMe(Point point)
         {
-            return DistanceOfPoint2Line(point) < 30 ? true : false;
+            double dis = DistanceOfPoint2Line(point);
+            Log.LogText(String.Format("{0}", dis));
+            return dis < 30 ? true : false;
         }
 
         public override void ShowAsNotSelected()
         {
-            throw new NotImplementedException();
+            resizeButtonA.Dispose();
+            resizeButtonB.Dispose();
         }
 
         public override void ShowAsSelected()
         {
-            resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), a, Cursors.Cross);
-            resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), b, Cursors.Cross);
+            resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), new Point(a.X-3,a.Y-3), Cursors.Cross);
+            resizeButtonA.MouseDown += ResizeButtonA_MouseDown;
+            resizeButtonA.MouseUp += ResizeButtonA_MouseUp;
+            resizeButtonA.MouseMove += ResizeButtonA_MouseMove;
+            resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), new Point(b.X - 3, b.Y - 3), Cursors.Cross);
+        }
+
+        private void ResizeButtonA_MouseMove(object sender, MouseEventArgs e)
+        {
+            ;
+        }
+
+        private void ResizeButtonA_MouseUp(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void ResizeButtonA_MouseDown(object sender, MouseEventArgs e)
+        {
+            
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -73,14 +96,16 @@ namespace Monet.src.shape
         double DistanceOfPoint2Line(Point p)
         {
             double dis = 0;
+
+
             if (a.X == b.X)
             {
                 dis = Math.Abs(p.X - a.X);
                 return dis;
             }
             double lineK = (b.Y - a.Y) / (b.X - a.X);
-            double lineC = (b.X * a.Y - a.X * b.Y) / (b.X - a.X);
-            dis = Math.Abs(lineK * p.X - p.Y + lineC) / (Math.Sqrt(lineK * lineK + 1));
+            double lineB = a.Y-(a.Y-b.Y)/(a.X-b.X)*a.X;
+            dis = Math.Abs(lineK * p.X - p.Y + lineB) / (Math.Sqrt(lineK * lineK + 1));
             return dis;
         }
     }

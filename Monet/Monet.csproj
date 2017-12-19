@@ -56,6 +56,7 @@
     <Compile Include="src\tools\CircleTool.cs" />
     <Compile Include="src\tools\EllipseTool.cs" />
     <Compile Include="src\tools\FillTool.cs" />
+    <Compile Include="src\ui\Log.cs" />
     <Compile Include="src\ui\ResizeButton.cs">
       <SubType>Component</SubType>
     </Compile>

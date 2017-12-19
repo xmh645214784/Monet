@@ -21,9 +21,21 @@ namespace Monet.src.history
         internal ActionParameters ActionParameters { get => actionParameters; set => actionParameters = value; }
         internal Actionable Actionable { get => actionable; set => actionable = value; }
 
-        internal void Action()
+        internal virtual void Action()
         {
             actionable.MakeAction(actionParameters);
+        }
+    }
+
+    class BackUpMAction : MAction
+    {
+        public BackUpMAction(Actionable actionable, ActionParameters toolParameters) : base(actionable, toolParameters)
+        {
+        }
+
+        internal override void Action()
+        {
+            //do nothing;
         }
     }
 
