@@ -13,6 +13,11 @@ namespace Monet.src.shape
         public Point b;
         public Pen pen;
 
+        public override object Clone()
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool IsSelectMe(Point point)
         {
             throw new NotImplementedException();

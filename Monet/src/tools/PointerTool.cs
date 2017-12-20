@@ -17,7 +17,7 @@ namespace Monet
 
         }
 
-        public override void MakeAction(ActionParameters toolParameters)
+        public override void MakeAction(ActionParameters_t toolParameters)
         {
             ;
         }
@@ -35,14 +35,20 @@ namespace Monet
             ArrayList array = History.GetInstance().historyArray;
             for(int i=0;i<=History.GetInstance().Index; i++)
             {
+                if (array[i] is BackUpMAction)
+                    continue;
                 try
                 {
-                    ActionParameters actionParameters = ((MAction)array[i]).ActionParameters;
+                    ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
                     Shape shape = (Shape)actionParameters;
                     if (shape.IsSelectMe(e.Location))
                     {
                         shape.ShowAsSelected();
                         break;
+                    }
+                    else
+                    {
+                        shape.ShowAsNotSelected();
                     }
                 }
                 catch (InvalidCastException)

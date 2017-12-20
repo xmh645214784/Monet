@@ -41,7 +41,7 @@ namespace Monet.src.tools
             p.color = newColor;
 
             History.GetInstance().PushBackAction(
-                new history.MAction((Tool)this, (ActionParameters)p));
+                new history.MAction((Tool)this, (ActionParameters_t)p));
         }
 
         private void FillAction(Point p,Color newColor)
@@ -79,7 +79,7 @@ namespace Monet.src.tools
 
 
 
-        public override void MakeAction(ActionParameters toolParameters)
+        public override void MakeAction(ActionParameters_t toolParameters)
         {
             try
             {
@@ -93,10 +93,15 @@ namespace Monet.src.tools
             }
             
         }
-        private sealed class FillParam : ActionParameters
+        private sealed class FillParam : ActionParameters_t
         {
             public Point point;
             public Color color;
+
+            public object Clone()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 

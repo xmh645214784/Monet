@@ -21,7 +21,7 @@ namespace Monet.src.tools
         }
 
 
-        public override void MakeAction(ActionParameters toolParameters)
+        public override void MakeAction(ActionParameters_t toolParameters)
         {
             try
             {

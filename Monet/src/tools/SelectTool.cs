@@ -148,7 +148,7 @@ namespace Monet
             }
         }
 
-        public override void MakeAction(ActionParameters toolParameters)
+        public override void MakeAction(ActionParameters_t toolParameters)
         {
             try
             {
@@ -163,9 +163,14 @@ namespace Monet
             
         }
 
-        private sealed class Select:ActionParameters
+        private sealed class Select:ActionParameters_t
         {
             public Rectangle rect;
+
+            public object Clone()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

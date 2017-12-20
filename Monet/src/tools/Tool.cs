@@ -18,7 +18,7 @@ namespace Monet
             this.mainView = mainView;
         }
 
-        abstract public void MakeAction(ActionParameters toolParameters);
+        abstract public void MakeAction(ActionParameters_t toolParameters);
 
 
         virtual public void RegisterTool()

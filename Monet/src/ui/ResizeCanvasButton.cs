@@ -68,7 +68,7 @@ namespace Monet.src.tools
             mainView.Image = newBitmap;
         }
 
-        public void MakeAction(ActionParameters toolParameters)
+        public void MakeAction(ActionParameters_t toolParameters)
         {
             try
             {
@@ -84,10 +84,18 @@ namespace Monet.src.tools
             
         }
 
-        public sealed class ResizeParam:ActionParameters
+        public sealed class ResizeParam:ActionParameters_t
         {
             public Size size;
             public Color backgroundColor;
+
+            public object Clone()
+            {
+                ResizeParam copy = new ResizeParam();
+                copy.size = size;
+                copy.backgroundColor = backgroundColor;
+                return copy;
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace Monet
 {
-    public interface ActionParameters
+    public interface ActionParameters_t:ICloneable
     {
 
     }

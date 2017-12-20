@@ -6,42 +6,63 @@ using System.Threading.Tasks;
 
 namespace Monet.src.history
 {
-    class MAction
+    public class MAction:ICloneable
     {
         Actionable actionable;
-        ActionParameters actionParameters;
+        ActionParameters_t actionParameters;
+        public bool visible=true;
 
         public MAction(Actionable actionable,
-        ActionParameters toolParameters)
+        ActionParameters_t toolParameters)
         {
             this.actionable = actionable;
             this.actionParameters = toolParameters;
         }
 
-        internal ActionParameters ActionParameters { get => actionParameters; set => actionParameters = value; }
+        public ActionParameters_t ToolParameters { get; internal set; }
+        internal ActionParameters_t ActionParameters { get => actionParameters; set => actionParameters = value; }
         internal Actionable Actionable { get => actionable; set => actionable = value; }
+
+        public object Clone()
+        {
+            MAction copy = new MAction(actionable,actionParameters);
+            return copy;
+        }
 
         internal virtual void Action()
         {
-            actionable.MakeAction(actionParameters);
+            if(visible)
+                actionable.MakeAction(actionParameters);
         }
     }
 
+    //  decorator
     class BackUpMAction : MAction
     {
-        public BackUpMAction(Actionable actionable, ActionParameters toolParameters) : base(actionable, toolParameters)
+        MAction originalAction;
+
+        public BackUpMAction(MAction mAction) : base(mAction.Actionable, mAction.ToolParameters)
         {
+            originalAction = mAction;
         }
 
         internal override void Action()
         {
             //do nothing;
         }
+
+        public void ExchangeParameters()
+        {
+            ActionParameters_t temp = originalAction.ActionParameters;
+            originalAction.ActionParameters = this.ActionParameters;
+            this.ActionParameters = temp;
+            
+        }
     }
 
 
-    interface Actionable
+    public interface Actionable
     {
-        void MakeAction(ActionParameters toolParameters);
+        void MakeAction(ActionParameters_t toolParameters);
     }
 }

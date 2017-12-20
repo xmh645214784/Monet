@@ -14,6 +14,7 @@ using System.Drawing;
 using Monet.src.history;
 using System.Windows.Forms;
 using static Monet.src.tools.ResizeCanvasButton;
+using Monet.src.shape;
 
 namespace Monet
 {
@@ -170,6 +171,11 @@ namespace Monet
 
             CanRedo = true;
 
+            if(historyArray[index] is BackUpMAction)
+            {
+                BackUpMAction backUpMAction = (BackUpMAction)historyArray[index];
+                backUpMAction.ExchangeParameters();
+            }
             --index;
         }
 
@@ -199,13 +205,44 @@ namespace Monet
         /// \brief Redraw all actions
         ///-------------------------------------------------------------------------------------------------
 
-        public void RedrawAllActions()
+        public void Update()
         {
+            MainWin.GetInstance().ClearScreen();
             for (int i=0;i<=Index;i++)
             {
                 MAction p = (MAction)historyArray[i];
                 p.Action();
             }
+        }
+
+        public bool FindShapeInHistory(Shape shape,out MAction mActionInPosition)
+        {
+            for (int i = 0; i <= Index; i++)
+            {
+                MAction p = (MAction)historyArray[i];
+                if (p is BackUpMAction)
+                    continue;
+                try
+                {
+                    Shape shapeIter = (Shape)p.ActionParameters;
+                    if (shapeIter.Equals(shape))
+                    {
+                        mActionInPosition = p;
+                        return true;
+                    }
+                }
+                catch (InvalidCastException)
+                {
+                    ;
+                }    
+            }
+            mActionInPosition = null;
+            return false;
+        }
+
+        public void AddClone(MAction mAction)
+        {
+            PushBackAction(new BackUpMAction((MAction)mAction.Clone()));
         }
     }
 }

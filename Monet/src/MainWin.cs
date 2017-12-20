@@ -32,6 +32,16 @@ namespace Monet
             return mainView;
         }
 
+        
+        internal void ClearScreen()
+        {
+            mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
+            using (Graphics g = Graphics.FromImage(mainView.Image))
+            {
+                g.Clear(Color.White);
+            }
+        }
+
         static MainWin mInstance=null;
 
         public static MainWin GetInstance()
@@ -152,23 +162,14 @@ namespace Monet
         private void undoButton_Click(object sender, EventArgs e)
         {
             History.GetInstance().UndoAction();
-            mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
-            using (Graphics g = Graphics.FromImage(mainView.Image))
-            {
-                g.Clear(Color.White);
-            }
-            History.GetInstance().RedrawAllActions();
+            
+            History.GetInstance().Update();
         }
 
         private void redoButton_Click(object sender, EventArgs e)
         {
             History.GetInstance().RedoAction();
-            mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
-            using (Graphics g = Graphics.FromImage(mainView.Image))
-            {
-                g.Clear(Color.White);
-            }
-            History.GetInstance().RedrawAllActions();
+            History.GetInstance().Update();
         }
 
         private void openButton_Click(object sender, EventArgs e)
