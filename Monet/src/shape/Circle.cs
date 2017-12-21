@@ -14,9 +14,11 @@ namespace Monet.src.shape
     {
         public Point startPoint;
         public Point endPoint;
-        bool isResizing = false;
 
-        public ResizeButton resizeButton;
+        public MoveableButton resizeButton;
+        public MoveableButton moveButton;
+
+
         public override object Clone()
         {
             Circle copy = new Circle();
@@ -37,8 +39,9 @@ namespace Monet.src.shape
             base.ShowAsNotSelected();
             try
             {
-                resizeButton.Visible = false;
+                resizeButton.Visible = moveButton.Visible= false;
                 resizeButton.Dispose();
+                moveButton.Dispose();
             }
             catch (NullReferenceException)
             {
@@ -47,7 +50,7 @@ namespace Monet.src.shape
             finally
             {
                 resizeButton = null;
-
+                moveButton = null;
             }
         }
 
@@ -56,31 +59,85 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             if (resizeButton == null)
             {
-                resizeButton = new ResizeButton(MainWin.GetInstance().MainView(), this, new Point(endPoint.X - 3, endPoint.Y - 3), Cursors.SizeAll, new Ref<Point>(() => endPoint, z => { endPoint = z; }));
+                resizeButton = new ResizeButton(MainWin.GetInstance().MainView(), this, new Point(endPoint.X - 3, endPoint.Y - 3), Cursors.SizeNS);
+                resizeButton.SetBindingPoints(
+                    new Ref<Point>(() => endPoint, z => { endPoint = z; })
+                    );
                 resizeButton.MouseDown += ResizeButton_MouseDown;
                 resizeButton.MouseUp += ResizeButton_MouseUp;
                 resizeButton.MouseMove += ResizeButton_MouseMove;
+
+                moveButton = new MoveableButton(MainWin.GetInstance().MainView(), this, new Point(startPoint.X - 3, startPoint.Y - 3), Cursors.SizeAll);
+                moveButton.SetBindingPoints(
+                    new Ref<Point>(() => startPoint, z => { startPoint = z; }),
+                    new Ref<Point>(() => endPoint, z => { endPoint = z; }),
+                    new Ref<Point>(() => resizeButton.Location, z => { resizeButton.Location = z; })
+                    );
+                moveButton.MouseDown += MoveButton_MouseDown;
+                moveButton.MouseUp += MoveButton_MouseUp;
+                moveButton.MouseMove += MoveButton_MouseMove;
             }
             Log.LogText("Select Circle");
+        }
+
+        private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isMoving)
+            {
+                RetMAction().Action();
+            }
+        }
+
+        private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            if(isMoving)
+            {
+                isMoving = false;
+                Log.LogText(string.Format("Move Circle ({0},{1}),r={2}", startPoint.X, startPoint.Y,
+                        Math.Sqrt(      Math.Pow((startPoint.X - endPoint.X), 2)
+                                        + Math.Pow((startPoint.Y - endPoint.Y), 2))
+                                        )
+                                        );
+                ShowAsNotSelected();
+            }
+        }
+
+        private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isMoving = true;
+                MAction mAction;
+                History his = History.GetInstance();
+                his.FindShapeInHistory(this, out mAction);
+                his.AddBackUpClone(mAction);
+                if (isMoving)
+                {
+                    RetMAction().Action();
+                }
+            }
         }
 
         private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isResizing)
             {
-                ToolKit.GetInstance().circleTool.MakeAction(RetMAction().ActionParameters);
+                RetMAction().Action();
             }
         }
 
         private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
         {
             if (isResizing)
+            {
                 isResizing = false;
-            Log.LogText(string.Format("Resize Circle R={0}",  Math.Sqrt(
-                                    Math.Pow((startPoint.X-endPoint.X),2)
-                                    + Math.Pow((startPoint.Y - endPoint.Y), 2)
-                )
-                ));
+                Log.LogText(string.Format("Resize Circle R={0}", Math.Sqrt(
+                                        Math.Pow((startPoint.X - endPoint.X), 2)
+                                        + Math.Pow((startPoint.Y - endPoint.Y), 2)
+                    )
+                    ));
+                ShowAsNotSelected();
+            }
         }
 
         private void ResizeButton_MouseDown(object sender, MouseEventArgs e)

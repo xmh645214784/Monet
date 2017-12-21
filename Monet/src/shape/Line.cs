@@ -36,8 +36,7 @@ namespace Monet.src.shape
         public ResizeButton resizeButtonB;
         public MoveButton moveButton;
 
-        private bool isResizing=false;
-        private bool isMoving = false;
+        
         
 
         public Line()
@@ -67,6 +66,7 @@ namespace Monet.src.shape
             try
             {
                 resizeButtonA.Visible = resizeButtonB.Visible=moveButton.Visible=false;
+
                 resizeButtonA.Dispose();
                 moveButton.Dispose();
                 resizeButtonB.Dispose();
@@ -87,14 +87,14 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             if(resizeButtonA==null)
             {
-                resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), this,new Point(a.X - 3, a.Y - 3), Cursors.SizeAll, new Ref<Point>(() => a, z => { a = z; }));
+                resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), this, new Point(a.X - 3, a.Y - 3), Cursors.SizeNS);
                 resizeButtonA.MouseDown += ResizeButtonA_MouseDown;
                 resizeButtonA.MouseUp += ResizeButtonA_MouseUp;
                 resizeButtonA.MouseMove += ResizeButtonA_MouseMove;
             }
             if (resizeButtonB == null)
             {
-                resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeAll, new Ref<Point>(() => b, z => { b = z; }));
+                resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeNS);
                 resizeButtonB.MouseDown += ResizeButtonA_MouseDown;
                 resizeButtonB.MouseUp += ResizeButtonA_MouseUp;
                 resizeButtonB.MouseMove += ResizeButtonA_MouseMove;
@@ -103,17 +103,26 @@ namespace Monet.src.shape
             {
                 moveButton = new MoveButton(MainWin.GetInstance().MainView(),
                     this, new Point(a.X / 2 + b.X / 2, a.Y / 2 + b.Y / 2),
-                    Cursors.SizeAll,
+                    Cursors.SizeAll);
+                moveButton.MouseDown += MoveButton_MouseDown;
+                moveButton.MouseMove += MoveButton_MouseMove;
+                moveButton.MouseUp += MoveButton_MouseUp;
+            }
+
+            resizeButtonA.SetBindingPoints(
+                    new Ref<Point>(() => a, z => { a = z; })
+                    );
+            resizeButtonB.SetBindingPoints(
+                    new Ref<Point>(() => b, z => { b = z; })
+                );
+            moveButton.SetBindingPoints(
                     new Ref<Point>(() => a, z => { a = z; }),
                     new Ref<Point>(() => b, z => { b = z; }),
                     // only lines'point moving is not enough. We need move its buttons.
                     new Ref<Point>(() => resizeButtonA.Location, z => { resizeButtonA.Location = z; }),
                     new Ref<Point>(() => resizeButtonB.Location, z => { resizeButtonB.Location = z; })
-                    );
-                moveButton.MouseDown += MoveButton_MouseDown;
-                moveButton.MouseMove += MoveButton_MouseMove;
-                moveButton.MouseUp += MoveButton_MouseUp;
-            }
+                );
+
             Log.LogText("Select Line");
             
         }
@@ -121,15 +130,19 @@ namespace Monet.src.shape
         private void MoveButton_MouseUp(object sender, MouseEventArgs e)
         {
             if (isMoving)
+            {
                 isMoving = false;
-            Log.LogText(string.Format("Move Line ({0},{1}),({2},{3})", a.X, a.Y, b.X, b.Y));
+                RetMAction().Action();
+                Log.LogText(string.Format("Move Line ({0},{1}),({2},{3})", a.X, a.Y, b.X, b.Y));
+                ShowAsNotSelected();
+            }
         }
 
         private void MoveButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMoving)
             {
-                ToolKit.GetInstance().lineTool.MakeAction(RetMAction().ActionParameters);
+                RetMAction().Action();
             }
         }
 
@@ -162,15 +175,21 @@ namespace Monet.src.shape
         {
             if (isResizing)
             {
-                ToolKit.GetInstance().lineTool.MakeAction(RetMAction().ActionParameters);
+                RetMAction().Action();
+                moveButton.Location = new Point(a.X / 2 + b.X / 2, a.Y / 2 + b.Y / 2);
             } 
         }
 
         private void ResizeButtonA_MouseUp(object sender, MouseEventArgs e)
         {
-            if(isResizing)
+            if (isResizing)
+            {
                 isResizing = false;
-            Log.LogText(string.Format("Resize Line ({0},{1}),({2},{3})",a.X,a.Y,b.X,b.Y));
+                RetMAction().Action();
+                Log.LogText(string.Format("Resize Line ({0},{1}),({2},{3})",a.X,a.Y,b.X,b.Y));
+                ShowAsNotSelected();
+            }
+            
         }
 
         public static double DistanceOfPoint2Line(PointF pt1, PointF pt2, PointF pt3)

@@ -18,24 +18,33 @@ namespace Monet.src.shape
         MAction bindingAction=null;
         /// \brief The pen
         public Pen pen;
+        public Pen backUpPen=null;
+
+        protected bool isResizing = false;
+        protected bool isMoving = false;
+
         public abstract object Clone();
 
         public abstract bool IsSelectMe(Point point);
 
         public virtual void ShowAsNotSelected()
         {
-            this.pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            //this.pen.Color = Color.Black;
+            if (backUpPen != null)
+            {
+                this.pen = backUpPen;
+                backUpPen = null;
+            }
         }
 
         public virtual void ShowAsSelected()
         {
-            //this.pen.Color = Color.DeepSkyBlue;
+            backUpPen = (Pen)pen.Clone();
+            this.pen.Color = Color.Blue;
             this.pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
             this.pen.DashPattern = new float[] { 1f, 1f };
         }
 
-        protected MAction RetMAction()
+        public MAction RetMAction()
         {
             if (bindingAction==null)
             {
