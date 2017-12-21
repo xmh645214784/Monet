@@ -11,7 +11,6 @@ namespace Monet.src.shape
     {
         public Point a;
         public Point b;
-        public Pen pen;
 
         public override object Clone()
         {

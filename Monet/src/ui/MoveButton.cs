@@ -10,40 +10,42 @@ using System.Windows.Forms;
 
 namespace Monet.src.ui
 {
-    
-
-    public class ResizeButton : Button
+    public class MoveButton:Button
     {
-
-        // 这个点非常重要，我们改变的是bindingPoint的位置
-        Ref<Point> bindingPoint;
+        // 这个点非常重要，我们改变的是下面的数组，每个点都偏移一些距离
+        Ref<Point>[] bindingPoints;
+        Point[] backUpPoints;
 
         PictureBox mainView;
         Shape shape;
 
         Point tempPoint;
-        bool isEnabled=false;
+        bool isEnabled = false;
 
-        Point startLocation,resultLocation;
+        Point startLocation;
 
         protected Image doubleBuffer;
 
-        public Point ResultLocation { get => resultLocation; }
 
-        public ResizeButton(PictureBox mainView,
+        public MoveButton(PictureBox mainView,
                             Shape shape,
                             Point location,
                             Cursor cursor,
-                            Ref<Point> bindingPoint)
+                            params Ref<Point> [] bindingPoints)
         {
             this.mainView = mainView;
-            this.Location = location;
+            this.Location = startLocation= location;
             this.shape = shape;
             this.Cursor = cursor;
             this.Size = new Size(10, 10);
             mainView.Controls.Add(this);
             this.Show();
-            this.bindingPoint = bindingPoint;
+            this.bindingPoints = bindingPoints;
+            backUpPoints = new Point[bindingPoints.Length];
+            for(int i=0;i<backUpPoints.Length;i++)
+            {
+                backUpPoints[i] = bindingPoints[i].Value;
+            }
         }
 
         public void Disappear()
@@ -55,9 +57,8 @@ namespace Monet.src.ui
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if(e.Button==MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
-                resultLocation = this.Location;
                 tempPoint = e.Location;
                 isEnabled = true;
                 History history = History.GetInstance();
@@ -77,8 +78,14 @@ namespace Monet.src.ui
             {
                 this.Location = new Point(this.Left + (mevent.X - tempPoint.X),
                         this.Top + (mevent.Y - tempPoint.Y));
-                resultLocation = this.Location;
-                bindingPoint.Value=this.Location;
+
+                for (int i=0;i<bindingPoints.Length;i++)
+                {
+                    bindingPoints[i].Value=new Point
+                        (backUpPoints[i].X+ Location.X- startLocation.X, 
+                        backUpPoints[i].Y + this.Location.Y- startLocation.Y);
+                }
+                
                 mainView.Image.Dispose();
                 mainView.Image = (Image)doubleBuffer.Clone();
             }
@@ -89,14 +96,6 @@ namespace Monet.src.ui
         {
             if (mevent.Button == MouseButtons.Left)
             {
-                resultLocation = this.Location;
-                bindingPoint.Value = this.Location;
-                isEnabled = false;
-            }
-            else
-            {
-                resultLocation = startLocation;
-                bindingPoint.Value = startLocation;
                 isEnabled = false;
             }
             base.OnMouseUp(mevent);

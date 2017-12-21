@@ -56,6 +56,7 @@ namespace Monet
                     ;
                 }
             }
+            History.GetInstance().Update();
         }
 
         public override void UnRegisterTool()

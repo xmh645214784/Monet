@@ -16,14 +16,24 @@ namespace Monet.src.shape
     public abstract class Shape: Selectable,ActionParameters_t
     {
         MAction bindingAction=null;
-
+        /// \brief The pen
+        public Pen pen;
         public abstract object Clone();
 
         public abstract bool IsSelectMe(Point point);
 
-        public abstract void ShowAsNotSelected();
+        public virtual void ShowAsNotSelected()
+        {
+            this.pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            //this.pen.Color = Color.Black;
+        }
 
-        public abstract void ShowAsSelected();
+        public virtual void ShowAsSelected()
+        {
+            //this.pen.Color = Color.DeepSkyBlue;
+            this.pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.pen.DashPattern = new float[] { 1f, 1f };
+        }
 
         protected MAction RetMAction()
         {
