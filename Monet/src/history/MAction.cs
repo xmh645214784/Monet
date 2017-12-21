@@ -25,7 +25,7 @@ namespace Monet.src.history
 
         public object Clone()
         {
-            MAction copy = new MAction(actionable,actionParameters);
+            MAction copy = new MAction(actionable,(ActionParameters_t)actionParameters.Clone());
             return copy;
         }
 
@@ -41,9 +41,9 @@ namespace Monet.src.history
     {
         MAction originalAction;
 
-        public BackUpMAction(MAction mAction) : base(mAction.Actionable, mAction.ToolParameters)
+        public BackUpMAction(MAction mAction,MAction orginalAction) : base(mAction.Actionable, mAction.ActionParameters)
         {
-            originalAction = mAction;
+            this.originalAction = orginalAction ?? throw new ArgumentNullException(nameof(orginalAction));
         }
 
         internal override void Action()

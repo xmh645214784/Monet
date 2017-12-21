@@ -40,6 +40,12 @@ namespace Monet
             {
                 g.Clear(Color.White);
             }
+
+        }
+
+        internal void ClearAllControlsInMainView()
+        {
+            mainView.Controls.Clear();
         }
 
         static MainWin mInstance=null;
@@ -162,13 +168,14 @@ namespace Monet
         private void undoButton_Click(object sender, EventArgs e)
         {
             History.GetInstance().UndoAction();
-            
+            ClearAllControlsInMainView();
             History.GetInstance().Update();
         }
 
         private void redoButton_Click(object sender, EventArgs e)
         {
             History.GetInstance().RedoAction();
+            ClearAllControlsInMainView();
             History.GetInstance().Update();
         }
 

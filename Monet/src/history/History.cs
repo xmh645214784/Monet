@@ -197,6 +197,11 @@ namespace Monet
                 CanRedo = false;
             CanUndo = true;
             ++index;
+            if(historyArray[index] is BackUpMAction)
+            {
+                BackUpMAction ba = (BackUpMAction)historyArray[index];
+                ba.ExchangeParameters();
+            }
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -240,9 +245,9 @@ namespace Monet
             return false;
         }
 
-        public void AddClone(MAction mAction)
+        public void AddBackUpClone(MAction mAction)
         {
-            PushBackAction(new BackUpMAction((MAction)mAction.Clone()));
+            PushBackAction(new BackUpMAction((MAction)mAction.Clone(),mAction));
         }
     }
 }
