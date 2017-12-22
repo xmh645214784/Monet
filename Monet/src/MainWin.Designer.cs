@@ -55,6 +55,7 @@
             this.lineButton = new Monet.src.tools.ToolButton();
             this.circleButton = new Monet.src.tools.ToolButton();
             this.ellipseButton = new Monet.src.tools.ToolButton();
+            this.polygonButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
@@ -299,6 +300,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 4, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 5, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -366,6 +368,14 @@
             this.ellipseButton.Size = new System.Drawing.Size(26, 28);
             this.ellipseButton.TabIndex = 4;
             this.ellipseButton.UseVisualStyleBackColor = true;
+            // 
+            // polygonButton
+            // 
+            this.polygonButton.Location = new System.Drawing.Point(153, 3);
+            this.polygonButton.Name = "polygonButton";
+            this.polygonButton.Size = new System.Drawing.Size(23, 26);
+            this.polygonButton.TabIndex = 5;
+            this.polygonButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -833,5 +843,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         public System.Windows.Forms.RichTextBox richTextBox;
+        private src.tools.ToolButton polygonButton;
     }
 }

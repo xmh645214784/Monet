@@ -82,6 +82,7 @@ namespace Monet
             fillButton.BindingTool = toolKit.fillTool;
             selectButton.BindingTool = toolKit.selectTool;
             ellipseButton.BindingTool = toolKit.ellipseTool;
+            polygonButton.BindingTool = toolKit.polygonTool;
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
@@ -100,6 +101,9 @@ namespace Monet
             //set the resize button to the lower right corner.
             resizePictureBoxButton = new ResizeCanvasButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
+
+            //polygonButton.BackgroundImage = Bitmap.FromFile("../../icon/polygon.png");
+            //polygonButton.BackgroundImageLayout = ImageLayout.Stretch;
         }
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)

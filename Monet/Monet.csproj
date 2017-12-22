@@ -161,8 +161,5 @@
   <ItemGroup>
     <None Include="icon\save .png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="icon\polygon.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
