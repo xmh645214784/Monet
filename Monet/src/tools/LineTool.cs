@@ -18,14 +18,14 @@ namespace Monet
         LINE_SYSTEM, LINE_DDA, LINE_BRESENHAM, LINE_MIDPOINT
     }
 
-    interface DrawLinerAdapter
+    interface DrawLinerAgent
     {
         void DrawLine(Graphics g, Pen pen, Point p1, Point p2);
     }
 
     sealed class LineTool : DrawShapeTool
     {
-        public DrawLinerAdapter lineAgent;
+        public DrawLinerAgent lineAgent;
         Point startPoint;
         Point nowPoint;
         public LineTool(PictureBox mainView) : base(mainView)
@@ -149,7 +149,7 @@ namespace Monet
     }
 
 
-    sealed class Dda : DrawLinerAdapter
+    sealed class Dda : DrawLinerAgent
     {
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
@@ -170,13 +170,13 @@ namespace Monet
             }
         }
 
-        void DrawLinerAdapter.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
     }
 
-    sealed class Midpoint : DrawLinerAdapter
+    sealed class Midpoint : DrawLinerAgent
     {
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
@@ -209,14 +209,14 @@ namespace Monet
         
         }
 
-        void DrawLinerAdapter.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
     }
 
 
-    sealed class Bresenham : DrawLinerAdapter
+    sealed class Bresenham : DrawLinerAgent
     {
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
@@ -250,7 +250,7 @@ namespace Monet
         }
     }
 
-    sealed class SystemDraw : DrawLinerAdapter
+    sealed class SystemDraw : DrawLinerAgent
     {
         public void DrawLine(Graphics g,  Pen pen, Point p1, Point p2)
         {

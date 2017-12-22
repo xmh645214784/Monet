@@ -53,10 +53,12 @@
     <Compile Include="src\shape\Circle.cs" />
     <Compile Include="src\shape\Ellipse.cs" />
     <Compile Include="src\shape\Line.cs" />
+    <Compile Include="src\shape\Polygon.cs" />
     <Compile Include="src\shape\Shape.cs" />
     <Compile Include="src\tools\CircleTool.cs" />
     <Compile Include="src\tools\EllipseTool.cs" />
     <Compile Include="src\tools\FillTool.cs" />
+    <Compile Include="src\tools\PolygonTool.cs" />
     <Compile Include="src\ui\Log.cs" />
     <Compile Include="src\ui\MoveableButton.cs">
       <SubType>Component</SubType>
@@ -158,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icon\save .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\polygon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

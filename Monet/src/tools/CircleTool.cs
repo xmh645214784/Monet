@@ -22,7 +22,7 @@ namespace Monet
     /// \brief A draw circle adapter.
     ///-------------------------------------------------------------------------------------------------
 
-    abstract class DrawCircleAdapter
+    abstract class DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
         /// \fn abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border);
@@ -72,7 +72,7 @@ namespace Monet
 
     sealed class CircleTool : DrawShapeTool { 
         /// \brief The circle agent
-        public DrawCircleAdapter circleAgent;
+        public DrawCircleAgent circleAgent;
         /// \brief The start point
         Point startPoint;
         /// \brief The now point
@@ -263,7 +263,7 @@ namespace Monet
     /// \brief A middle point circle. This class cannot be inherited..
     ///-------------------------------------------------------------------------------------------------
 
-    sealed class MidPointCircle : DrawCircleAdapter
+    sealed class MidPointCircle : DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
         /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point boader)
@@ -315,7 +315,7 @@ namespace Monet
     /// \brief A bresenham circle. This class cannot be inherited..
     ///-------------------------------------------------------------------------------------------------
 
-    sealed class BresenhamCircle : DrawCircleAdapter
+    sealed class BresenhamCircle : DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
         /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point border)
