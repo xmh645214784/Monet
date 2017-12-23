@@ -60,13 +60,20 @@
     <Compile Include="src\tools\FillTool.cs" />
     <Compile Include="src\tools\PolygonTool.cs" />
     <Compile Include="src\tools\ResizeTool.cs" />
+    <Compile Include="src\ui\MoveableButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\ui\MoveableButtonWithDoubleBuffering.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\ui\RotatingButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\tools\RotatingTool.cs" />
     <Compile Include="src\ui\AdjustButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="src\ui\Log.cs" />
-    <Compile Include="src\ui\MoveableButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="src\ui\MoveButton.cs">
       <SubType>Component</SubType>
     </Compile>

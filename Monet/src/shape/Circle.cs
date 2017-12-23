@@ -15,8 +15,8 @@ namespace Monet.src.shape
         public Point startPoint;
         public Point endPoint;
 
-        public MoveableButton resizeButton;
-        public MoveableButton moveButton;
+        public MoveableButtonWithDoubleBuffering resizeButton;
+        public MoveableButtonWithDoubleBuffering moveButton;
 
 
         public override object Clone()
@@ -67,7 +67,7 @@ namespace Monet.src.shape
                 resizeButton.MouseUp += ResizeButton_MouseUp;
                 resizeButton.MouseMove += ResizeButton_MouseMove;
 
-                moveButton = new MoveableButton(MainWin.GetInstance().MainView(), this, new Point(startPoint.X - 3, startPoint.Y - 3), Cursors.SizeAll);
+                moveButton = new MoveableButtonWithDoubleBuffering(MainWin.GetInstance().MainView(), this, new Point(startPoint.X - 3, startPoint.Y - 3), Cursors.SizeAll);
                 moveButton.SetBindingPoints(
                     new Ref<Point>(() => startPoint, z => { startPoint = z; }),
                     new Ref<Point>(() => endPoint, z => { endPoint = z; }),

@@ -10,11 +10,8 @@ using System.Windows.Forms;
 
 namespace Monet.src.ui
 {
-    public class MoveableButton:Button
+    public class MoveableButton : Button
     {
-        // 这个点非常重要，我们改变的是下面的数组，每个点都会跟着偏移一些距离
-        Ref<Point>[] bindingPoints;
-        Point[] backUpPoints;
 
         PictureBox mainView;
         Shape shape;
@@ -24,34 +21,26 @@ namespace Monet.src.ui
 
         Point startLocation;
 
-        protected Image doubleBuffer;
-
+        public MoveableButton()
+        {
+        }
 
         public MoveableButton(PictureBox mainView,
                             Shape shape,
                             Point location,
                             Cursor cursor
-                            ):base()
+                            ) : base()
         {
-            
+
             this.mainView = mainView;
-            this.Location = startLocation= location;
+            this.Location = startLocation = location;
             this.shape = shape;
             this.Cursor = cursor;
             this.Size = new Size(10, 10);
             mainView.Controls.Add(this);
-            this.Show(); 
+            this.Show();
         }
 
-        public void SetBindingPoints(params Ref<Point>[] bindingPoints)
-        {
-            this.bindingPoints = bindingPoints;
-            backUpPoints = new Point[bindingPoints.Length];
-            for (int i = 0; i < backUpPoints.Length; i++)
-            {
-                backUpPoints[i] = bindingPoints[i].Value;
-            }
-        }
 
         public void Disappear()
         {
@@ -66,13 +55,6 @@ namespace Monet.src.ui
             {
                 tempPoint = e.Location;
                 isEnabled = true;
-                History history = History.GetInstance();
-                MAction mAction;
-                history.FindShapeInHistory(shape, out mAction);
-                mAction.visible = false;
-                history.Update();
-                doubleBuffer = (Image)mainView.Image.Clone();
-                mAction.visible = true;
             }
             base.OnMouseDown(e);
         }
@@ -83,22 +65,6 @@ namespace Monet.src.ui
             {
                 this.Location = new Point(this.Left + (mevent.X - tempPoint.X),
                         this.Top + (mevent.Y - tempPoint.Y));
-                try
-                {
-                    for (int i = 0; i < bindingPoints.Length; i++)
-                    {
-                        bindingPoints[i].Value = new Point
-                            (backUpPoints[i].X + Location.X - startLocation.X,
-                            backUpPoints[i].Y + this.Location.Y - startLocation.Y);
-                    }
-                }
-                catch (NullReferenceException)
-                {
-                    ;
-                }
-               
-                mainView.Image.Dispose();
-                mainView.Image = (Image)doubleBuffer.Clone();
             }
             base.OnMouseMove(mevent);
         }

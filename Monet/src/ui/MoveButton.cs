@@ -9,7 +9,7 @@ using Monet.src.shape;
 
 namespace Monet.src.ui
 {
-    public class MoveButton : MoveableButton
+    public class MoveButton : MoveableButtonWithDoubleBuffering
     {
         public MoveButton(PictureBox mainView, Shape shape, Point location, Cursor cursor) : base(mainView, shape, location, cursor)
         {

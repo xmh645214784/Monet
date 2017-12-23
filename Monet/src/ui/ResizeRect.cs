@@ -17,7 +17,7 @@ namespace Monet.src.ui
         Point rectSWPoint;
         Shape shape;
         Pen solidPen;
-        MoveableButton NEButton;
+        MoveableButtonWithDoubleBuffering NEButton;
 
         public ResizeRect(PictureBox pictureBox,
                           Rectangle rect,
@@ -29,7 +29,7 @@ namespace Monet.src.ui
             this.solidPen = new Pen(Color.Gray, 2);
             this.solidPen.DashStyle = DashStyle.Custom;
             solidPen.DashPattern = new float[] { 1f, 1f };
-            NEButton = new MoveableButton(mainView, shape,new Point(rect.Right,rect.Top), Cursors.SizeNESW);
+            NEButton = new MoveableButtonWithDoubleBuffering(mainView, shape,new Point(rect.Right,rect.Top), Cursors.SizeNESW);
             NEButton.Show();
             //draw a new one
             mainView.Image = (Image)mainView.Image.Clone();
