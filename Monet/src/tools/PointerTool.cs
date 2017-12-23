@@ -33,7 +33,22 @@ namespace Monet
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
             ArrayList array = History.GetInstance().historyArray;
-            for(int i=0;i<=History.GetInstance().Index; i++)
+            for (int i = 0; i <= History.GetInstance().Index; i++)
+            {
+                try
+                {
+                    ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
+                    Shape shape = (Shape)actionParameters;
+                    shape.ShowAsNotSelected();
+                }
+                catch (InvalidCastException)
+                {
+                    ;
+                }
+            }
+
+
+            for (int i=0;i<=History.GetInstance().Index; i++)
             {
                 if (array[i] is BackUpMAction)
                     continue;
