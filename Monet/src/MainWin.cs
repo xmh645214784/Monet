@@ -106,6 +106,8 @@ namespace Monet
 
             polygonButton.BackgroundImage = Bitmap.FromFile("../../icon/polygon.png");
             polygonButton.BackgroundImageLayout = ImageLayout.Stretch;
+
+            resizeButton.BackgroundImage= Resource1.resize;
         }
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)
