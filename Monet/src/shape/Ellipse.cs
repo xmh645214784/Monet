@@ -17,6 +17,9 @@ namespace Monet.src.shape
         public MoveButton moveButton;
 
         public Rectangle rect;
+
+        public double angle = 0.0F;
+        public Point midPoint;
         public override object Clone()
         {
             Ellipse ellipse = new Ellipse();
@@ -165,7 +168,9 @@ namespace Monet.src.shape
 
         public void Rotate(Point midPoint, double angle)
         {
-            
+            this.angle = angle;
+            this.midPoint = midPoint;
+            this.ShowAsNotSelected();
         }
     }
 }

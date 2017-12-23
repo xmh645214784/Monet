@@ -32,7 +32,7 @@ namespace Monet.src.shape
         public Pen pen;
         public Pen backUpPen=null;
 
-        public double angle=0.0F;
+        
 
         protected bool isResizing = false;
         protected bool isMoving = false;

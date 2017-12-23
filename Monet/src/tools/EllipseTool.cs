@@ -26,7 +26,7 @@ namespace Monet.src.tools
             try
             {
                 Ellipse ellipse =(Ellipse)toolParameters;
-                Draw(ellipse.pen, ellipse.rect);
+                Draw(ellipse.pen, ellipse.rect,ellipse.midPoint,ellipse.angle);
                 //add into shape array
             }
             catch (InvalidCastException)
@@ -86,23 +86,23 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     nowPoint = e.Location;
-                    Draw(Setting.GetInstance().Pen,startPoint,e.Location);
+                    Draw(Setting.GetInstance().Pen,startPoint,e.Location,new Point(),0);
                 }
             }
         }
-        private void Draw(Pen pen, Rectangle rect)
+        private void Draw(Pen pen, Rectangle rect,Point midPoint,double angle)
         {
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
-                , rect.Width / 2, rect.Height / 2);
+                , rect.Width / 2, rect.Height / 2, midPoint, angle);
         }
-        private void Draw(Pen pen ,Point a,Point b)
+        private void Draw(Pen pen ,Point a,Point b, Point midPoint, double angle)
         {
             Rectangle rect = Common.Rectangle(a, b);
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
-                , rect.Width / 2, rect.Height / 2);
+                , rect.Width / 2, rect.Height / 2, midPoint, angle);
         }
 
-        void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b)
+        void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b,Point midPoint,double angle)
         {
             double sqa = a * a;
             double sqb = b * b;
@@ -110,7 +110,7 @@ namespace Monet.src.tools
             double d = sqb + sqa * (0.25 - b);
             int x = 0;
             int y = b;
-            Ellipsepot(pen,x0, y0, x, y);
+            Ellipsepot(pen,x0, y0, x, y, midPoint,angle);
             // 1
             while (sqb * (x + 1) < sqa * (y - 0.5))
             {
@@ -124,7 +124,7 @@ namespace Monet.src.tools
                     --y;
                 }
                 ++x;
-                Ellipsepot(pen,x0, y0, x, y);
+                Ellipsepot(pen,x0, y0, x, y, midPoint, angle);
             }
             d = (b * (x + 0.5)) * 2 + (a * (y - 1)) * 2 - (a * b) * 2;
             // 2
@@ -140,18 +140,22 @@ namespace Monet.src.tools
                     d += sqa * ((-2) * y + 3);
                 }
                 --y;
-                Ellipsepot(pen,x0, y0, x, y);
+                Ellipsepot(pen,x0, y0, x, y, midPoint, angle);
             }
         }
 
-        private void Ellipsepot(Pen pen,int x0, int y0, int x, int y)
+        private void Ellipsepot(Pen pen,int x0, int y0, int x, int y,Point midPoint,double angle)
         {
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {
-                Common.DrawPix(g, new Point(x0 + x, y0 + y), pen);
-                Common.DrawPix(g, new Point(x0 + x, y0 - y), pen);
-                Common.DrawPix(g, new Point(x0 - x, y0 + y), pen);
-                Common.DrawPix(g, new Point(x0 - x, y0 - y), pen);
+                Common.DrawPix(g, Common.RotatingPoint(new Point(x0 + x, y0 + y),midPoint,angle), 
+                    pen);
+                Common.DrawPix(g, Common.RotatingPoint(new Point(x0 + x, y0 - y), midPoint, angle),
+                    pen);
+                Common.DrawPix(g, Common.RotatingPoint(new Point(x0 - x, y0 + y), midPoint, angle),
+                    pen);
+                Common.DrawPix(g, Common.RotatingPoint(new Point(x0 - x, y0 - y), midPoint, angle),
+                    pen);
             }
                 
         }
@@ -197,7 +201,7 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     nowPoint = e.Location;
-                    Draw(Setting.GetInstance().Pen, startPoint, e.Location);
+                    Draw(Setting.GetInstance().Pen, startPoint, e.Location,new Point(),0);
                 }
 
                
