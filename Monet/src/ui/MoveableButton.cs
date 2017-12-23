@@ -71,6 +71,7 @@ namespace Monet.src.ui
                 mAction.visible = false;
                 history.Update();
                 doubleBuffer = (Image)mainView.Image.Clone();
+                doubleBuffer.Save("1.png");
                 mAction.visible = true;
             }
             base.OnMouseDown(e);
@@ -82,14 +83,20 @@ namespace Monet.src.ui
             {
                 this.Location = new Point(this.Left + (mevent.X - tempPoint.X),
                         this.Top + (mevent.Y - tempPoint.Y));
-
-                for (int i=0;i<bindingPoints.Length;i++)
+                try
                 {
-                    bindingPoints[i].Value=new Point
-                        (backUpPoints[i].X+ Location.X- startLocation.X, 
-                        backUpPoints[i].Y + this.Location.Y- startLocation.Y);
+                    for (int i = 0; i < bindingPoints.Length; i++)
+                    {
+                        bindingPoints[i].Value = new Point
+                            (backUpPoints[i].X + Location.X - startLocation.X,
+                            backUpPoints[i].Y + this.Location.Y - startLocation.Y);
+                    }
                 }
-                
+                catch (NullReferenceException)
+                {
+                    ;
+                }
+               
                 mainView.Image.Dispose();
                 mainView.Image = (Image)doubleBuffer.Clone();
             }

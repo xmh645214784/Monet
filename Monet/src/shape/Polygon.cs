@@ -1,4 +1,5 @@
-﻿using Monet.src.ui;
+﻿using Monet.src.history;
+using Monet.src.ui;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -76,9 +77,11 @@ namespace Monet.src.shape
                 ResizeButton temp = new ResizeButton(
                     pictureBox, this, new Point(pointtemp.X - 3, pointtemp.Y - 3), Cursors.SizeNS);
                 resizeButtons.Add(temp);
-                temp.SetBindingPoints(
-                    new Ref<Point>(() => (Point)pointArray[i], z => { pointArray[i] = z; })
-                    );
+
+                temp.MouseDown += ResizeButton_MouseDown;
+                temp.MouseUp += ResizeButton_MouseUp;
+                temp.MouseMove += ResizeButton_MouseMove;
+
                 sumx += pointtemp.X;
                 sumy += pointtemp.Y;
             }
@@ -98,5 +101,39 @@ namespace Monet.src.shape
 
             Log.LogText("Select Polygon");
         }
+
+        bool isResizing = false;
+        private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isResizing)
+            {
+                ResizeButton ins = (ResizeButton)sender;
+                int index = resizeButtons.IndexOf(sender);
+                pointArray[index] = ins.Location;
+                RetMAction().Action();
+            }
+            
+        }
+
+        private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            isResizing = false;
+            RetMAction().Action();
+            Log.LogText(string.Format("Reszie Polygon"));
+            ShowAsNotSelected();
+        }
+
+        private void ResizeButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isResizing = true;
+                MAction mAction;
+                History his = History.GetInstance();
+                his.FindShapeInHistory(this, out mAction);
+                his.AddBackUpClone(mAction);
+            }
+        }
+
     }
 }

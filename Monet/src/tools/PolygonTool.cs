@@ -27,6 +27,22 @@ namespace Monet.src.tools
             base.RegisterTool();
             mainView.Cursor = Cursors.Cross;
             mainView.MouseClick += MainView_MouseClick;
+            mainView.MouseMove += MainView_MouseMove;
+        }
+
+        private void MainView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isEnabled)
+            {
+                mainView.Image.Dispose();
+                mainView.Image = (Image)doubleBuffer.Clone();
+
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    LineTool linetool = (LineTool)ToolKit.GetInstance().lineTool;
+                    linetool.Draw(g, Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 1], e.Location);
+                }
+            }
         }
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
@@ -35,12 +51,13 @@ namespace Monet.src.tools
             {
                 if (arrayList.Count == 0)
                 {
+                    doubleBuffer = (Image)mainView.Image.Clone();
                     arrayList.Add(e.Location);
+                    this.isEnabled = true;
                     return;
                 }
-                arrayList.Add(e.Location);
-
-                mainView.Image = (Image)mainView.Image.Clone();
+                doubleBuffer = (Image)mainView.Image.Clone();
+                arrayList.Add(e.Location);      
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     // g.DrawLine(Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 2], e.Location);
@@ -50,7 +67,9 @@ namespace Monet.src.tools
             }
             else
             {
-                mainView.Image = (Image)mainView.Image.Clone();
+                this.isEnabled = false;
+
+                mainView.Image = (Image)doubleBuffer.Clone();
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     LineTool lineTool = (LineTool)ToolKit.GetInstance().lineTool;
@@ -65,6 +84,9 @@ namespace Monet.src.tools
                 Log.LogText(String.Format("Create Polygon"));
                 History.GetInstance().PushBackAction(
                    new MAction(this, polygon));
+
+                //some termination
+                arrayList.Clear();
             }
         }
 
@@ -87,7 +109,7 @@ namespace Monet.src.tools
                     int length = polygon.pointArray.Count;
                     for (int i = 0; i < length; i++)
                     {
-                        lineTool.Draw(g, polygon.pen, (Point)arrayList[i%length], (Point)arrayList[(i+1)%length]);
+                        lineTool.Draw(g, polygon.pen, (Point)polygon.pointArray[i%length], (Point)polygon.pointArray[(i+1)%length]);
                     }
                 }
             }
