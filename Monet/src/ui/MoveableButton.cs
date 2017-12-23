@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\ui\MoveableButton.cs.
+///
+/// \brief Implements the moveable button class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.shape;
 using System;
 using System.Collections.Generic;
@@ -10,23 +16,37 @@ using System.Windows.Forms;
 
 namespace Monet.src.ui
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class MoveableButton
+    ///
+    /// \brief A moveable button.
+    ///-------------------------------------------------------------------------------------------------
+
     public class MoveableButton : Button
     {
 
+        /// \brief The main view control
         PictureBox mainView;
-        Shape shape;
 
+        /// \brief The temporary point
         Point tempPoint;
+        /// \brief True if this object is enabled
         bool isEnabled = false;
 
+        /// \brief The start location
         Point startLocation;
 
-        public MoveableButton()
-        {
-        }
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public MoveableButton(PictureBox mainView, Point location, Cursor cursor ) : base()
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        /// \param location The location.
+        /// \param cursor   The cursor.
+        ///-------------------------------------------------------------------------------------------------
 
         public MoveableButton(PictureBox mainView,
-                            Shape shape,
                             Point location,
                             Cursor cursor
                             ) : base()
@@ -34,13 +54,17 @@ namespace Monet.src.ui
 
             this.mainView = mainView;
             this.Location = startLocation = location;
-            this.shape = shape;
             this.Cursor = cursor;
             this.Size = new Size(10, 10);
             mainView.Controls.Add(this);
             this.Show();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Disappear()
+        ///
+        /// \brief Disappears this object
+        ///-------------------------------------------------------------------------------------------------
 
         public void Disappear()
         {
@@ -48,6 +72,15 @@ namespace Monet.src.ui
             this.Visible = false;
             mainView.Controls.Remove(this);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn protected override void OnMouseDown(MouseEventArgs e)
+        ///
+        /// \brief 引发 <see cref="M:System.Windows.Forms.Control.OnMouseDown(System.Windows.Forms.MouseEven
+        ///     tArgs)" /> 事件。
+        ///
+        /// \param e 包含事件数据的 <see cref="T:System.Windows.Forms.MouseEventArgs" />。.
+        ///-------------------------------------------------------------------------------------------------
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -59,6 +92,15 @@ namespace Monet.src.ui
             base.OnMouseDown(e);
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn protected override void OnMouseMove(MouseEventArgs mevent)
+        ///
+        /// \brief 引发 <see cref="M:System.Windows.Forms.Control.OnMouseMove(System.Windows.Forms.MouseEven
+        ///     tArgs)" /> 事件。
+        ///
+        /// \param mevent 包含事件数据的 <see cref="T:System.Windows.Forms.MouseEventArgs" />。.
+        ///-------------------------------------------------------------------------------------------------
+
         protected override void OnMouseMove(MouseEventArgs mevent)
         {
             if (isEnabled)
@@ -68,6 +110,15 @@ namespace Monet.src.ui
             }
             base.OnMouseMove(mevent);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn protected override void OnMouseUp(MouseEventArgs mevent)
+        ///
+        /// \brief 引发 <see cref="M:System.Windows.Forms.ButtonBase.OnMouseUp(System.Windows.Forms.MouseEve
+        ///     ntArgs)" /> 事件。
+        ///
+        /// \param mevent 包含事件数据的 <see cref="T:System.Windows.Forms.MouseEventArgs" />。.
+        ///-------------------------------------------------------------------------------------------------
 
         protected override void OnMouseUp(MouseEventArgs mevent)
         {
