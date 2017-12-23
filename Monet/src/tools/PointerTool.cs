@@ -38,8 +38,8 @@ namespace Monet
                 try
                 {
                     ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
-                    Shape shape = (Shape)actionParameters;
-                    shape.ShowAsNotSelected();
+                    Shape shape_temp = (Shape)actionParameters;
+                    shape_temp.ShowAsNotSelected();
                 }
                 catch (InvalidCastException)
                 {
@@ -47,7 +47,7 @@ namespace Monet
                 }
             }
 
-
+            Shape shape=null;
             for (int i=0;i<=History.GetInstance().Index; i++)
             {
                 if (array[i] is BackUpMAction)
@@ -55,7 +55,7 @@ namespace Monet
                 try
                 {
                     ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
-                    Shape shape = (Shape)actionParameters;
+                    shape = (Shape)actionParameters;
                     if (shape.IsSelectMe(e.Location))
                     {
                         shape.ShowAsSelected();
@@ -71,7 +71,9 @@ namespace Monet
                     ;
                 }
             }
-            History.GetInstance().Update();
+
+            // VERY IMPORTANT
+            //History.GetInstance().Update();
         }
 
         public override void UnRegisterTool()

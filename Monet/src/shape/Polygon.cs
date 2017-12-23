@@ -99,7 +99,11 @@ namespace Monet.src.shape
             moveButton.MouseDown += MoveButton_MouseDown;
             moveButton.MouseMove += MoveButton_MouseMove;
             moveButton.MouseUp += MoveButton_MouseUp;
-            
+
+
+            new ResizeRect(pictureBox, 
+                Common.Rectangle(new Point(minx,miny),new Point(maxx,maxy)
+                ), this);
             Log.LogText("Select Polygon");
         }
 
