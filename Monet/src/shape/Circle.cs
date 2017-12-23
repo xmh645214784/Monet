@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
-    public class Circle : Shape
+    public class Circle : Shape,Resizeable
     {
         public Point startPoint;
         public Point endPoint;
@@ -147,6 +147,16 @@ namespace Monet.src.shape
                 his.FindShapeInHistory(this, out mAction);
                 his.AddBackUpClone(mAction);
             }
+        }
+
+        public void ShowAsResizing()
+        {
+            ShowAsSelected();
+        }
+
+        public void ShowAsNotResizing()
+        {
+            ShowAsNotSelected();
         }
     }
 }
