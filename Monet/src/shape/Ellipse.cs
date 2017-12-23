@@ -30,11 +30,13 @@ namespace Monet.src.shape
 
         public override bool IsSelectMe(Point point)
         {
+            point = Common.RotatingPoint(point, midPoint, -angle);
+
             bool isVertical = rect.Width < rect.Height;
             double ellipseA = Math.Max(rect.Width / 2.0, rect.Height / 2.0);
             double ellipseB = Math.Min(rect.Width / 2.0, rect.Height / 2.0);
             double ellipseC = Math.Sqrt(ellipseA * ellipseA - ellipseB * ellipseB);
-            Point focusA, focusB;
+            Point focusA, focusB;//焦点位置
             if (isVertical)
             {
                 focusA = new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2 + (int)ellipseC);
@@ -80,7 +82,9 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             if (adjustButton == null)
             {
-                adjustButton = new AdjustButton(MainWin.GetInstance().MainView(), this, new Point(rect.Right,rect.Top), Cursors.SizeNS);
+                adjustButton = new AdjustButton(MainWin.GetInstance().MainView(), this, 
+                    Common.RotatingPoint(new Point(rect.Right,rect.Top),midPoint,angle), 
+                    Cursors.SizeNS);
                 adjustButton.MouseDown += AdjustButton_MouseDown;
                 adjustButton.MouseUp += AdjustButton_MouseUp;
                 adjustButton.MouseMove += AdjustButton_MouseMove;
@@ -88,7 +92,8 @@ namespace Monet.src.shape
             if (moveButton == null)
             {
                 moveButton = new MoveButton(MainWin.GetInstance().MainView(),
-                    this, new Point(rect.Left +rect.Width / 2, rect.Top+rect.Height/2),
+                    this, 
+                    Common.RotatingPoint(new Point(rect.Left +rect.Width / 2, rect.Top+rect.Height/2),midPoint,angle),
                     Cursors.SizeAll);
                 moveButton.MouseDown += MoveButton_MouseDown;
                 moveButton.MouseMove += MoveButton_MouseMove;
