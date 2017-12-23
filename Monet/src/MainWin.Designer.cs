@@ -83,6 +83,7 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.resizeButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -301,6 +302,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 4, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 5, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.resizeButton, 0, 1);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -753,6 +755,15 @@
             this.richTextBox.TabIndex = 4;
             this.richTextBox.Text = "";
             // 
+            // resizeButton
+            // 
+            this.resizeButton.Location = new System.Drawing.Point(3, 35);
+            this.resizeButton.Name = "resizeButton";
+            this.resizeButton.Size = new System.Drawing.Size(24, 23);
+            this.resizeButton.TabIndex = 6;
+            this.resizeButton.Text = "toolButton1";
+            this.resizeButton.UseVisualStyleBackColor = true;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -844,5 +855,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         public System.Windows.Forms.RichTextBox richTextBox;
         private src.tools.ToolButton polygonButton;
+        private src.tools.ToolButton resizeButton;
     }
 }

@@ -46,6 +46,8 @@ namespace Monet
         /// \brief The polygon tool
         public Tool polygonTool;
 
+        public ResizeTool resizeTool;
+
         /// \brief The instance
         static ToolKit mInstance;
 
@@ -107,6 +109,7 @@ namespace Monet
             fillTool = new FillTool(mainView);
             ellipseTool = new EllipseTool(mainView);
             polygonTool = new PolygonTool(mainView);
+            resizeTool = new ResizeTool(mainView);
         }
         
     }

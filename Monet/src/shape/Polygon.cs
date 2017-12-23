@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
-    class Polygon: Shape
+    class Polygon: Shape,Resizeable
     {
         public ArrayList pointArray;
         ArrayList resizeButtons;
@@ -71,7 +71,6 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             PictureBox pictureBox = MainWin.GetInstance().MainView();
             int sumx = 0,sumy=0;
-            int minx = 0xffffff, miny = 0xffffff, maxx = 0, maxy = 0;
             for (int i=0;i<pointArray.Count;i++)
             {
                 Point pointtemp = (Point)pointArray[i];
@@ -85,10 +84,6 @@ namespace Monet.src.shape
 
                 sumx += pointtemp.X;
                 sumy += pointtemp.Y;
-                minx = Math.Min(minx, pointtemp.X);
-                maxx = Math.Max(maxx, pointtemp.X);
-                miny = Math.Min(miny, pointtemp.Y);
-                maxy = Math.Max(maxy, pointtemp.Y);
             }
 
             //set moveButton attributes
@@ -100,10 +95,6 @@ namespace Monet.src.shape
             moveButton.MouseMove += MoveButton_MouseMove;
             moveButton.MouseUp += MoveButton_MouseUp;
 
-
-            new ResizeRect(pictureBox, 
-                Common.Rectangle(new Point(minx,miny),new Point(maxx,maxy)
-                ), this);
             Log.LogText("Select Polygon");
         }
 
@@ -180,5 +171,43 @@ namespace Monet.src.shape
             }
         }
 
+        public Rectangle ExternalRectangle()
+        {
+            int minX  = 0xffffff, minY=0xffffff;
+            int maxX = 0, maxY = 0;
+
+            for (int i = 0; i < pointArray.Count; i++)
+            {
+                Point pointtemp = (Point)pointArray[i];
+                minX=Math.Min(minX,pointtemp.X);
+                maxX = Math.Max(maxX, pointtemp.X);
+                minY = Math.Min(minY, pointtemp.Y);
+                maxY = Math.Max(maxY, pointtemp.Y);
+            }
+            return Common.Rectangle(
+                new Point(minX, minY),
+                new Point(maxX, maxY));
+        }
+
+
+        ResizeRect resizeRect;
+
+        public void ShowAsResizing()
+        {
+            resizeRect=new ResizeRect(MainWin.GetInstance().MainView(), ExternalRectangle(), this);
+        }
+
+        public void ShowAsNotResizing()
+        {
+            try
+            {
+                resizeRect.Unshow();
+            }
+            catch (NullReferenceException)
+            {
+                ;
+            }
+            
+        }
     }
 }

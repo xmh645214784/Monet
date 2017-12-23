@@ -57,5 +57,18 @@ namespace Monet.src.ui
         {
             isResizing=true;
         }
+
+        public void Unshow()
+        {
+            try
+            {
+                this.NEButton.Visible = false;
+            }
+            catch (NullReferenceException)
+            {
+                ;
+            }
+            
+        }
     }
 }

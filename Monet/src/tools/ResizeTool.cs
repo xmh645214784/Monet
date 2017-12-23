@@ -46,12 +46,40 @@ namespace Monet
                     ;
                 }
             }
-            
+
+            History.GetInstance().Update();
+
+            for (int i = 0; i <= History.GetInstance().Index; i++)
+            {
+                if (array[i] is BackUpMAction)
+                    continue;
+                try
+                {
+                    ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
+                    Shape shape = (Shape)actionParameters;
+                    Resizeable resizeable = (Resizeable)shape;
+                    if (shape.IsSelectMe(e.Location))
+                    { 
+                        resizeable.ShowAsResizing();
+                        break;
+                    }
+                    else
+                    {
+                        resizeable.ShowAsNotResizing();
+                    }
+                }
+                catch (InvalidCastException)
+                {
+                    ;
+                }
+            }
+
         }
 
         public override void UnRegisterTool()
         {
             base.UnRegisterTool();
+            mainView.MouseClick -= MainView_MouseClick;
         }
     }
 }

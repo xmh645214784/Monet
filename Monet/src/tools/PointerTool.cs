@@ -35,6 +35,8 @@ namespace Monet
             ArrayList array = History.GetInstance().historyArray;
             for (int i = 0; i <= History.GetInstance().Index; i++)
             {
+                if (array[i] is BackUpMAction)
+                    continue;
                 try
                 {
                     ActionParameters_t actionParameters = ((MAction)array[i]).ActionParameters;
@@ -73,7 +75,7 @@ namespace Monet
             }
 
             // VERY IMPORTANT
-            //History.GetInstance().Update();
+            History.GetInstance().Update();
         }
 
         public override void UnRegisterTool()
