@@ -249,5 +249,24 @@ namespace Monet
         {
             PushBackAction(new BackUpMAction((MAction)mAction.Clone(),mAction));
         }
+
+        public void UnSelectAll()
+        {
+            for (int i = 0; i <= Index; i++)
+            {
+                if (historyArray[i] is BackUpMAction)
+                    continue;
+                try
+                {
+                    ActionParameters_t actionParameters = ((MAction)historyArray[i]).ActionParameters;
+                    Shape shape_temp = (Shape)actionParameters;
+                    shape_temp.ShowAsNotSelected();
+                }
+                catch (InvalidCastException)
+                {
+                    ;
+                }
+            }
+        }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
-    public sealed class Ellipse : Shape
+    public sealed class Ellipse : Shape,Rotatable
     {
 
         public AdjustButton adjustButton;
@@ -161,6 +161,11 @@ namespace Monet.src.shape
                 moveButton.Location = new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
                 RetMAction().Action();      
             }
+        }
+
+        public void Rotate(Point midPoint, double angle)
+        {
+            
         }
     }
 }

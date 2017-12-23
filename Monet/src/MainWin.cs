@@ -173,6 +173,7 @@ namespace Monet
 
         private void undoButton_Click(object sender, EventArgs e)
         {
+            History.GetInstance().UnSelectAll();
             History.GetInstance().UndoAction();
             ClearAllControlsInMainView();
             History.GetInstance().Update();
@@ -180,6 +181,7 @@ namespace Monet
 
         private void redoButton_Click(object sender, EventArgs e)
         {
+            History.GetInstance().UnSelectAll();
             History.GetInstance().RedoAction();
             ClearAllControlsInMainView();
             History.GetInstance().Update();

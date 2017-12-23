@@ -209,13 +209,23 @@ namespace Monet.src.shape
             }
             
         }
-
+        double preangle;
         public void Rotate(Point midPoint, double angle)
         {
-            for(int i=0;i<pointArray.Count;i++)
+            if (angle <= 0)
+                ;
+            else
+            {
+                Rotate(midPoint, -preangle);
+                preangle = angle;
+            }
+            for (int i=0;i<pointArray.Count;i++)
             {
                 pointArray[i] = Common.RotatingPoint((Point)pointArray[i], midPoint, angle);
+                ((AdjustButton)resizeButtons[i]).Location
+                    = Common.RotatingPoint(((AdjustButton)resizeButtons[i]).Location, midPoint, angle);
             }
+            moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
         }
     }
 }
