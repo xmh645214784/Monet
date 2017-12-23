@@ -46,7 +46,7 @@ namespace Monet.src.shape
             base.ShowAsNotSelected();
             try
             {
-                foreach (ResizeButton item in resizeButtons)
+                foreach (AdjustButton item in resizeButtons)
                 {
                     item.Visible = false;
                     item.Dispose();
@@ -71,10 +71,11 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             PictureBox pictureBox = MainWin.GetInstance().MainView();
             int sumx = 0,sumy=0;
+            int minx = 0xffffff, miny = 0xffffff, maxx = 0, maxy = 0;
             for (int i=0;i<pointArray.Count;i++)
             {
                 Point pointtemp = (Point)pointArray[i];
-                ResizeButton temp = new ResizeButton(
+                AdjustButton temp = new AdjustButton(
                     pictureBox, this, new Point(pointtemp.X - 3, pointtemp.Y - 3), Cursors.SizeNS);
                 resizeButtons.Add(temp);
 
@@ -84,22 +85,62 @@ namespace Monet.src.shape
 
                 sumx += pointtemp.X;
                 sumy += pointtemp.Y;
+                minx = Math.Min(minx, pointtemp.X);
+                maxx = Math.Max(maxx, pointtemp.X);
+                miny = Math.Min(miny, pointtemp.Y);
+                maxy = Math.Max(maxy, pointtemp.Y);
             }
 
-            ////set moveButton attributes
-            //moveButton = new MoveButton(pictureBox, this,
-            //    new Point(sumx / pointArray.Count, sumy / pointArray.Count),
-            //    Cursors.SizeAll
-            //    );
-            //Ref<Point>[] bindingPointsRefArray
-            //    = new Ref<Point>[pointArray.Count];
-            //for (int i = 0; i < pointArray.Count; i++)
-            //{
-            //    bindingPointsRefArray[i]=new Ref<Point>(() => (Point)pointArray[i], z => { pointArray[i] = z; }); 
-            //}
-            //moveButton.SetBindingPoints(bindingPointsRefArray);
-
+            //set moveButton attributes
+            moveButton = new MoveButton(pictureBox, this,
+                new Point(sumx / pointArray.Count, sumy / pointArray.Count),
+                Cursors.SizeAll
+                );
+            moveButton.MouseDown += MoveButton_MouseDown;
+            moveButton.MouseMove += MoveButton_MouseMove;
+            moveButton.MouseUp += MoveButton_MouseUp;
+            
             Log.LogText("Select Polygon");
+        }
+
+
+        bool isMoving = false;
+        Point moveButtonstartpoint;
+        private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(isMoving==false)
+            {
+                isMoving = true;
+                moveButtonstartpoint = e.Location;
+                foreach (AdjustButton item in resizeButtons)
+                {
+                    item.Visible = false;
+                    item.Dispose();
+                }
+            }
+        }
+
+        private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isMoving)
+            {
+                int offsetX = e.Location.X - moveButtonstartpoint.X;
+                int offsetY = e.Location.Y - moveButtonstartpoint.Y;
+                for (int i=0;i<pointArray.Count;i++)
+                {
+                    Point temp = (Point)pointArray[i];
+                    pointArray[i] = new Point(temp.X + offsetX, temp.Y + offsetY);
+                }
+
+                RetMAction().Action();
+            }
+        }
+
+        private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            isMoving = false;
+            Log.LogText(string.Format("Moving Polygon"));
+            ShowAsNotSelected();
         }
 
         bool isResizing = false;
@@ -107,7 +148,7 @@ namespace Monet.src.shape
         {
             if(isResizing)
             {
-                ResizeButton ins = (ResizeButton)sender;
+                AdjustButton ins = (AdjustButton)sender;
                 int index = resizeButtons.IndexOf(sender);
                 pointArray[index] = ins.Location;
                 RetMAction().Action();
@@ -119,7 +160,7 @@ namespace Monet.src.shape
         {
             isResizing = false;
             RetMAction().Action();
-            Log.LogText(string.Format("Reszie Polygon"));
+            Log.LogText(string.Format("Adjust Polygon"));
             ShowAsNotSelected();
         }
 

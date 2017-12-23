@@ -13,6 +13,13 @@ namespace Monet.src.shape
         void ShowAsSelected();
         void ShowAsNotSelected();
     }
+
+    interface Resizeable
+    {
+        void ShowAsResizing();
+        void ShowAsNotResizing();
+    }
+
     public abstract class Shape: Selectable,ActionParameters_t
     {
         MAction bindingAction=null;

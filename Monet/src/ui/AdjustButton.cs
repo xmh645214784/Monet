@@ -9,9 +9,9 @@ using Monet.src.shape;
 
 namespace Monet.src.ui
 {
-    public class ResizeButton : MoveableButton
+    public class AdjustButton : MoveableButton
     {
-        public ResizeButton(PictureBox mainView, Shape shape, Point location, Cursor cursor) : base(mainView, shape, location, cursor)
+        public AdjustButton(PictureBox mainView, Shape shape, Point location, Cursor cursor) : base(mainView, shape, location, cursor)
         {
         }
 

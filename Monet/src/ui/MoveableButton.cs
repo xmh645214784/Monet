@@ -31,8 +31,9 @@ namespace Monet.src.ui
                             Shape shape,
                             Point location,
                             Cursor cursor
-                            )
+                            ):base()
         {
+            
             this.mainView = mainView;
             this.Location = startLocation= location;
             this.shape = shape;

@@ -59,6 +59,10 @@
     <Compile Include="src\tools\EllipseTool.cs" />
     <Compile Include="src\tools\FillTool.cs" />
     <Compile Include="src\tools\PolygonTool.cs" />
+    <Compile Include="src\tools\ResizeTool.cs" />
+    <Compile Include="src\ui\AdjustButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="src\ui\Log.cs" />
     <Compile Include="src\ui\MoveableButton.cs">
       <SubType>Component</SubType>
@@ -66,13 +70,10 @@
     <Compile Include="src\ui\MoveButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="src\ui\ResizeButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="src\ui\ResizeCanvasButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="src\tools\SelectTool.cs" />
+    <Compile Include="src\ui\ResizeRect.cs" />
     <Compile Include="src\ui\ToolButton.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -32,8 +32,8 @@ namespace Monet.src.shape
         public Point b;
         
 
-        public ResizeButton resizeButtonA;
-        public ResizeButton resizeButtonB;
+        public AdjustButton resizeButtonA;
+        public AdjustButton resizeButtonB;
         public MoveButton moveButton;
 
         
@@ -87,14 +87,14 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             if(resizeButtonA==null)
             {
-                resizeButtonA = new ResizeButton(MainWin.GetInstance().MainView(), this, new Point(a.X - 3, a.Y - 3), Cursors.SizeNS);
+                resizeButtonA = new AdjustButton(MainWin.GetInstance().MainView(), this, new Point(a.X - 3, a.Y - 3), Cursors.SizeNS);
                 resizeButtonA.MouseDown += ResizeButtonA_MouseDown;
                 resizeButtonA.MouseUp += ResizeButtonA_MouseUp;
                 resizeButtonA.MouseMove += ResizeButtonA_MouseMove;
             }
             if (resizeButtonB == null)
             {
-                resizeButtonB = new ResizeButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeNS);
+                resizeButtonB = new AdjustButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeNS);
                 resizeButtonB.MouseDown += ResizeButtonA_MouseDown;
                 resizeButtonB.MouseUp += ResizeButtonA_MouseUp;
                 resizeButtonB.MouseMove += ResizeButtonA_MouseMove;

@@ -59,7 +59,7 @@ namespace Monet.src.shape
             base.ShowAsSelected();
             if (resizeButton == null)
             {
-                resizeButton = new ResizeButton(MainWin.GetInstance().MainView(), this, new Point(endPoint.X - 3, endPoint.Y - 3), Cursors.SizeNS);
+                resizeButton = new AdjustButton(MainWin.GetInstance().MainView(), this, new Point(endPoint.X - 3, endPoint.Y - 3), Cursors.SizeNS);
                 resizeButton.SetBindingPoints(
                     new Ref<Point>(() => endPoint, z => { endPoint = z; })
                     );
