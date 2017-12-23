@@ -32,8 +32,8 @@ namespace Monet.src.shape
         public Point b;
         
 
-        public AdjustButton resizeButtonA;
-        public AdjustButton resizeButtonB;
+        public AdjustButton adjustButtonA;
+        public AdjustButton adjustButtonB;
         public MoveButton moveButton;
 
         
@@ -65,11 +65,11 @@ namespace Monet.src.shape
             base.ShowAsNotSelected();
             try
             {
-                resizeButtonA.Visible = resizeButtonB.Visible=moveButton.Visible=false;
+                adjustButtonA.Visible = adjustButtonB.Visible=moveButton.Visible=false;
 
-                resizeButtonA.Dispose();
+                adjustButtonA.Dispose();
                 moveButton.Dispose();
-                resizeButtonB.Dispose();
+                adjustButtonB.Dispose();
             }
             catch(NullReferenceException)
             {
@@ -77,7 +77,7 @@ namespace Monet.src.shape
             }
             finally
             {
-                resizeButtonA = resizeButtonB = null;
+                adjustButtonA = adjustButtonB = null;
                 moveButton = null;
             }
         }
@@ -85,19 +85,19 @@ namespace Monet.src.shape
         public override void ShowAsSelected()
         {
             base.ShowAsSelected();
-            if(resizeButtonA==null)
+            if(adjustButtonA==null)
             {
-                resizeButtonA = new AdjustButton(MainWin.GetInstance().MainView(), this, new Point(a.X - 3, a.Y - 3), Cursors.SizeNS);
-                resizeButtonA.MouseDown += ResizeButtonA_MouseDown;
-                resizeButtonA.MouseUp += ResizeButtonA_MouseUp;
-                resizeButtonA.MouseMove += ResizeButtonA_MouseMove;
+                adjustButtonA = new AdjustButton(MainWin.GetInstance().MainView(), this, new Point(a.X - 3, a.Y - 3), Cursors.SizeNS);
+                adjustButtonA.MouseDown += ResizeButtonA_MouseDown;
+                adjustButtonA.MouseUp += ResizeButtonA_MouseUp;
+                adjustButtonA.MouseMove += ResizeButtonA_MouseMove;
             }
-            if (resizeButtonB == null)
+            if (adjustButtonB == null)
             {
-                resizeButtonB = new AdjustButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeNS);
-                resizeButtonB.MouseDown += ResizeButtonA_MouseDown;
-                resizeButtonB.MouseUp += ResizeButtonA_MouseUp;
-                resizeButtonB.MouseMove += ResizeButtonA_MouseMove;
+                adjustButtonB = new AdjustButton(MainWin.GetInstance().MainView(), this,new Point(b.X - 3, b.Y - 3), Cursors.SizeNS);
+                adjustButtonB.MouseDown += ResizeButtonA_MouseDown;
+                adjustButtonB.MouseUp += ResizeButtonA_MouseUp;
+                adjustButtonB.MouseMove += ResizeButtonA_MouseMove;
             }
             if(moveButton==null)
             {
@@ -109,18 +109,18 @@ namespace Monet.src.shape
                 moveButton.MouseUp += MoveButton_MouseUp;
             }
 
-            resizeButtonA.SetBindingPoints(
+            adjustButtonA.SetBindingPoints(
                     new Ref<Point>(() => a, z => { a = z; })
                     );
-            resizeButtonB.SetBindingPoints(
+            adjustButtonB.SetBindingPoints(
                     new Ref<Point>(() => b, z => { b = z; })
                 );
             moveButton.SetBindingPoints(
                     new Ref<Point>(() => a, z => { a = z; }),
                     new Ref<Point>(() => b, z => { b = z; }),
                     // only lines'point moving is not enough. We need move its buttons.
-                    new Ref<Point>(() => resizeButtonA.Location, z => { resizeButtonA.Location = z; }),
-                    new Ref<Point>(() => resizeButtonB.Location, z => { resizeButtonB.Location = z; })
+                    new Ref<Point>(() => adjustButtonA.Location, z => { adjustButtonA.Location = z; }),
+                    new Ref<Point>(() => adjustButtonB.Location, z => { adjustButtonB.Location = z; })
                 );
 
             Log.LogText("Select Line");

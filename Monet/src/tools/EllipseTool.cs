@@ -26,7 +26,7 @@ namespace Monet.src.tools
             try
             {
                 Ellipse ellipse =(Ellipse)toolParameters;
-                Draw(ellipse.pen, ellipse.a, ellipse.b);
+                Draw(ellipse.pen, ellipse.rect);
                 //add into shape array
             }
             catch (InvalidCastException)
@@ -90,13 +90,13 @@ namespace Monet.src.tools
                 }
             }
         }
-
+        private void Draw(Pen pen, Rectangle rect)
+        {
+            MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
+                , rect.Width / 2, rect.Height / 2);
+        }
         private void Draw(Pen pen ,Point a,Point b)
         {
-            //using (Graphics g = Graphics.FromImage(mainView.Image))
-            //{
-            //   g.DrawEllipse(pen, Common.Rectangle(a,b));
-            //}
             Rectangle rect = Common.Rectangle(a, b);
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
                 , rect.Width / 2, rect.Height / 2);
@@ -202,8 +202,7 @@ namespace Monet.src.tools
 
                
                 Ellipse ellipse = new Ellipse();
-                ellipse.a = startPoint;
-                ellipse.b = nowPoint;
+                ellipse.rect = Common.Rectangle(startPoint, nowPoint);
                 ellipse.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(

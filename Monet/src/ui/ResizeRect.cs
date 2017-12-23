@@ -14,6 +14,7 @@ namespace Monet.src.ui
     {
         PictureBox mainView;
         Rectangle rect;
+        Point rectSWPoint;
         Shape shape;
         Pen solidPen;
         MoveableButton NEButton;
@@ -32,6 +33,7 @@ namespace Monet.src.ui
             NEButton.Show();
             //draw a new one
             mainView.Image = (Image)mainView.Image.Clone();
+            rectSWPoint = new Point(rect.Left, rect.Bottom);
             using (Graphics g = Graphics.FromImage(mainView.Image))
             {
                 g.DrawRectangle(solidPen, rect);
@@ -41,16 +43,24 @@ namespace Monet.src.ui
             NEButton.MouseUp += NEButton_MouseUp;
         }
 
-        bool isResizing;
+        bool isResizing=false;
 
         private void NEButton_MouseUp(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            isResizing = false;
+            Unshow();
         }
 
         private void NEButton_MouseMove(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            if(isResizing)
+            {
+                rect = Common.Rectangle(rectSWPoint, NEButton.Location);
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    g.DrawRectangle(solidPen, rect);
+                }
+            }
         }
 
         private void NEButton_MouseDown(object sender, MouseEventArgs e)

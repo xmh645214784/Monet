@@ -72,7 +72,6 @@ namespace Monet.src.ui
                 mAction.visible = false;
                 history.Update();
                 doubleBuffer = (Image)mainView.Image.Clone();
-                doubleBuffer.Save("1.png");
                 mAction.visible = true;
             }
             base.OnMouseDown(e);
