@@ -31,11 +31,19 @@ namespace Monet.src.shape
         /// \brief The pen
         public Pen pen;
         public Pen backUpPen=null;
+        public Pen solidPen;
 
         
 
         protected bool isResizing = false;
         protected bool isMoving = false;
+
+        public Shape()
+        {
+            solidPen = new Pen(Color.Blue);
+            solidPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            solidPen.DashPattern = new float[] { 1f, 1f };
+        }
 
         public abstract object Clone();
 
@@ -52,11 +60,25 @@ namespace Monet.src.shape
 
         public virtual void ShowAsSelected()
         {
-            backUpPen = (Pen)pen.Clone();
-            this.pen.Color = Color.Blue;
-            this.pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.pen.DashPattern = new float[] { 1f, 1f };
+             backUpPen = (Pen)pen.Clone();
+             pen = solidPen.Clone() as Pen;
         }
+
+        public void BaseShowAsNotSelected()
+        {
+            if (backUpPen != null)
+            {
+                this.pen = backUpPen;
+                backUpPen = null;
+            }
+        }
+
+        public void BaseShowAsSelected()
+        {
+            backUpPen = (Pen)pen.Clone();
+            pen = solidPen.Clone() as Pen;
+        }
+
 
         public MAction RetMAction()
         {

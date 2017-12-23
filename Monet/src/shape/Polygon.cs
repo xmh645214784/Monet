@@ -167,7 +167,10 @@ namespace Monet.src.shape
                 MAction mAction;
                 History his = History.GetInstance();
                 his.FindShapeInHistory(this, out mAction);
+                this.ShowAsNotSelected();
                 his.AddBackUpClone(mAction);
+                this.ShowAsSelected();
+                
             }
         }
 

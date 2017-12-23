@@ -24,7 +24,9 @@ namespace Monet.src.shape
         {
             Ellipse ellipse = new Ellipse();
             ellipse.rect = this.rect;
-            ellipse.pen = this.pen;
+            ellipse.pen = this.pen.Clone() as Pen;
+            ellipse.midPoint = this.midPoint;
+            ellipse.angle = this.angle;
             return ellipse;
         }
 
@@ -99,7 +101,7 @@ namespace Monet.src.shape
                 moveButton.MouseMove += MoveButton_MouseMove;
                 moveButton.MouseUp += MoveButton_MouseUp;
                 moveButton.SetBindingPoints(
-                    new Ref<Point>(()=>rect.Location,z=> {rect.Location=z; }     ),
+                    new Ref<Point>(()=>rect.Location,z=> {rect.Location= Common.RotatingPoint(z,midPoint,-angle); }     ),
                     new Ref<Point>(() => adjustButton.Location, z => { adjustButton.Location = z; })
                     );
             }
@@ -121,6 +123,9 @@ namespace Monet.src.shape
         {
             if (isMoving)
             {
+                moveButton.Location = Common.RotatingPoint(
+                    new Point(rect.X+rect.Width/2,rect.Y+rect.Height/2),midPoint,angle
+                    );
                 RetMAction().Action();
             }
         }
@@ -130,6 +135,7 @@ namespace Monet.src.shape
             if (e.Button == MouseButtons.Left)
             {
                 isMoving = true;
+                adjustButton.Visible = false;
                 MAction mAction;
                 History his = History.GetInstance();
                 his.FindShapeInHistory(this, out mAction);
@@ -165,8 +171,11 @@ namespace Monet.src.shape
         {
             if (isAdjusting)
             {
-                rect = Common.Rectangle(new Point(rect.Left, rect.Bottom), adjustButton.Location);
-                moveButton.Location = new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2);
+                rect = Common.Rectangle(new Point(rect.Left, rect.Bottom), Common.RotatingPoint(adjustButton.Location,midPoint,-angle));
+                moveButton.Location = Common.RotatingPoint(
+                    new Point(rect.X + rect.Width / 2, rect.Y + rect.Height / 2),
+                    midPoint,angle
+                    );
                 RetMAction().Action();      
             }
         }
