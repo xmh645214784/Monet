@@ -24,7 +24,7 @@ namespace Monet.src.shape
     /// \brief A line.
     ///-------------------------------------------------------------------------------------------------
 
-    public class Line : Shape
+    public class Line : Shape, Rotatable
     {
         /// \brief A Point to process
         public Point a;
@@ -218,6 +218,23 @@ namespace Monet.src.shape
             copy.b = b;
             copy.pen = (Pen)pen.Clone();
             return copy;
+        }
+
+        double preangle=0;
+        public void Rotate(Point midPoint, double angle)
+        {
+            if (angle <= 0)
+                ;
+            else
+            {
+                Rotate(midPoint, -preangle);
+                preangle = angle;
+            }
+            a = Common.RotatingPoint(a, midPoint, angle);
+            b= Common.RotatingPoint(b, midPoint, angle);
+            adjustButtonA.Location=Common.RotatingPoint(adjustButtonA.Location, midPoint, angle);
+            adjustButtonB.Location= Common.RotatingPoint(adjustButtonB.Location, midPoint, angle); 
+            moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
         }
     }
  }

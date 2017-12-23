@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
-    class Polygon: Shape,Resizeable
+    class Polygon: Shape,Resizeable,Rotatable
     {
         public ArrayList pointArray;
         ArrayList resizeButtons;
@@ -208,6 +208,14 @@ namespace Monet.src.shape
                 ;
             }
             
+        }
+
+        public void Rotate(Point midPoint, double angle)
+        {
+            for(int i=0;i<pointArray.Count;i++)
+            {
+                pointArray[i] = Common.RotatingPoint((Point)pointArray[i], midPoint, angle);
+            }
         }
     }
 }

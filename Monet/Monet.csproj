@@ -50,6 +50,12 @@
     <Compile Include="src\history\MAction.cs" />
     <Compile Include="src\Common.cs" />
     <Compile Include="src\history\History.cs" />
+    <Compile Include="src\RotatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\RotatingForm.Designer.cs">
+      <DependentUpon>RotatingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\shape\Circle.cs" />
     <Compile Include="src\shape\Ellipse.cs" />
     <Compile Include="src\shape\Line.cs" />
@@ -110,6 +116,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\RotatingForm.resx">
+      <DependentUpon>RotatingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

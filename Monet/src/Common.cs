@@ -47,5 +47,15 @@ namespace Monet
             Point start = new Point(Math.Min(p1.X, p2.X), Math.Min(p1.Y, p2.Y));
             return new Rectangle(start, new Size(width, height));
         }
+
+        public static Point RotatingPoint(Point a,Point midPoint,double angle)
+        {
+            double radian = angle / 360 * 2 * Math.PI;
+            double cos = Math.Cos(radian);
+            double sin = Math.Sin(radian);
+            double x = (a.X - midPoint.X) * cos - (a.Y - midPoint.Y) * sin + midPoint.X;
+            double y = (a.Y - midPoint.Y) * cos + (a.X - midPoint.X) * sin + midPoint.Y;
+            return new Point((int)x, (int)y);
+        }
     }
 }

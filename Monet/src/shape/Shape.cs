@@ -20,12 +20,19 @@ namespace Monet.src.shape
         void ShowAsNotResizing();
     }
 
+    interface Rotatable
+    {
+        void Rotate(Point midPoint,double angle);
+    }
+
     public abstract class Shape: Selectable,ActionParameters_t
     {
         MAction bindingAction=null;
         /// \brief The pen
         public Pen pen;
         public Pen backUpPen=null;
+
+        public double angle=0.0F;
 
         protected bool isResizing = false;
         protected bool isMoving = false;
