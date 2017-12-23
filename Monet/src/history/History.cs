@@ -248,9 +248,7 @@ namespace Monet
         public void AddBackUpClone(MAction mAction)
         {
             Shape shape=(Shape)mAction.ActionParameters;
-            shape.BaseShowAsNotSelected();
             PushBackAction(new BackUpMAction((MAction)mAction.Clone(), mAction));
-            shape.BaseShowAsSelected();
         }
 
         public void UnSelectAll()
