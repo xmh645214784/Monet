@@ -78,9 +78,9 @@ namespace Monet.src.shape
                     pictureBox, this, new Point(pointtemp.X - 3, pointtemp.Y - 3), Cursors.SizeNS);
                 resizeButtons.Add(temp);
 
-                temp.MouseDown += ResizeButton_MouseDown;
-                temp.MouseUp += ResizeButton_MouseUp;
-                temp.MouseMove += ResizeButton_MouseMove;
+                temp.MouseDown += AdjustButton_MouseDown;
+                temp.MouseUp += AdjustButton_MouseUp;
+                temp.MouseMove += AdjustButton_MouseMove;
 
                 sumx += pointtemp.X;
                 sumy += pointtemp.Y;
@@ -139,7 +139,7 @@ namespace Monet.src.shape
         }
 
         bool isResizing = false;
-        private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
+        private void AdjustButton_MouseMove(object sender, MouseEventArgs e)
         {
             if(isResizing)
             {
@@ -151,7 +151,7 @@ namespace Monet.src.shape
             
         }
 
-        private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
+        private void AdjustButton_MouseUp(object sender, MouseEventArgs e)
         {
             isResizing = false;
             RetMAction().Action();
@@ -159,7 +159,7 @@ namespace Monet.src.shape
             ShowAsNotSelected();
         }
 
-        private void ResizeButton_MouseDown(object sender, MouseEventArgs e)
+        private void AdjustButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -167,10 +167,7 @@ namespace Monet.src.shape
                 MAction mAction;
                 History his = History.GetInstance();
                 his.FindShapeInHistory(this, out mAction);
-                this.ShowAsNotSelected();
-                his.AddBackUpClone(mAction);
-                this.ShowAsSelected();
-                
+                his.AddBackUpClone(mAction);                
             }
         }
 
@@ -212,7 +209,7 @@ namespace Monet.src.shape
             }
             
         }
-        double preangle;
+        double preangle=0;
         public void Rotate(Point midPoint, double angle)
         {
             if (angle <= 0)
