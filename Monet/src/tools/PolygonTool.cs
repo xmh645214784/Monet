@@ -40,7 +40,7 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     LineTool linetool = (LineTool)ToolKit.GetInstance().lineTool;
-                    linetool.Draw(g, Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 1], e.Location);
+                    linetool.Draw(g, Setting.GetInstance().Pen, arrayList[arrayList.Count - 1], e.Location);
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace Monet.src.tools
                 {
                     // g.DrawLine(Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 2], e.Location);
                     LineTool lineTool = (LineTool)ToolKit.GetInstance().lineTool;
-                    lineTool.Draw(g, Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 2], e.Location);
+                    lineTool.Draw(g, Setting.GetInstance().Pen, arrayList[arrayList.Count - 2], e.Location);
                 }
             }
             else
@@ -70,12 +70,6 @@ namespace Monet.src.tools
                 this.isEnabled = false;
 
                 mainView.Image = (Image)doubleBuffer.Clone();
-                using (Graphics g = Graphics.FromImage(mainView.Image))
-                {
-                    LineTool lineTool = (LineTool)ToolKit.GetInstance().lineTool;
-                    lineTool.Draw(g, Setting.GetInstance().Pen, (Point)arrayList[arrayList.Count - 1], (Point)arrayList[0]);
-                }
-
 
                 //save into actions array.
                 Polygon polygon = new Polygon();
@@ -84,6 +78,7 @@ namespace Monet.src.tools
                 Log.LogText(String.Format("Create Polygon"));
                 History.GetInstance().PushBackAction(
                    new MAction(this, polygon));
+                MakeAction(polygon);
 
                 //some termination
                 arrayList.Clear();
@@ -109,8 +104,10 @@ namespace Monet.src.tools
                     int length = polygon.pointArray.Count;
                     for (int i = 0; i < length; i++)
                     {
-                        lineTool.Draw(g, polygon.pen, (Point)polygon.pointArray[i%length], (Point)polygon.pointArray[(i+1)%length]);
+                        lineTool.Draw(g, polygon.pen, polygon.pointArray[i % length], polygon.pointArray[(i + 1) % length]);
                     }
+                    if(polygon.backColor!=Color.White)
+                        g.FillPolygon(new SolidBrush(polygon.backColor), polygon.pointArray.ToArray());
                 }
             }
             catch (InvalidCastException)
