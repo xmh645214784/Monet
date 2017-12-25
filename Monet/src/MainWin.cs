@@ -85,8 +85,7 @@ namespace Monet
             polygonButton.BindingTool = toolKit.polygonTool;
             resizeButton.BindingTool = toolKit.resizeTool;
             rotatingButton.BindingTool = toolKit.rotatingTool;
-            bSplineButton.BindingTool = toolKit.bSplineTool;
-            bezierButton.BindingTool = toolKit.bezierTool;
+           
 
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
@@ -240,6 +239,25 @@ namespace Monet
             penWidthForm.Location = new Point(thickButton.Left,thickButton.Bottom);
             penWidthForm.ShowDialog();
             Setting.GetInstance().Pen.Width = penWidthForm.RetValue();
+        }
+
+        private void bezierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolKit.GetInstance().currentTool.UnRegisterTool();
+            ToolKit.GetInstance().currentTool = ToolKit.GetInstance().bezierTool;
+            ToolKit.GetInstance().currentTool.RegisterTool();
+        }
+
+        private void bSplineToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolKit.GetInstance().currentTool.UnRegisterTool();
+            ToolKit.GetInstance().currentTool = ToolKit.GetInstance().bSplineTool;
+            ToolKit.GetInstance().currentTool.RegisterTool();
+        }
+
+        private void curveButton_Click(object sender, EventArgs e)
+        {
+            curveMenuStrip.Show(MousePosition);
         }
     }
 }

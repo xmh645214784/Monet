@@ -70,6 +70,11 @@ namespace Monet.src.tools
             else if(e.Button==MouseButtons.Right)
             {
                 isDrawing = false;
+                BSpline bSpline = new BSpline(controlPointsArray);
+                bSpline.pen = Setting.GetInstance().Pen;
+                History.GetInstance().PushBackAction(
+                    new history.MAction(this, bSpline)
+                    );
             }
         }
 

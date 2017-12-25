@@ -107,6 +107,12 @@ namespace Monet.src.tools
             else if (e.Button == MouseButtons.Right)
             {
                 isDrawing = false;
+
+                Bezier bezier = new Bezier(controlPointsArray);
+                bezier.pen = Setting.GetInstance().Pen;
+                History.GetInstance().PushBackAction(
+                    new history.MAction(this,bezier)
+                    );
             }
         }
 

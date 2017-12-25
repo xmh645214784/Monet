@@ -56,7 +56,7 @@
             this.circleButton = new Monet.src.tools.ToolButton();
             this.ellipseButton = new Monet.src.tools.ToolButton();
             this.polygonButton = new Monet.src.tools.ToolButton();
-            this.bSplineButton = new Monet.src.tools.ToolButton();
+            this.curveButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pointerButton = new Monet.src.tools.ToolButton();
@@ -90,7 +90,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bezierButton = new Monet.src.tools.ToolButton();
+            this.curveMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.bezierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bSplineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -110,6 +112,7 @@
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.curveMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -310,8 +313,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 2, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 4, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.bSplineButton, 5, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.bezierButton, 0, 1);
+            this.tableLayoutTabPage1_3.Controls.Add(this.curveButton, 5, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -378,14 +380,15 @@
             this.polygonButton.TabIndex = 5;
             this.polygonButton.UseVisualStyleBackColor = true;
             // 
-            // bSplineButton
+            // curveButton
             // 
-            this.bSplineButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bSplineButton.Location = new System.Drawing.Point(153, 3);
-            this.bSplineButton.Name = "bSplineButton";
-            this.bSplineButton.Size = new System.Drawing.Size(23, 26);
-            this.bSplineButton.TabIndex = 6;
-            this.bSplineButton.UseVisualStyleBackColor = true;
+            this.curveButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.curveButton.Location = new System.Drawing.Point(153, 3);
+            this.curveButton.Name = "curveButton";
+            this.curveButton.Size = new System.Drawing.Size(23, 26);
+            this.curveButton.TabIndex = 6;
+            this.curveButton.UseVisualStyleBackColor = true;
+            this.curveButton.Click += new System.EventHandler(this.curveButton_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -821,14 +824,27 @@
             this.toolStripMenuItem3.Text = "扫描线填充";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // bezierButton
+            // curveMenuStrip
             // 
-            this.bezierButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bezierButton.Location = new System.Drawing.Point(3, 35);
-            this.bezierButton.Name = "bezierButton";
-            this.bezierButton.Size = new System.Drawing.Size(24, 26);
-            this.bezierButton.TabIndex = 7;
-            this.bezierButton.UseVisualStyleBackColor = true;
+            this.curveMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bezierToolStripMenuItem,
+            this.bSplineToolStripMenuItem});
+            this.curveMenuStrip.Name = "curveMenuStrip";
+            this.curveMenuStrip.Size = new System.Drawing.Size(120, 48);
+            // 
+            // bezierToolStripMenuItem
+            // 
+            this.bezierToolStripMenuItem.Name = "bezierToolStripMenuItem";
+            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bezierToolStripMenuItem.Text = "Bezier";
+            this.bezierToolStripMenuItem.Click += new System.EventHandler(this.bezierToolStripMenuItem_Click);
+            // 
+            // bSplineToolStripMenuItem
+            // 
+            this.bSplineToolStripMenuItem.Name = "bSplineToolStripMenuItem";
+            this.bSplineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bSplineToolStripMenuItem.Text = "BSpline";
+            this.bSplineToolStripMenuItem.Click += new System.EventHandler(this.bSplineToolStripMenuItem_Click);
             // 
             // MainWin
             // 
@@ -866,6 +882,7 @@
             this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.curveMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -927,7 +944,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private src.tools.ToolButton bSplineButton;
-        private src.tools.ToolButton bezierButton;
+        private System.Windows.Forms.Button curveButton;
+        private System.Windows.Forms.ContextMenuStrip curveMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem bezierToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bSplineToolStripMenuItem;
     }
 }
