@@ -52,6 +52,7 @@ namespace Monet
         public ResizeTool resizeTool;
 
         public RotatingTool rotatingTool;
+        public BSplineTool bSplineTool;
 
 
         /// \brief The instance
@@ -118,6 +119,7 @@ namespace Monet
             polygonTool = new PolygonTool(mainView);
             resizeTool = new ResizeTool(mainView);
             rotatingTool = new RotatingTool(mainView);
+            bSplineTool = new BSplineTool(mainView);
         }
         
     }

@@ -89,6 +89,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bSplineButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -308,6 +309,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 2, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 4, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.bSplineButton, 5, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -808,6 +810,15 @@
             this.toolStripMenuItem3.Text = "扫描线填充";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
+            // bSplineButton
+            // 
+            this.bSplineButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bSplineButton.Location = new System.Drawing.Point(153, 3);
+            this.bSplineButton.Name = "bSplineButton";
+            this.bSplineButton.Size = new System.Drawing.Size(23, 26);
+            this.bSplineButton.TabIndex = 6;
+            this.bSplineButton.UseVisualStyleBackColor = true;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -905,5 +916,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private src.tools.ToolButton bSplineButton;
     }
 }

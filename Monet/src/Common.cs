@@ -39,6 +39,10 @@ namespace Monet
         {
             g.DrawRectangle(pen, p.X, p.Y, 1, 1);
         }
+        public static void DrawPix(Graphics g, int px,int py, Pen pen)
+        {
+            g.DrawRectangle(pen, px, py, 1, 1);
+        }
 
         public static Rectangle Rectangle(Point p1,Point p2)
         {
