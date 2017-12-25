@@ -77,9 +77,12 @@ namespace Monet
                 {
                     try
                     {
+                        if (his.historyArray[i] is BackUpMAction)
+                            continue;
                         MAction mAction = (MAction)his.historyArray[i];
                         Shape shape=(Shape)mAction.ActionParameters;
                         Clipable clipable = (Clipable)shape;
+                        his.AddBackUpClone(mAction);
                         clipable.Clip(clipRect);
                     }
                     catch (System.InvalidCastException)
