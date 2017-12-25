@@ -50,13 +50,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.thickButton = new System.Windows.Forms.Button();
             this.tableLayoutTabPage1_3 = new System.Windows.Forms.TableLayoutPanel();
+            this.pointerButton = new Monet.src.tools.ToolButton();
+            this.pencilButton = new Monet.src.tools.ToolButton();
+            this.lineButton = new Monet.src.tools.ToolButton();
+            this.circleButton = new Monet.src.tools.ToolButton();
+            this.ellipseButton = new Monet.src.tools.ToolButton();
+            this.polygonButton = new Monet.src.tools.ToolButton();
+            this.rotatingButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
+            this.selectButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.undoButton = new System.Windows.Forms.Button();
             this.redoButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.fillButton = new Monet.src.tools.ToolButton();
+            this.resizeButton = new Monet.src.tools.ToolButton();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -75,16 +85,6 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
-            this.pointerButton = new Monet.src.tools.ToolButton();
-            this.pencilButton = new Monet.src.tools.ToolButton();
-            this.lineButton = new Monet.src.tools.ToolButton();
-            this.circleButton = new Monet.src.tools.ToolButton();
-            this.ellipseButton = new Monet.src.tools.ToolButton();
-            this.polygonButton = new Monet.src.tools.ToolButton();
-            this.rotatingButton = new Monet.src.tools.ToolButton();
-            this.selectButton = new Monet.src.tools.ToolButton();
-            this.fillButton = new Monet.src.tools.ToolButton();
-            this.resizeButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -303,7 +303,6 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 4, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 5, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.rotatingButton, 1, 1);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -312,6 +311,84 @@
             this.tableLayoutTabPage1_3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutTabPage1_3.Size = new System.Drawing.Size(179, 59);
             this.tableLayoutTabPage1_3.TabIndex = 2;
+            // 
+            // pointerButton
+            // 
+            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
+            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pointerButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pointerButton.Location = new System.Drawing.Point(2, 2);
+            this.pointerButton.Margin = new System.Windows.Forms.Padding(2);
+            this.pointerButton.Name = "pointerButton";
+            this.pointerButton.Size = new System.Drawing.Size(26, 28);
+            this.pointerButton.TabIndex = 0;
+            // 
+            // pencilButton
+            // 
+            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
+            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pencilButton.Location = new System.Drawing.Point(32, 2);
+            this.pencilButton.Margin = new System.Windows.Forms.Padding(2);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(26, 28);
+            this.pencilButton.TabIndex = 1;
+            this.pencilButton.UseVisualStyleBackColor = true;
+            // 
+            // lineButton
+            // 
+            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
+            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.lineButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lineButton.Location = new System.Drawing.Point(62, 2);
+            this.lineButton.Margin = new System.Windows.Forms.Padding(2);
+            this.lineButton.Name = "lineButton";
+            this.lineButton.Size = new System.Drawing.Size(26, 28);
+            this.lineButton.TabIndex = 2;
+            this.lineButton.UseVisualStyleBackColor = true;
+            // 
+            // circleButton
+            // 
+            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
+            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.circleButton.Location = new System.Drawing.Point(92, 2);
+            this.circleButton.Margin = new System.Windows.Forms.Padding(2);
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(26, 28);
+            this.circleButton.TabIndex = 3;
+            this.circleButton.UseVisualStyleBackColor = true;
+            // 
+            // ellipseButton
+            // 
+            this.ellipseButton.BackgroundImage = global::Monet.Properties.Resources.ellipse;
+            this.ellipseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ellipseButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ellipseButton.Location = new System.Drawing.Point(122, 2);
+            this.ellipseButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ellipseButton.Name = "ellipseButton";
+            this.ellipseButton.Size = new System.Drawing.Size(26, 28);
+            this.ellipseButton.TabIndex = 4;
+            this.ellipseButton.UseVisualStyleBackColor = true;
+            // 
+            // polygonButton
+            // 
+            this.polygonButton.Location = new System.Drawing.Point(153, 3);
+            this.polygonButton.Name = "polygonButton";
+            this.polygonButton.Size = new System.Drawing.Size(23, 26);
+            this.polygonButton.TabIndex = 5;
+            this.polygonButton.UseVisualStyleBackColor = true;
+            // 
+            // rotatingButton
+            // 
+            this.rotatingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rotatingButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rotatingButton.Location = new System.Drawing.Point(62, 2);
+            this.rotatingButton.Margin = new System.Windows.Forms.Padding(2);
+            this.rotatingButton.Name = "rotatingButton";
+            this.rotatingButton.Size = new System.Drawing.Size(29, 28);
+            this.rotatingButton.TabIndex = 7;
+            this.rotatingButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -355,6 +432,18 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "选择";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // selectButton
+            // 
+            this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
+            this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.selectButton.Location = new System.Drawing.Point(2, 2);
+            this.selectButton.Margin = new System.Windows.Forms.Padding(2);
+            this.selectButton.Name = "selectButton";
+            this.selectButton.Size = new System.Drawing.Size(40, 37);
+            this.selectButton.TabIndex = 2;
+            this.selectButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -406,6 +495,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.resizeButton, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.rotatingButton, 2, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(212, 5);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -414,6 +504,28 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(93, 59);
             this.tableLayoutPanel3.TabIndex = 9;
+            // 
+            // fillButton
+            // 
+            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
+            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.fillButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fillButton.Location = new System.Drawing.Point(2, 2);
+            this.fillButton.Margin = new System.Windows.Forms.Padding(2);
+            this.fillButton.Name = "fillButton";
+            this.fillButton.Size = new System.Drawing.Size(26, 28);
+            this.fillButton.TabIndex = 0;
+            this.fillButton.UseVisualStyleBackColor = true;
+            // 
+            // resizeButton
+            // 
+            this.resizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.resizeButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resizeButton.Location = new System.Drawing.Point(33, 3);
+            this.resizeButton.Name = "resizeButton";
+            this.resizeButton.Size = new System.Drawing.Size(24, 26);
+            this.resizeButton.TabIndex = 6;
+            this.resizeButton.UseVisualStyleBackColor = true;
             // 
             // colorTableLayoutPanel
             // 
@@ -665,117 +777,6 @@
             this.richTextBox.Size = new System.Drawing.Size(843, 116);
             this.richTextBox.TabIndex = 4;
             this.richTextBox.Text = "";
-            // 
-            // pointerButton
-            // 
-            this.pointerButton.BackgroundImage = global::Monet.Properties.Resources.arrow;
-            this.pointerButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pointerButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pointerButton.Location = new System.Drawing.Point(2, 2);
-            this.pointerButton.Margin = new System.Windows.Forms.Padding(2);
-            this.pointerButton.Name = "pointerButton";
-            this.pointerButton.Size = new System.Drawing.Size(26, 28);
-            this.pointerButton.TabIndex = 0;
-            // 
-            // pencilButton
-            // 
-            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
-            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pencilButton.Location = new System.Drawing.Point(32, 2);
-            this.pencilButton.Margin = new System.Windows.Forms.Padding(2);
-            this.pencilButton.Name = "pencilButton";
-            this.pencilButton.Size = new System.Drawing.Size(26, 28);
-            this.pencilButton.TabIndex = 1;
-            this.pencilButton.UseVisualStyleBackColor = true;
-            // 
-            // lineButton
-            // 
-            this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
-            this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.lineButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineButton.Location = new System.Drawing.Point(62, 2);
-            this.lineButton.Margin = new System.Windows.Forms.Padding(2);
-            this.lineButton.Name = "lineButton";
-            this.lineButton.Size = new System.Drawing.Size(26, 28);
-            this.lineButton.TabIndex = 2;
-            this.lineButton.UseVisualStyleBackColor = true;
-            // 
-            // circleButton
-            // 
-            this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
-            this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.circleButton.Location = new System.Drawing.Point(92, 2);
-            this.circleButton.Margin = new System.Windows.Forms.Padding(2);
-            this.circleButton.Name = "circleButton";
-            this.circleButton.Size = new System.Drawing.Size(26, 28);
-            this.circleButton.TabIndex = 3;
-            this.circleButton.UseVisualStyleBackColor = true;
-            // 
-            // ellipseButton
-            // 
-            this.ellipseButton.BackgroundImage = global::Monet.Properties.Resources.ellipse;
-            this.ellipseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ellipseButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ellipseButton.Location = new System.Drawing.Point(122, 2);
-            this.ellipseButton.Margin = new System.Windows.Forms.Padding(2);
-            this.ellipseButton.Name = "ellipseButton";
-            this.ellipseButton.Size = new System.Drawing.Size(26, 28);
-            this.ellipseButton.TabIndex = 4;
-            this.ellipseButton.UseVisualStyleBackColor = true;
-            // 
-            // polygonButton
-            // 
-            this.polygonButton.Location = new System.Drawing.Point(153, 3);
-            this.polygonButton.Name = "polygonButton";
-            this.polygonButton.Size = new System.Drawing.Size(23, 26);
-            this.polygonButton.TabIndex = 5;
-            this.polygonButton.UseVisualStyleBackColor = true;
-            // 
-            // rotatingButton
-            // 
-            this.rotatingButton.Location = new System.Drawing.Point(32, 34);
-            this.rotatingButton.Margin = new System.Windows.Forms.Padding(2);
-            this.rotatingButton.Name = "rotatingButton";
-            this.rotatingButton.Size = new System.Drawing.Size(26, 18);
-            this.rotatingButton.TabIndex = 7;
-            this.rotatingButton.Text = "toolButton1";
-            this.rotatingButton.UseVisualStyleBackColor = true;
-            // 
-            // selectButton
-            // 
-            this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
-            this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectButton.Location = new System.Drawing.Point(2, 2);
-            this.selectButton.Margin = new System.Windows.Forms.Padding(2);
-            this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(40, 37);
-            this.selectButton.TabIndex = 2;
-            this.selectButton.UseVisualStyleBackColor = true;
-            // 
-            // fillButton
-            // 
-            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
-            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fillButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fillButton.Location = new System.Drawing.Point(2, 2);
-            this.fillButton.Margin = new System.Windows.Forms.Padding(2);
-            this.fillButton.Name = "fillButton";
-            this.fillButton.Size = new System.Drawing.Size(26, 28);
-            this.fillButton.TabIndex = 0;
-            this.fillButton.UseVisualStyleBackColor = true;
-            // 
-            // resizeButton
-            // 
-            this.resizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.resizeButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resizeButton.Location = new System.Drawing.Point(33, 3);
-            this.resizeButton.Name = "resizeButton";
-            this.resizeButton.Size = new System.Drawing.Size(24, 26);
-            this.resizeButton.TabIndex = 6;
-            this.resizeButton.UseVisualStyleBackColor = true;
             // 
             // MainWin
             // 

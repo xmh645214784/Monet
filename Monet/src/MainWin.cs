@@ -104,10 +104,11 @@ namespace Monet
             resizePictureBoxButton = new ResizeCanvasButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
 
-            polygonButton.BackgroundImage = Bitmap.FromFile("../../icon/polygon.png");
+            polygonButton.BackgroundImage = Resource1.polygon;
             polygonButton.BackgroundImageLayout = ImageLayout.Stretch;
 
             resizeButton.BackgroundImage= Resource1.resize;
+            rotatingButton.BackgroundImage = Resource1.rotating;
         }
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)

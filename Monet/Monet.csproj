@@ -189,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon\polygon.png" />
+    <None Include="icon\rotating.png" />
     <None Include="icon\resize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
