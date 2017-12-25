@@ -248,9 +248,10 @@ namespace Monet.src.shape
         //用一条直线来裁剪原有直线
         public void LineClip(int X0, int Y0, int X1, int Y1)
         {
+            Point t;
             try
             {
-                Point t = Line2LineIntersectionPoint(X0, Y0, X1, Y1);
+                t=Line2LineIntersectionPoint(X0, Y0, X1, Y1);
             }
             catch (DivideByZeroException)
             {
