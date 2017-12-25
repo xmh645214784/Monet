@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace Monet.src.ui
 {
-    class ResizeRect
+    public class ResizeRect
     {
         PictureBox mainView;
-        Rectangle rect;
+        public Rectangle rect;
+        Rectangle originalRect;
         Point rectSWPoint;
         Shape shape;
         Pen solidPen;
-        MoveableButtonWithDoubleBuffering NEButton;
+        public MoveableButtonWithDoubleBuffering NEButton;
 
         public ResizeRect(PictureBox pictureBox,
                           Rectangle rect,
@@ -25,6 +26,7 @@ namespace Monet.src.ui
         {
             this.mainView = pictureBox;
             this.rect = rect;
+            this.originalRect = rect;
             this.shape = shape;
             this.solidPen = new Pen(Color.Gray, 2);
             this.solidPen.DashStyle = DashStyle.Custom;
