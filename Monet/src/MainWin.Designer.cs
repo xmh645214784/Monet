@@ -373,6 +373,8 @@
             // 
             // polygonButton
             // 
+            this.polygonButton.BackgroundImage = global::Monet.Resource1.polygon;
+            this.polygonButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.polygonButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.polygonButton.Location = new System.Drawing.Point(123, 3);
             this.polygonButton.Name = "polygonButton";
@@ -382,6 +384,8 @@
             // 
             // curveButton
             // 
+            this.curveButton.BackgroundImage = global::Monet.Resource1.curve;
+            this.curveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.curveButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.curveButton.Location = new System.Drawing.Point(153, 3);
             this.curveButton.Name = "curveButton";
@@ -520,6 +524,7 @@
             // 
             // resizeButton
             // 
+            this.resizeButton.BackgroundImage = global::Monet.Resource1.resize;
             this.resizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.resizeButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resizeButton.Location = new System.Drawing.Point(33, 3);
@@ -530,6 +535,7 @@
             // 
             // rotatingButton
             // 
+            this.rotatingButton.BackgroundImage = global::Monet.Resource1.rotating;
             this.rotatingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.rotatingButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rotatingButton.Location = new System.Drawing.Point(62, 2);
@@ -835,14 +841,14 @@
             // bezierToolStripMenuItem
             // 
             this.bezierToolStripMenuItem.Name = "bezierToolStripMenuItem";
-            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bezierToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.bezierToolStripMenuItem.Text = "Bezier";
             this.bezierToolStripMenuItem.Click += new System.EventHandler(this.bezierToolStripMenuItem_Click);
             // 
             // bSplineToolStripMenuItem
             // 
             this.bSplineToolStripMenuItem.Name = "bSplineToolStripMenuItem";
-            this.bSplineToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bSplineToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.bSplineToolStripMenuItem.Text = "BSpline";
             this.bSplineToolStripMenuItem.Click += new System.EventHandler(this.bSplineToolStripMenuItem_Click);
             // 
