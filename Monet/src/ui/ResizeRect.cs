@@ -12,12 +12,12 @@ namespace Monet.src.ui
 {
     public class ResizeRect
     {
-        PictureBox mainView;
+        protected PictureBox mainView;
         public Rectangle rect;
         public Rectangle originalRect;
-        Point rectSWPoint;
-        Shape shape;
-        Pen solidPen;
+        protected Point rectSWPoint;
+        protected Shape shape;
+        protected Pen solidPen;
         public MoveableButtonWithDoubleBuffering NEButton;
 
         public ResizeRect(PictureBox pictureBox,
@@ -45,15 +45,15 @@ namespace Monet.src.ui
             NEButton.MouseUp += NEButton_MouseUp;
         }
 
-        bool isResizing=false;
+        protected bool isResizing =false;
 
-        private void NEButton_MouseUp(object sender, MouseEventArgs e)
+        public virtual void  NEButton_MouseUp(object sender, MouseEventArgs e)
         {
             isResizing = false;
             Unshow();
         }
 
-        private void NEButton_MouseMove(object sender, MouseEventArgs e)
+        public virtual void NEButton_MouseMove(object sender, MouseEventArgs e)
         {
             if(isResizing)
             {
@@ -65,7 +65,7 @@ namespace Monet.src.ui
             }
         }
 
-        private void NEButton_MouseDown(object sender, MouseEventArgs e)
+        public virtual void NEButton_MouseDown(object sender, MouseEventArgs e)
         {
             isResizing=true;
             this.originalRect = rect;

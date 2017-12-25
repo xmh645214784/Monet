@@ -187,48 +187,15 @@ namespace Monet.src.shape
             this.ShowAsNotSelected();
         }
 
-        ResizeRect resizeRect;
-
         public void ShowAsResizing()
         {
-            resizeRect = new ResizeRect(MainWin.GetInstance().MainView(),rect, this);
-            resizeRect.NEButton.MouseDown += NEButton_MouseDown;
-            resizeRect.NEButton.MouseMove += NEButton_MouseMove;
-            resizeRect.NEButton.MouseUp += NEButton_MouseUp;
-
-            
+            ShowAsSelected();            
         }
-
-        private void NEButton_MouseUp(object sender, MouseEventArgs e)
-        {
-            isResizing = false;
-        }
-
-        private void NEButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            isResizing = true;
-        }
-        private bool isResizing=false;
-        private void NEButton_MouseMove(object sender, MouseEventArgs e)
-        {
-            if(isResizing)
-            {
-                this.rect = resizeRect.rect;
-                this.RetMAction().Action();
-            }
-        }
+        
 
         public void ShowAsNotResizing()
         {
-            try
-            {
-                resizeRect.Unshow();
-            }
-            catch (NullReferenceException)
-            {
-                ;
-            }
-            
+            ShowAsNotSelected();            
         }
     }
 }
