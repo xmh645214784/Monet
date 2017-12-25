@@ -14,12 +14,12 @@ namespace Monet.src.shape
     class Polygon: Shape,Resizeable,Rotatable
     {
         public ArrayList pointArray;
-        ArrayList resizeButtons;
+        ArrayList adjustButtons;
         MoveButton moveButton;
 
         public Polygon()
         {
-            resizeButtons = new ArrayList();
+            adjustButtons = new ArrayList();
         }
 
         public override object Clone()
@@ -46,7 +46,7 @@ namespace Monet.src.shape
             base.ShowAsNotSelected();
             try
             {
-                foreach (AdjustButton item in resizeButtons)
+                foreach (AdjustButton item in adjustButtons)
                 {
                     item.Visible = false;
                     item.Dispose();
@@ -60,7 +60,7 @@ namespace Monet.src.shape
             }
             finally
             {
-                resizeButtons.Clear();
+                adjustButtons.Clear();
                 moveButton = null;
             }
             
@@ -76,7 +76,7 @@ namespace Monet.src.shape
                 Point pointtemp = (Point)pointArray[i];
                 AdjustButton temp = new AdjustButton(
                     pictureBox, this, new Point(pointtemp.X - 3, pointtemp.Y - 3), Cursors.SizeNS);
-                resizeButtons.Add(temp);
+                adjustButtons.Add(temp);
 
                 temp.MouseDown += AdjustButton_MouseDown;
                 temp.MouseUp += AdjustButton_MouseUp;
@@ -107,7 +107,7 @@ namespace Monet.src.shape
             {
                 isMoving = true;
                 moveButtonstartpoint = e.Location;
-                foreach (AdjustButton item in resizeButtons)
+                foreach (AdjustButton item in adjustButtons)
                 {
                     item.Visible = false;
                     item.Dispose();
@@ -144,7 +144,7 @@ namespace Monet.src.shape
             if(isResizing)
             {
                 AdjustButton ins = (AdjustButton)sender;
-                int index = resizeButtons.IndexOf(sender);
+                int index = adjustButtons.IndexOf(sender);
                 pointArray[index] = ins.Location;
                 RetMAction().Action();
             }
@@ -191,10 +191,32 @@ namespace Monet.src.shape
 
 
         ResizeRect resizeRect;
-
+        private bool isresizing=false;
         public void ShowAsResizing()
         {
             resizeRect=new ResizeRect(MainWin.GetInstance().MainView(), ExternalRectangle(), this);
+            resizeRect.NEButton.MouseDown += NEButton_MouseDown;
+            resizeRect.NEButton.MouseMove += NEButton_MouseMove;
+            resizeRect.NEButton.MouseUp += NEButton_MouseUp;
+        }
+
+    
+        private void NEButton_MouseUp(object sender, MouseEventArgs e)
+        {
+            isresizing = false;
+        }
+
+        private void NEButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(isresizing)
+            {
+
+            }
+        }
+
+        private void NEButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            isresizing = true;
         }
 
         public void ShowAsNotResizing()
@@ -222,8 +244,8 @@ namespace Monet.src.shape
             for (int i=0;i<pointArray.Count;i++)
             {
                 pointArray[i] = Common.RotatingPoint((Point)pointArray[i], midPoint, angle);
-                ((AdjustButton)resizeButtons[i]).Location
-                    = Common.RotatingPoint(((AdjustButton)resizeButtons[i]).Location, midPoint, angle);
+                ((AdjustButton)adjustButtons[i]).Location
+                    = Common.RotatingPoint(((AdjustButton)adjustButtons[i]).Location, midPoint, angle);
             }
             moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
         }

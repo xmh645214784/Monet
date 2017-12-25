@@ -32,7 +32,7 @@ namespace Monet.src.shape
         /// \brief The pen
         public Pen pen;        
 
-        protected bool isResizing = false;
+        protected bool isAdjusting = false;
         protected bool isMoving = false;
 
         public abstract object Clone();

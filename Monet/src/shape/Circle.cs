@@ -117,7 +117,7 @@ namespace Monet.src.shape
 
         private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isResizing)
+            if (isAdjusting)
             {
                 RetMAction().Action();
             }
@@ -125,9 +125,9 @@ namespace Monet.src.shape
 
         private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
         {
-            if (isResizing)
+            if (isAdjusting)
             {
-                isResizing = false;
+                isAdjusting = false;
                 Log.LogText(string.Format("Resize Circle R={0}", Math.Sqrt(
                                         Math.Pow((startPoint.X - endPoint.X), 2)
                                         + Math.Pow((startPoint.Y - endPoint.Y), 2)
@@ -141,7 +141,7 @@ namespace Monet.src.shape
         {
             if (e.Button == MouseButtons.Left)
             {
-                isResizing = true;
+                isAdjusting = true;
                 MAction mAction;
                 History his = History.GetInstance();
                 his.FindShapeInHistory(this, out mAction);

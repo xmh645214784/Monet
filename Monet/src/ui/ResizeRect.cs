@@ -68,6 +68,7 @@ namespace Monet.src.ui
         private void NEButton_MouseDown(object sender, MouseEventArgs e)
         {
             isResizing=true;
+            History.GetInstance().AddBackUpClone(shape.RetMAction());
         }
 
         public void Unshow()

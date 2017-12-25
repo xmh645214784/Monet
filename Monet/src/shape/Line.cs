@@ -41,7 +41,7 @@ namespace Monet.src.shape
 
         public Line()
         {
-            isResizing = false;
+            isAdjusting = false;
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ namespace Monet.src.shape
         {
             if(e.Button==MouseButtons.Left)
             {
-                isResizing = true;
+                isAdjusting = true;
                 MAction mAction;
                 History his = History.GetInstance();
                 his.FindShapeInHistory(this, out mAction);
@@ -173,7 +173,7 @@ namespace Monet.src.shape
 
         private void ResizeButtonA_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isResizing)
+            if (isAdjusting)
             {
                 RetMAction().Action();
                 moveButton.Location = new Point(a.X / 2 + b.X / 2, a.Y / 2 + b.Y / 2);
@@ -182,9 +182,9 @@ namespace Monet.src.shape
 
         private void ResizeButtonA_MouseUp(object sender, MouseEventArgs e)
         {
-            if (isResizing)
+            if (isAdjusting)
             {
-                isResizing = false;
+                isAdjusting = false;
                 RetMAction().Action();
                 Log.LogText(string.Format("Resize Line ({0},{1}),({2},{3})",a.X,a.Y,b.X,b.Y));
                 ShowAsNotSelected();
