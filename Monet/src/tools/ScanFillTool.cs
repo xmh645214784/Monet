@@ -57,6 +57,7 @@ namespace Monet.src.tools
                     ;
                 }
             }
+            History.GetInstance().Update();
         }
 
 
