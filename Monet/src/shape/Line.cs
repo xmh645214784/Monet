@@ -245,7 +245,18 @@ namespace Monet.src.shape
             return new Point(x, y);
         }
 
-        //用一条直线来裁剪原有直线
+        public static Point Line2LineIntersectionPoint(Point a,Point b, Point c, Point d)
+        {
+            int X0 = c.X;
+            int Y0 = c.Y;
+            int X1 = d.X;
+            int Y1 = d.Y;
+            int x = (X0 * Y1 * a.X - X1 * Y0 * a.X - X0 * Y1 * b.X + X1 * Y0 * b.X - X0 * a.X * b.Y + X0 * b.X * a.Y + X1 * a.X * b.Y - X1 * b.X * a.Y) / (X0 * a.Y - Y0 * a.X - X0 * b.Y - X1 * a.Y + Y0 * b.X + Y1 * a.X + X1 * b.Y - Y1 * b.X);
+            int y = (X0 * Y1 * a.Y - X1 * Y0 * a.Y - X0 * Y1 * b.Y + X1 * Y0 * b.Y - Y0 * a.X * b.Y + Y0 * b.X * a.Y + Y1 * a.X * b.Y - Y1 * b.X * a.Y) / (X0 * a.Y - Y0 * a.X - X0 * b.Y - X1 * a.Y + Y0 * b.X + Y1 * a.X + X1 * b.Y - Y1 * b.X);
+            return new Point(x, y);
+        }
+
+        //use a line to clip old line
         public void LineClip(int X0, int Y0, int X1, int Y1)
         {
             Point t;
@@ -258,15 +269,15 @@ namespace Monet.src.shape
                 return ;
             }
             
-            if (PointInLeftEdge(a, X0, Y0, X1, Y1) && !PointInLeftEdge(b, X0, Y0, X1, Y1))
+            if (PointInUpEdge(a, X0, Y0, X1, Y1) && !PointInUpEdge(b, X0, Y0, X1, Y1))
             {
                 b = t;
             }
-            else if (!PointInLeftEdge(a, X0, Y0, X1, Y1) && PointInLeftEdge(b, X0, Y0, X1, Y1))
+            else if (!PointInUpEdge(a, X0, Y0, X1, Y1) && PointInUpEdge(b, X0, Y0, X1, Y1))
             {
                 a = t;
             }
-            else if (!PointInLeftEdge(a, X0, Y0, X1, Y1) && !PointInLeftEdge(b, X0, Y0, X1, Y1))
+            else if (!PointInUpEdge(a, X0, Y0, X1, Y1) && !PointInUpEdge(b, X0, Y0, X1, Y1))
             {
                 //remove this line
                 a = b = new Point(1, 1);
@@ -274,7 +285,7 @@ namespace Monet.src.shape
         }
 
 
-        static public bool PointInLeftEdge(Point point, int x0, int y0, int x1, int y1)
+        static public bool PointInUpEdge(Point point, int x0, int y0, int x1, int y1)
         {
             int dx = x1 - x0;
             int dy = y1 - y0;

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
-    class Polygon: Shape,Resizeable,Rotatable
+    class Polygon: Shape,Resizeable,Rotatable,Clipable
     {
         public List<Point> pointArray = new List<Point>();
         
@@ -272,6 +272,49 @@ namespace Monet.src.shape
                     = Common.RotatingPoint(((AdjustButton)adjustButtons[i]).Location, midPoint, angle);
             }
             moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
+        }
+
+        public void Clip(Rectangle rect)
+        {
+            LineClip(new Point(rect.Left, rect.Bottom),new Point(rect.Left, rect.Top));
+            LineClip(new Point(rect.Left, rect.Top), new Point(rect.Right, rect.Top));
+            LineClip(new Point(rect.Right, rect.Top), new Point(rect.Right, rect.Bottom));
+            LineClip(new Point(rect.Right, rect.Bottom), new Point(rect.Left, rect.Bottom));
+        }
+
+        private void LineClip(Point a,Point b)
+        {
+            List<Point> tempPointList = new List<Point>();
+            for (int i = 0; i < pointArray.Count; i++)
+            {
+                Point p1 = pointArray[i % pointArray.Count];
+                Point p2 = pointArray[(i+1) % pointArray.Count];
+                if (Line.PointInUpEdge(p1, a.X, a.Y, b.X, b.Y) &&
+                    Line.PointInUpEdge(p2, a.X, a.Y, b.X, b.Y))
+                {
+                    tempPointList.Add(p1);
+                }
+                else if (Line.PointInUpEdge(p1, a.X, a.Y, b.X, b.Y) &&
+                    !Line.PointInUpEdge(p2, a.X, a.Y, b.X, b.Y))
+                {
+                    tempPointList.Add(p1);
+                    tempPointList.Add(
+                        Line.Line2LineIntersectionPoint(p1, p2,
+                            new Point(a.X, a.Y), new Point(b.X, b.Y)
+                        )
+                    );
+                }
+                else if (!Line.PointInUpEdge(p1, a.X, a.Y, b.X, b.Y) &&
+                    Line.PointInUpEdge(p2, a.X, a.Y, b.X, b.Y))
+                {
+                    tempPointList.Add(
+                         Line.Line2LineIntersectionPoint(p1, p2,
+                            new Point(a.X, a.Y), new Point(b.X, b.Y)
+                        )
+                        );
+                }
+            }
+            pointArray = tempPointList;
         }
     }
 }
