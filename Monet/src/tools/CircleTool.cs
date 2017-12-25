@@ -343,8 +343,8 @@ namespace Monet
                     p += 4 * x + 6;
                 }
             }
-
-            g.FillEllipse(new SolidBrush(backColor), new Rectangle(center.X - R, center.Y - R, 2 * R, 2 * R));
+            if (backColor != Color.White)
+                g.FillEllipse(new SolidBrush(backColor), new Rectangle(center.X - R, center.Y - R, 2 * R, 2 * R));
         }
     }
 

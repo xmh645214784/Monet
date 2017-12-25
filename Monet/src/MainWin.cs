@@ -79,7 +79,6 @@ namespace Monet
             pencilButton.BindingTool = toolKit.pencilTool;
             lineButton.BindingTool = toolKit.lineTool;
             circleButton.BindingTool = toolKit.circleTool;
-            fillButton.BindingTool = toolKit.fillTool;
             clipButton.BindingTool = toolKit.clipTool;
             ellipseButton.BindingTool = toolKit.ellipseTool;
             polygonButton.BindingTool = toolKit.polygonTool;
@@ -210,6 +209,25 @@ namespace Monet
             {
                 mainView.Image.Save(saveFileDialog.FileName);
             }
+        }
+
+        private void fillButton_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(MousePosition);
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ToolKit.GetInstance().currentTool.UnRegisterTool();
+            ToolKit.GetInstance().currentTool = ToolKit.GetInstance().floodFillTool;
+            ToolKit.GetInstance().currentTool.RegisterTool();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ToolKit.GetInstance().currentTool.UnRegisterTool();
+            ToolKit.GetInstance().currentTool = ToolKit.GetInstance().scanFillTool;
+            ToolKit.GetInstance().currentTool.RegisterTool();
         }
     }
 }

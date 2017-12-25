@@ -48,6 +48,7 @@ namespace Monet.src.tools
                     Shape shape_temp = (Shape)actionParameters;
                     if (shape_temp.IsSelectMe(e.Location))
                     {
+                        History.GetInstance().AddBackUpClone((MAction)array[i]);
                         shape_temp.backColor = newColor;
                         break;
                     }

@@ -27,18 +27,21 @@ namespace Monet
         /// \brief The current tool
         public Tool currentTool;
         /// \brief The pointer tool
-        public Tool pointerTool;
+        public PointerTool pointerTool;
         /// \brief The line tool
-        public Tool lineTool;
+        public LineTool lineTool;
         /// \brief The pencil tool
         public Tool pencilTool;
         /// \brief The circle tool
-        public Tool circleTool;
+        public CircleTool circleTool;
         /// \brief The select tool
-        public Tool clipTool;
+        public ClipTool clipTool;
 
         /// \brief The fill tool
-        public Tool fillTool;
+        public ScanFillTool scanFillTool;
+
+
+        public FloodFillTool floodFillTool;
 
         /// \brief The ellipse tool
         public Tool ellipseTool;
@@ -109,7 +112,8 @@ namespace Monet
             //pencilTool  = new PencilTool    (mainView);
             circleTool  = new CircleTool    (mainView);
             clipTool = new ClipTool   (mainView);
-            fillTool = new ScanFillTool(mainView);
+            scanFillTool = new ScanFillTool(mainView);
+            floodFillTool = new FloodFillTool(mainView);
             ellipseTool = new EllipseTool(mainView);
             polygonTool = new PolygonTool(mainView);
             resizeTool = new ResizeTool(mainView);

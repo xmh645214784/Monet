@@ -34,6 +34,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.StatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBarLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -63,10 +64,10 @@
             this.undoButton = new System.Windows.Forms.Button();
             this.redoButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.fillButton = new Monet.src.tools.ToolButton();
             this.clipButton = new Monet.src.tools.ToolButton();
             this.resizeButton = new Monet.src.tools.ToolButton();
             this.rotatingButton = new Monet.src.tools.ToolButton();
+            this.fillButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -85,6 +86,9 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -103,6 +107,7 @@
             this.tableLayoutPanel7.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -470,30 +475,19 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.clipButton, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.resizeButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.rotatingButton, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(212, 5);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(93, 59);
             this.tableLayoutPanel3.TabIndex = 9;
-            // 
-            // fillButton
-            // 
-            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
-            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.fillButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fillButton.Location = new System.Drawing.Point(2, 2);
-            this.fillButton.Margin = new System.Windows.Forms.Padding(2);
-            this.fillButton.Name = "fillButton";
-            this.fillButton.Size = new System.Drawing.Size(26, 28);
-            this.fillButton.TabIndex = 0;
-            this.fillButton.UseVisualStyleBackColor = true;
             // 
             // clipButton
             // 
@@ -527,6 +521,18 @@
             this.rotatingButton.Size = new System.Drawing.Size(29, 28);
             this.rotatingButton.TabIndex = 7;
             this.rotatingButton.UseVisualStyleBackColor = true;
+            // 
+            // fillButton
+            // 
+            this.fillButton.BackgroundImage = global::Monet.Properties.Resources.fill;
+            this.fillButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.fillButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fillButton.Location = new System.Drawing.Point(3, 3);
+            this.fillButton.Name = "fillButton";
+            this.fillButton.Size = new System.Drawing.Size(24, 26);
+            this.fillButton.TabIndex = 8;
+            this.fillButton.UseVisualStyleBackColor = true;
+            this.fillButton.Click += new System.EventHandler(this.fillButton_Click);
             // 
             // colorTableLayoutPanel
             // 
@@ -779,6 +785,28 @@
             this.richTextBox.TabIndex = 4;
             this.richTextBox.Text = "";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "泛滥填充";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Text = "扫描线填充";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -814,6 +842,7 @@
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainView)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -857,7 +886,6 @@
         private src.tools.ToolButton lineButton;
         private src.tools.ToolButton circleButton;
         private src.tools.ToolButton clipButton;
-        private src.tools.ToolButton fillButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         internal System.Windows.Forms.Button undoButton;
         internal System.Windows.Forms.Button redoButton;
@@ -872,5 +900,9 @@
         private src.tools.ToolButton resizeButton;
         private src.tools.ToolButton rotatingButton;
         private src.tools.ToolButton pencilButton;
+        private System.Windows.Forms.Button fillButton;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
     }
 }

@@ -34,7 +34,10 @@ namespace Monet.src.tools
             {
                 newColor = Setting.GetInstance().BackgroundColor;
             }
-            FillAction(e.Location, newColor);
+            FloodFillParam fillParam = new FloodFillParam(e.Location, newColor);
+            MakeAction(fillParam);
+            History.GetInstance().PushBackAction(
+                new MAction(this, fillParam));
         }
 
         private void FillAction(Point p,Color newColor)
