@@ -51,7 +51,6 @@
             this.thickButton = new System.Windows.Forms.Button();
             this.tableLayoutTabPage1_3 = new System.Windows.Forms.TableLayoutPanel();
             this.pointerButton = new Monet.src.tools.ToolButton();
-            this.pencilButton = new Monet.src.tools.ToolButton();
             this.lineButton = new Monet.src.tools.ToolButton();
             this.circleButton = new Monet.src.tools.ToolButton();
             this.ellipseButton = new Monet.src.tools.ToolButton();
@@ -85,6 +84,7 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.pencilButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -297,12 +297,11 @@
             this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutTabPage1_3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutTabPage1_3.Controls.Add(this.pointerButton, 0, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 1, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 2, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 3, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 4, 0);
-            this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 5, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.pencilButton, 0, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.lineButton, 1, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.circleButton, 2, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 3, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 4, 0);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -320,27 +319,15 @@
             this.pointerButton.Location = new System.Drawing.Point(2, 2);
             this.pointerButton.Margin = new System.Windows.Forms.Padding(2);
             this.pointerButton.Name = "pointerButton";
-            this.pointerButton.Size = new System.Drawing.Size(26, 28);
+            this.pointerButton.Size = new System.Drawing.Size(40, 37);
             this.pointerButton.TabIndex = 0;
-            // 
-            // pencilButton
-            // 
-            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
-            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pencilButton.Location = new System.Drawing.Point(32, 2);
-            this.pencilButton.Margin = new System.Windows.Forms.Padding(2);
-            this.pencilButton.Name = "pencilButton";
-            this.pencilButton.Size = new System.Drawing.Size(26, 28);
-            this.pencilButton.TabIndex = 1;
-            this.pencilButton.UseVisualStyleBackColor = true;
             // 
             // lineButton
             // 
             this.lineButton.BackgroundImage = global::Monet.Properties.Resources.line;
             this.lineButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.lineButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lineButton.Location = new System.Drawing.Point(62, 2);
+            this.lineButton.Location = new System.Drawing.Point(32, 2);
             this.lineButton.Margin = new System.Windows.Forms.Padding(2);
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(26, 28);
@@ -352,7 +339,7 @@
             this.circleButton.BackgroundImage = global::Monet.Properties.Resources.circle;
             this.circleButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.circleButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.circleButton.Location = new System.Drawing.Point(92, 2);
+            this.circleButton.Location = new System.Drawing.Point(62, 2);
             this.circleButton.Margin = new System.Windows.Forms.Padding(2);
             this.circleButton.Name = "circleButton";
             this.circleButton.Size = new System.Drawing.Size(26, 28);
@@ -364,7 +351,7 @@
             this.ellipseButton.BackgroundImage = global::Monet.Properties.Resources.ellipse;
             this.ellipseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ellipseButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ellipseButton.Location = new System.Drawing.Point(122, 2);
+            this.ellipseButton.Location = new System.Drawing.Point(92, 2);
             this.ellipseButton.Margin = new System.Windows.Forms.Padding(2);
             this.ellipseButton.Name = "ellipseButton";
             this.ellipseButton.Size = new System.Drawing.Size(26, 28);
@@ -373,9 +360,10 @@
             // 
             // polygonButton
             // 
-            this.polygonButton.Location = new System.Drawing.Point(153, 3);
+            this.polygonButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.polygonButton.Location = new System.Drawing.Point(123, 3);
             this.polygonButton.Name = "polygonButton";
-            this.polygonButton.Size = new System.Drawing.Size(23, 26);
+            this.polygonButton.Size = new System.Drawing.Size(24, 26);
             this.polygonButton.TabIndex = 5;
             this.polygonButton.UseVisualStyleBackColor = true;
             // 
@@ -398,8 +386,8 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.pointerButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.clipButton, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -422,15 +410,15 @@
             this.label7.Text = "选择";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // selectButton
+            // clipButton
             // 
             this.clipButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
             this.clipButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.clipButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clipButton.Location = new System.Drawing.Point(2, 2);
+            this.clipButton.Location = new System.Drawing.Point(2, 34);
             this.clipButton.Margin = new System.Windows.Forms.Padding(2);
-            this.clipButton.Name = "selectButton";
-            this.clipButton.Size = new System.Drawing.Size(40, 37);
+            this.clipButton.Name = "clipButton";
+            this.clipButton.Size = new System.Drawing.Size(26, 28);
             this.clipButton.TabIndex = 2;
             this.clipButton.UseVisualStyleBackColor = true;
             // 
@@ -483,6 +471,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.clipButton, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.resizeButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.rotatingButton, 2, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(212, 5);
@@ -778,6 +767,18 @@
             this.richTextBox.TabIndex = 4;
             this.richTextBox.Text = "";
             // 
+            // pencilButton
+            // 
+            this.pencilButton.BackgroundImage = global::Monet.Properties.Resources.pencil;
+            this.pencilButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pencilButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pencilButton.Location = new System.Drawing.Point(2, 2);
+            this.pencilButton.Margin = new System.Windows.Forms.Padding(2);
+            this.pencilButton.Name = "pencilButton";
+            this.pencilButton.Size = new System.Drawing.Size(26, 28);
+            this.pencilButton.TabIndex = 1;
+            this.pencilButton.UseVisualStyleBackColor = true;
+            // 
             // MainWin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -853,7 +854,6 @@
         private System.Windows.Forms.Button colorBoxButton2;
         private System.Windows.Forms.Button colorBoxButton1;
         private src.tools.ToolButton pointerButton;
-        private src.tools.ToolButton pencilButton;
         private src.tools.ToolButton lineButton;
         private src.tools.ToolButton circleButton;
         private src.tools.ToolButton clipButton;
@@ -871,5 +871,6 @@
         private src.tools.ToolButton polygonButton;
         private src.tools.ToolButton resizeButton;
         private src.tools.ToolButton rotatingButton;
+        private src.tools.ToolButton pencilButton;
     }
 }
