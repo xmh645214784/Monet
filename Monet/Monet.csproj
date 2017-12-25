@@ -55,6 +55,12 @@
     <Compile Include="src\history\MAction.cs" />
     <Compile Include="src\Common.cs" />
     <Compile Include="src\history\History.cs" />
+    <Compile Include="src\PenWidthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\PenWidthForm.Designer.cs">
+      <DependentUpon>PenWidthForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="src\RotatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="src\PenWidthForm.resx">
+      <DependentUpon>PenWidthForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\RotatingForm.resx">
       <DependentUpon>RotatingForm.cs</DependentUpon>
     </EmbeddedResource>

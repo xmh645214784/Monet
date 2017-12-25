@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Monet.src.tools;
+using Monet.src;
 
 namespace Monet
 {
@@ -228,6 +229,14 @@ namespace Monet
             ToolKit.GetInstance().currentTool.UnRegisterTool();
             ToolKit.GetInstance().currentTool = ToolKit.GetInstance().scanFillTool;
             ToolKit.GetInstance().currentTool.RegisterTool();
+        }
+
+        private void thickButton_Click(object sender, EventArgs e)
+        {
+            PenWidthForm penWidthForm = new PenWidthForm();
+            penWidthForm.Location = new Point(thickButton.Left,thickButton.Bottom);
+            penWidthForm.ShowDialog();
+            Setting.GetInstance().Pen.Width = penWidthForm.RetValue();
         }
     }
 }

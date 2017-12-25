@@ -292,6 +292,7 @@
             this.thickButton.TabIndex = 7;
             this.thickButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.thickButton.UseVisualStyleBackColor = true;
+            this.thickButton.Click += new System.EventHandler(this.thickButton_Click);
             // 
             // tableLayoutTabPage1_3
             // 
@@ -791,19 +792,19 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem2.Text = "泛滥填充";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(136, 22);
             this.toolStripMenuItem3.Text = "扫描线填充";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
