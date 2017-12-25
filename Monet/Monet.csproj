@@ -190,6 +190,7 @@
     <None Include="icon\save .png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="icon\clip.png" />
     <Content Include="icon\polygon.png" />
     <None Include="icon\rotating.png" />
     <None Include="icon\resize.png" />
