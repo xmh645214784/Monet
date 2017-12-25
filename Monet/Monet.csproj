@@ -67,6 +67,7 @@
     <Compile Include="src\RotatingForm.Designer.cs">
       <DependentUpon>RotatingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\shape\BSpline.cs" />
     <Compile Include="src\shape\Circle.cs" />
     <Compile Include="src\shape\Ellipse.cs" />
     <Compile Include="src\shape\Line.cs" />

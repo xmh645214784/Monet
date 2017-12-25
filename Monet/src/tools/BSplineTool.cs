@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Monet.src.shape;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -18,7 +19,19 @@ namespace Monet.src.tools
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {
-            throw new NotImplementedException();
+            try
+            {
+                BSpline bSpline = new BSpline(controlPointsArray);
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    Draw(g, bSpline.pointArray);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public override void RegisterTool()
@@ -62,6 +75,8 @@ namespace Monet.src.tools
 
         public override void UnRegisterTool()
         {
+            mainView.MouseClick -= MainView_MouseClick;
+            mainView.MouseMove -= MainView_MouseMove;
             base.UnRegisterTool();
         }
 
