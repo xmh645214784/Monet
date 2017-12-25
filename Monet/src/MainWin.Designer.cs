@@ -56,6 +56,7 @@
             this.circleButton = new Monet.src.tools.ToolButton();
             this.ellipseButton = new Monet.src.tools.ToolButton();
             this.polygonButton = new Monet.src.tools.ToolButton();
+            this.bSplineButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.pointerButton = new Monet.src.tools.ToolButton();
@@ -89,7 +90,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.bSplineButton = new Monet.src.tools.ToolButton();
+            this.bezierButton = new Monet.src.tools.ToolButton();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -310,6 +311,7 @@
             this.tableLayoutTabPage1_3.Controls.Add(this.ellipseButton, 3, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.polygonButton, 4, 0);
             this.tableLayoutTabPage1_3.Controls.Add(this.bSplineButton, 5, 0);
+            this.tableLayoutTabPage1_3.Controls.Add(this.bezierButton, 0, 1);
             this.tableLayoutTabPage1_3.Location = new System.Drawing.Point(333, 5);
             this.tableLayoutTabPage1_3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutTabPage1_3.Name = "tableLayoutTabPage1_3";
@@ -375,6 +377,15 @@
             this.polygonButton.Size = new System.Drawing.Size(24, 26);
             this.polygonButton.TabIndex = 5;
             this.polygonButton.UseVisualStyleBackColor = true;
+            // 
+            // bSplineButton
+            // 
+            this.bSplineButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bSplineButton.Location = new System.Drawing.Point(153, 3);
+            this.bSplineButton.Name = "bSplineButton";
+            this.bSplineButton.Size = new System.Drawing.Size(23, 26);
+            this.bSplineButton.TabIndex = 6;
+            this.bSplineButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
             // 
@@ -810,14 +821,14 @@
             this.toolStripMenuItem3.Text = "扫描线填充";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
-            // bSplineButton
+            // bezierButton
             // 
-            this.bSplineButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bSplineButton.Location = new System.Drawing.Point(153, 3);
-            this.bSplineButton.Name = "bSplineButton";
-            this.bSplineButton.Size = new System.Drawing.Size(23, 26);
-            this.bSplineButton.TabIndex = 6;
-            this.bSplineButton.UseVisualStyleBackColor = true;
+            this.bezierButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bezierButton.Location = new System.Drawing.Point(3, 35);
+            this.bezierButton.Name = "bezierButton";
+            this.bezierButton.Size = new System.Drawing.Size(24, 26);
+            this.bezierButton.TabIndex = 7;
+            this.bezierButton.UseVisualStyleBackColor = true;
             // 
             // MainWin
             // 
@@ -917,5 +928,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private src.tools.ToolButton bSplineButton;
+        private src.tools.ToolButton bezierButton;
     }
 }

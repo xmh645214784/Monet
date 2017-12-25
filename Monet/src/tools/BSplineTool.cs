@@ -24,7 +24,7 @@ namespace Monet.src.tools
                 BSpline bSpline = new BSpline(controlPointsArray);
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
-                    Draw(g, bSpline.pointArray);
+                    Draw(g, bSpline.pointArray,bSpline.pen);
                 }
             }
             catch (Exception)
@@ -49,7 +49,7 @@ namespace Monet.src.tools
                 mainView.Image = doubleBuffer.Clone() as Image;
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
-                    Draw(g, controlPointsArray);
+                    Draw(g, controlPointsArray,Setting.GetInstance().Pen);
                 }
             }
         }
@@ -80,7 +80,7 @@ namespace Monet.src.tools
             base.UnRegisterTool();
         }
 
-        private  void Draw(Graphics g,List<Point> controlPointsArray)
+        private  void Draw(Graphics g,List<Point> controlPointsArray,Pen pen)
         {
             int n = 1000;
             double deltaT = 1.0 / n;
@@ -96,7 +96,7 @@ namespace Monet.src.tools
                    Common.DrawPix(g,
                        (int)(f1 * controlPointsArray[num].X + f2 * controlPointsArray[num + 1].X + f3 * controlPointsArray[num + 2].X + f4 * controlPointsArray[num + 3].X),
                        (int)(f1 * controlPointsArray[num].Y + f2 * controlPointsArray[num + 1].Y + f3 * controlPointsArray[num + 2].Y + f4 * controlPointsArray[num + 3].Y), 
-                               Setting.GetInstance().Pen);
+                               pen);
                 }
             }
         }

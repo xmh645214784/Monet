@@ -67,12 +67,14 @@
     <Compile Include="src\RotatingForm.Designer.cs">
       <DependentUpon>RotatingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\shape\Bezier.cs" />
     <Compile Include="src\shape\BSpline.cs" />
     <Compile Include="src\shape\Circle.cs" />
     <Compile Include="src\shape\Ellipse.cs" />
     <Compile Include="src\shape\Line.cs" />
     <Compile Include="src\shape\Polygon.cs" />
     <Compile Include="src\shape\Shape.cs" />
+    <Compile Include="src\tools\BezierTool.cs" />
     <Compile Include="src\tools\BSplineTool.cs" />
     <Compile Include="src\tools\CircleTool.cs" />
     <Compile Include="src\tools\ClipTool.cs" />

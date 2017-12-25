@@ -86,6 +86,8 @@ namespace Monet
             resizeButton.BindingTool = toolKit.resizeTool;
             rotatingButton.BindingTool = toolKit.rotatingTool;
             bSplineButton.BindingTool = toolKit.bSplineTool;
+            bezierButton.BindingTool = toolKit.bezierTool;
+
 
             // set default color box button, to emphasize the colorBox which is currently being used. 
             currentSettingColorButton = colorBoxButton1;
