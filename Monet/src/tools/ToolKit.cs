@@ -35,7 +35,7 @@ namespace Monet
         /// \brief The circle tool
         public Tool circleTool;
         /// \brief The select tool
-        public Tool selectTool;
+        public Tool clipTool;
 
         /// \brief The fill tool
         public Tool fillTool;
@@ -108,7 +108,7 @@ namespace Monet
             lineTool    = new LineTool      (mainView);
             //pencilTool  = new PencilTool    (mainView);
             circleTool  = new CircleTool    (mainView);
-            selectTool = new ResizeTool   (mainView);
+            clipTool = new ClipTool   (mainView);
             fillTool = new FillTool(mainView);
             ellipseTool = new EllipseTool(mainView);
             polygonTool = new PolygonTool(mainView);

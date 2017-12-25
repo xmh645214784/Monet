@@ -56,17 +56,17 @@
             this.circleButton = new Monet.src.tools.ToolButton();
             this.ellipseButton = new Monet.src.tools.ToolButton();
             this.polygonButton = new Monet.src.tools.ToolButton();
-            this.rotatingButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label7 = new System.Windows.Forms.Label();
-            this.selectButton = new Monet.src.tools.ToolButton();
+            this.clipButton = new Monet.src.tools.ToolButton();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.undoButton = new System.Windows.Forms.Button();
             this.redoButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.fillButton = new Monet.src.tools.ToolButton();
             this.resizeButton = new Monet.src.tools.ToolButton();
+            this.rotatingButton = new Monet.src.tools.ToolButton();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -379,17 +379,6 @@
             this.polygonButton.TabIndex = 5;
             this.polygonButton.UseVisualStyleBackColor = true;
             // 
-            // rotatingButton
-            // 
-            this.rotatingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.rotatingButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rotatingButton.Location = new System.Drawing.Point(62, 2);
-            this.rotatingButton.Margin = new System.Windows.Forms.Padding(2);
-            this.rotatingButton.Name = "rotatingButton";
-            this.rotatingButton.Size = new System.Drawing.Size(29, 28);
-            this.rotatingButton.TabIndex = 7;
-            this.rotatingButton.UseVisualStyleBackColor = true;
-            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -410,7 +399,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.selectButton, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.clipButton, 0, 0);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -435,15 +424,15 @@
             // 
             // selectButton
             // 
-            this.selectButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
-            this.selectButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.selectButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectButton.Location = new System.Drawing.Point(2, 2);
-            this.selectButton.Margin = new System.Windows.Forms.Padding(2);
-            this.selectButton.Name = "selectButton";
-            this.selectButton.Size = new System.Drawing.Size(40, 37);
-            this.selectButton.TabIndex = 2;
-            this.selectButton.UseVisualStyleBackColor = true;
+            this.clipButton.BackgroundImage = global::Monet.Properties.Resources.rectangular;
+            this.clipButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.clipButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clipButton.Location = new System.Drawing.Point(2, 2);
+            this.clipButton.Margin = new System.Windows.Forms.Padding(2);
+            this.clipButton.Name = "selectButton";
+            this.clipButton.Size = new System.Drawing.Size(40, 37);
+            this.clipButton.TabIndex = 2;
+            this.clipButton.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel5
             // 
@@ -526,6 +515,17 @@
             this.resizeButton.Size = new System.Drawing.Size(24, 26);
             this.resizeButton.TabIndex = 6;
             this.resizeButton.UseVisualStyleBackColor = true;
+            // 
+            // rotatingButton
+            // 
+            this.rotatingButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.rotatingButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rotatingButton.Location = new System.Drawing.Point(62, 2);
+            this.rotatingButton.Margin = new System.Windows.Forms.Padding(2);
+            this.rotatingButton.Name = "rotatingButton";
+            this.rotatingButton.Size = new System.Drawing.Size(29, 28);
+            this.rotatingButton.TabIndex = 7;
+            this.rotatingButton.UseVisualStyleBackColor = true;
             // 
             // colorTableLayoutPanel
             // 
@@ -856,7 +856,7 @@
         private src.tools.ToolButton pencilButton;
         private src.tools.ToolButton lineButton;
         private src.tools.ToolButton circleButton;
-        private src.tools.ToolButton selectButton;
+        private src.tools.ToolButton clipButton;
         private src.tools.ToolButton fillButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         internal System.Windows.Forms.Button undoButton;

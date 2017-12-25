@@ -80,7 +80,7 @@ namespace Monet
             lineButton.BindingTool = toolKit.lineTool;
             circleButton.BindingTool = toolKit.circleTool;
             fillButton.BindingTool = toolKit.fillTool;
-            selectButton.BindingTool = toolKit.selectTool;
+            clipButton.BindingTool = toolKit.clipTool;
             ellipseButton.BindingTool = toolKit.ellipseTool;
             polygonButton.BindingTool = toolKit.polygonTool;
             resizeButton.BindingTool = toolKit.resizeTool;

@@ -67,6 +67,7 @@
     <Compile Include="src\shape\Polygon.cs" />
     <Compile Include="src\shape\Shape.cs" />
     <Compile Include="src\tools\CircleTool.cs" />
+    <Compile Include="src\tools\ClipTool.cs" />
     <Compile Include="src\tools\EllipseTool.cs" />
     <Compile Include="src\tools\FillTool.cs" />
     <Compile Include="src\tools\PolygonTool.cs" />

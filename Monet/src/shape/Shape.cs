@@ -26,6 +26,11 @@ namespace Monet.src.shape
         void Rotate(Point midPoint,double angle);
     }
 
+    interface Clipable
+    {
+        void Clip(Rectangle rect);
+    }
+
     public abstract class Shape: Selectable,ActionParameters_t
     {
         MAction bindingAction=null;

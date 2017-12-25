@@ -24,7 +24,7 @@ namespace Monet.src.shape
     /// \brief A line.
     ///-------------------------------------------------------------------------------------------------
 
-    public class Line : Shape, Rotatable
+    public class Line : Shape, Rotatable,Clipable
     {
         /// \brief A Point to process
         public Point a;
@@ -236,5 +236,58 @@ namespace Monet.src.shape
             adjustButtonB.Location= Common.RotatingPoint(adjustButtonB.Location, midPoint, angle); 
             moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
         }
+
+
+        public Point Line2LineIntersectionPoint(int X0, int Y0, int X1, int Y1)
+        {
+            int x = (X0 * Y1 * a.X - X1 * Y0 * a.X - X0 * Y1 * b.X + X1 * Y0 * b.X - X0 * a.X * b.Y + X0 * b.X * a.Y + X1 * a.X * b.Y - X1 * b.X * a.Y) / (X0 * a.Y - Y0 * a.X - X0 * b.Y - X1 * a.Y + Y0 * b.X + Y1 * a.X + X1 * b.Y - Y1 * b.X);
+            int y = (X0 * Y1 * a.Y - X1 * Y0 * a.Y - X0 * Y1 * b.Y + X1 * Y0 * b.Y - Y0 * a.X * b.Y + Y0 * b.X * a.Y + Y1 * a.X * b.Y - Y1 * b.X * a.Y) / (X0 * a.Y - Y0 * a.X - X0 * b.Y - X1 * a.Y + Y0 * b.X + Y1 * a.X + X1 * b.Y - Y1 * b.X);
+            return new Point(x, y);
+        }
+
+        //用一条直线来裁剪原有直线
+        public void LineClip(int X0, int Y0, int X1, int Y1)
+        {
+            try
+            {
+                Point t = Line2LineIntersectionPoint(X0, Y0, X1, Y1);
+            }
+            catch (DivideByZeroException)
+            {
+                return ;
+            }
+            
+            if (PointInLeftEdge(a, X0, Y0, X1, Y1) && !PointInLeftEdge(b, X0, Y0, X1, Y1))
+            {
+                b = t;
+            }
+            else if (!PointInLeftEdge(a, X0, Y0, X1, Y1) && PointInLeftEdge(b, X0, Y0, X1, Y1))
+            {
+                a = t;
+            }
+            else if (!PointInLeftEdge(a, X0, Y0, X1, Y1) && !PointInLeftEdge(b, X0, Y0, X1, Y1))
+            {
+                //remove this line
+                a = b = new Point(1, 1);
+            }
+        }
+
+
+        static public bool PointInLeftEdge(Point point, int x0, int y0, int x1, int y1)
+        {
+            int dx = x1 - x0;
+            int dy = y1 - y0;
+            return -(point.X - x0) * dy + (point.Y - y0) * dx > 0;
+        }
+
+        //矩形框裁剪
+        public void Clip(Rectangle rect)
+        {
+            LineClip(rect.Left, rect.Bottom, rect.Left, rect.Top);
+            LineClip(rect.Left, rect.Top, rect.Right, rect.Top);
+            LineClip(rect.Right, rect.Top, rect.Right, rect.Bottom);
+            LineClip(rect.Right, rect.Bottom, rect.Left, rect.Bottom);
+        }
+
     }
- }
+}
