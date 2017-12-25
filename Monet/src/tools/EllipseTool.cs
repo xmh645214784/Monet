@@ -26,7 +26,7 @@ namespace Monet.src.tools
             try
             {
                 Ellipse ellipse =(Ellipse)toolParameters;
-                Draw(ellipse.pen, ellipse.rect,ellipse.midPoint,ellipse.angle);
+                Draw(ellipse.pen, ellipse.rect,ellipse.midPoint,ellipse.angle,ellipse.backColor);
                 //add into shape array
             }
             catch (InvalidCastException)
@@ -86,23 +86,23 @@ namespace Monet.src.tools
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     nowPoint = e.Location;
-                    Draw(Setting.GetInstance().Pen,startPoint,e.Location,new Point(),0);
+                    Draw(Setting.GetInstance().Pen,startPoint,e.Location,new Point(),0,Setting.GetInstance().BackgroundColor);
                 }
             }
         }
-        private void Draw(Pen pen, Rectangle rect,Point midPoint,double angle)
+        private void Draw(Pen pen, Rectangle rect,Point midPoint,double angle,Color backColor)
         {
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
-                , rect.Width / 2, rect.Height / 2, midPoint, angle);
+                , rect.Width / 2, rect.Height / 2, midPoint, angle,backColor);
         }
-        private void Draw(Pen pen ,Point a,Point b, Point midPoint, double angle)
+        private void Draw(Pen pen ,Point a,Point b, Point midPoint, double angle, Color backColor)
         {
             Rectangle rect = Common.Rectangle(a, b);
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
-                , rect.Width / 2, rect.Height / 2, midPoint, angle);
+                , rect.Width / 2, rect.Height / 2, midPoint, angle,backColor);
         }
 
-        void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b,Point midPoint,double angle)
+        void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b,Point midPoint,double angle,Color backColor)
         {
             double sqa = a * a;
             double sqb = b * b;
@@ -142,6 +142,14 @@ namespace Monet.src.tools
                 --y;
                 Ellipsepot(pen,x0, y0, x, y, midPoint, angle);
             }
+            if(backColor!=Color.White)
+            {
+                using (Graphics g = Graphics.FromImage(mainView.Image))
+                {
+                    g.FillEllipse(new SolidBrush(backColor), x0 - a, y0 - b, 2 * a, 2 * b);
+                }
+            }
+            
         }
 
         private void Ellipsepot(Pen pen,int x0, int y0, int x, int y,Point midPoint,double angle)
@@ -196,21 +204,14 @@ namespace Monet.src.tools
                 isEnabled = false;
 
                 mainView.Image = (Image)doubleBuffer.Clone();
-
-                //draw
-                using (Graphics g = Graphics.FromImage(mainView.Image))
-                {
-                    nowPoint = e.Location;
-                    Draw(Setting.GetInstance().Pen, startPoint, e.Location,new Point(),0);
-                }
-
-               
+                nowPoint = e.Location;
                 Ellipse ellipse = new Ellipse();
                 ellipse.rect = Common.Rectangle(startPoint, nowPoint);
                 ellipse.pen = Setting.GetInstance().Pen.Clone() as Pen;
 
                 History.GetInstance().PushBackAction(
                     new src.history.MAction(this, ellipse));
+                MakeAction(ellipse);
             }
         }
     }

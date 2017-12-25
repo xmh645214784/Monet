@@ -37,7 +37,7 @@ namespace Monet.src.shape
         /// \brief The pen
         public Pen pen;
 
-        public Color backColor;
+        public Color backColor=Setting.GetInstance().BackgroundColor;
 
         protected bool isAdjusting = false;
         protected bool isMoving = false;

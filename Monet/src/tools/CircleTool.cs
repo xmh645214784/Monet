@@ -35,7 +35,7 @@ namespace Monet
         /// \param border The border point.
         ///-------------------------------------------------------------------------------------------------
 
-        abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border);
+        abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border,Color backColor);
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn static public void drawEightPix(Graphics g, Pen pen, Point center, Point p)
@@ -123,9 +123,9 @@ namespace Monet
         /// \param borderPoint The circle border Point.
         ///-------------------------------------------------------------------------------------------------
 
-        public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint)
+        public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint,Color backColor)
         {
-            circleAgent.DrawCircle(g, pen, centerPoint, borderPoint);
+            circleAgent.DrawCircle(g, pen, centerPoint, borderPoint, backColor);
         }
 
         ///-------------------------------------------------------------------------------------------------
@@ -178,7 +178,7 @@ namespace Monet
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 { 
                     nowPoint = e.Location;
-                    circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
+                    circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint, Setting.GetInstance().BackgroundColor);
                 }
             }
         }
@@ -218,21 +218,14 @@ namespace Monet
                 isEnabled = false;
 
                 mainView.Image = (Image)doubleBuffer.Clone();
-
-                //draw
-                using (Graphics g = Graphics.FromImage(mainView.Image))
-                {
-                    nowPoint = e.Location;
-                    circleAgent.DrawCircle(g, Setting.GetInstance().Pen, startPoint, nowPoint);
-                }
-
+                nowPoint = e.Location;
                 Circle circle = new Circle();
                 circle.startPoint = startPoint;
                 circle.endPoint = nowPoint;
                 circle.pen = Setting.GetInstance().Pen.Clone() as Pen;
-
                 History.GetInstance().PushBackAction(
                     new src.history.MAction((Tool)this, circle));
+                MakeAction(circle);
             }
         }
 
@@ -243,7 +236,7 @@ namespace Monet
                 Circle circle = (Circle)toolParameters;
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
-                    circleAgent.DrawCircle(g, circle.pen, circle.startPoint, circle.endPoint);
+                    circleAgent.DrawCircle(g, circle.pen, circle.startPoint, circle.endPoint, circle.backColor);
                 }
                 //add into shape array
 
@@ -277,7 +270,7 @@ namespace Monet
         ///-------------------------------------------------------------------------------------------------
 
         override public sealed 
-            void DrawCircle(Graphics g, Pen pen, Point center, Point boader)
+            void DrawCircle(Graphics g, Pen pen, Point center, Point boader,Color backColor)
         {
             int R = (int)Math.Sqrt(Math.Pow(boader.X - center.X,2) + Math.Pow(boader.Y - center.Y,2));
             int x, y, deltax, deltay, d;
@@ -305,6 +298,8 @@ namespace Monet
                 }
                 drawEightPix(g, pen, center, new Point(x, y));
             }
+            if(backColor!=Color.White)
+                g.FillEllipse(new SolidBrush(backColor), new Rectangle(center.X - R, center.Y - R, 2 * R, 2 * R));
         }
 
     }
@@ -329,7 +324,7 @@ namespace Monet
         ///-------------------------------------------------------------------------------------------------
 
         override public sealed
-            void DrawCircle(Graphics g, Pen pen, Point center, Point border)
+            void DrawCircle(Graphics g, Pen pen, Point center, Point border,Color backColor)
         {
             int R = (int)Math.Sqrt(Math.Pow(border.X - center.X, 2) + Math.Pow(border.Y - center.Y, 2));
             int x, y, p;
@@ -348,6 +343,8 @@ namespace Monet
                     p += 4 * x + 6;
                 }
             }
+
+            g.FillEllipse(new SolidBrush(backColor), new Rectangle(center.X - R, center.Y - R, 2 * R, 2 * R));
         }
     }
 
