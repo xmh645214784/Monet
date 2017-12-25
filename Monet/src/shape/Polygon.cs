@@ -13,7 +13,8 @@ namespace Monet.src.shape
 {
     class Polygon: Shape,Resizeable,Rotatable
     {
-        public ArrayList pointArray;
+        public List<Point> pointArray = new List<Point>();
+        
         ArrayList adjustButtons;
         MoveButton moveButton;
 
@@ -25,7 +26,8 @@ namespace Monet.src.shape
         public override object Clone()
         {
             Polygon copy = new Polygon();
-            copy.pointArray = (ArrayList)pointArray.Clone();
+            copy.pointArray = new List<Point>(this.pointArray.ToArray());
+            copy.pen = (Pen)this.pen.Clone();
             return copy;
         }
 
@@ -200,23 +202,45 @@ namespace Monet.src.shape
             resizeRect.NEButton.MouseUp += NEButton_MouseUp;
         }
 
+        private List<Point> backUpPointList = new List<Point>();
     
         private void NEButton_MouseUp(object sender, MouseEventArgs e)
         {
             isresizing = false;
+            backUpPointList.Clear();
         }
 
         private void NEButton_MouseMove(object sender, MouseEventArgs e)
         {
             if(isresizing)
             {
-
+                double xRate=resizeRect.rect.Width/(double)resizeRect.originalRect.Width;
+                double yRate = resizeRect.rect.Height / (double)resizeRect.originalRect.Height;
+                Point swPoint = new Point(resizeRect.rect.Left, resizeRect.rect.Bottom);
+                for(int i=0;i<pointArray.Count;i++)
+                {
+                    pointArray[i] = resizeOnePoint(backUpPointList[i], xRate, yRate, swPoint);
+                }
+                this.RetMAction().Action();
             }
+        }
+
+
+
+        //resize one point due to xRate and yRate & SW point
+        static Point resizeOnePoint(Point point,double xRate,double yRate,Point swPoint)
+        {
+            int swx = swPoint.X;
+            int swy = swPoint.Y;
+            return new Point(
+                (int)((point.X - swx) * xRate) + swx,
+                (int)((point.Y - swy) * yRate) + swy);
         }
 
         private void NEButton_MouseDown(object sender, MouseEventArgs e)
         {
             isresizing = true;
+            backUpPointList = new List<Point>(pointArray.ToArray());
         }
 
         public void ShowAsNotResizing()

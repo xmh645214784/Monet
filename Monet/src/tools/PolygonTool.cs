@@ -14,12 +14,12 @@ namespace Monet.src.tools
 {
     class PolygonTool: DrawShapeTool
     {
-        ArrayList arrayList;
+        List<Point> arrayList;
         Image doubleBuffer;
 
         public PolygonTool(PictureBox mainView) : base(mainView)
         {
-            arrayList = new ArrayList();
+            arrayList = new List<Point>();
         }
 
         public override void RegisterTool()
@@ -80,7 +80,7 @@ namespace Monet.src.tools
                 //save into actions array.
                 Polygon polygon = new Polygon();
                 polygon.pen= Setting.GetInstance().Pen.Clone() as Pen;
-                polygon.pointArray = new ArrayList(arrayList);
+                polygon.pointArray = new List<Point>(arrayList.ToArray());
                 Log.LogText(String.Format("Create Polygon"));
                 History.GetInstance().PushBackAction(
                    new MAction(this, polygon));

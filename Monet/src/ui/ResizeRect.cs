@@ -14,7 +14,7 @@ namespace Monet.src.ui
     {
         PictureBox mainView;
         public Rectangle rect;
-        Rectangle originalRect;
+        public Rectangle originalRect;
         Point rectSWPoint;
         Shape shape;
         Pen solidPen;
@@ -68,6 +68,7 @@ namespace Monet.src.ui
         private void NEButton_MouseDown(object sender, MouseEventArgs e)
         {
             isResizing=true;
+            this.originalRect = rect;
             History.GetInstance().AddBackUpClone(shape.RetMAction());
         }
 
