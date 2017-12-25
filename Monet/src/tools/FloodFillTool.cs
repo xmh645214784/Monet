@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
-    sealed class FillTool : Tool
+    sealed class FloodFillTool : Tool
     {
         static Queue<Point> queue = new Queue<Point>(capacity: 1000000);
-        public FillTool(PictureBox mainView) : base(mainView)
+        public FloodFillTool(PictureBox mainView) : base(mainView)
         {
         }
         public override void RegisterTool()
@@ -76,7 +76,7 @@ namespace Monet.src.tools
         {
             try
             {
-                FillParam fillParam = (FillParam)toolParameters;
+                FloodFillParam fillParam = (FloodFillParam)toolParameters;
                 FillAction(fillParam.point, fillParam.color);
             }
             catch (InvalidCastException)
@@ -86,14 +86,19 @@ namespace Monet.src.tools
             }
             
         }
-        private sealed class FillParam : ActionParameters_t
+        private sealed class FloodFillParam : ActionParameters_t
         {
-            public Point point;
-            public Color color;
+            public readonly Point point;
+            public readonly Color color;
+            public FloodFillParam(Point point,Color color)
+            {
+                this.point = point;
+                this.color = color;
+            }
 
             public object Clone()
             {
-                throw new NotImplementedException();
+                return new FloodFillParam(point, color);
             }
         }
     }

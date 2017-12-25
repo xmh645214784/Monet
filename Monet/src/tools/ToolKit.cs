@@ -109,7 +109,7 @@ namespace Monet
             //pencilTool  = new PencilTool    (mainView);
             circleTool  = new CircleTool    (mainView);
             clipTool = new ClipTool   (mainView);
-            fillTool = new FillTool(mainView);
+            fillTool = new ScanFillTool(mainView);
             ellipseTool = new EllipseTool(mainView);
             polygonTool = new PolygonTool(mainView);
             resizeTool = new ResizeTool(mainView);
