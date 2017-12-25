@@ -27,6 +27,7 @@ namespace Monet.src.shape
             ellipse.pen = this.pen.Clone() as Pen;
             ellipse.midPoint = this.midPoint;
             ellipse.angle = this.angle;
+            ellipse.backColor = this.backColor;
             return ellipse;
         }
 

@@ -28,6 +28,7 @@ namespace Monet.src.shape
             Polygon copy = new Polygon();
             copy.pointArray = new List<Point>(this.pointArray.ToArray());
             copy.pen = (Pen)this.pen.Clone();
+            copy.backColor = backColor;
             return copy;
         }
 

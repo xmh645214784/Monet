@@ -35,7 +35,9 @@ namespace Monet.src.shape
     {
         MAction bindingAction=null;
         /// \brief The pen
-        public Pen pen;        
+        public Pen pen;
+
+        public Color backColor;
 
         protected bool isAdjusting = false;
         protected bool isMoving = false;

@@ -25,6 +25,7 @@ namespace Monet.src.shape
             copy.startPoint = startPoint;
             copy.endPoint = endPoint;
             copy.pen = (Pen)pen.Clone();
+            copy.backColor = backColor;
             return copy;
         }
 
