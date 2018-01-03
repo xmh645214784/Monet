@@ -61,5 +61,10 @@ namespace Monet
             double y = (a.Y - midPoint.Y) * cos + (a.X - midPoint.X) * sin + midPoint.Y;
             return new Point((int)x, (int)y);
         }
+
+        public static double DistanceOf2Point(Point a,Point b)
+        {
+            return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
+        }
     }
 }

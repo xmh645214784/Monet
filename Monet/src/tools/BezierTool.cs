@@ -23,7 +23,7 @@ namespace Monet.src.tools
         {
             try
             {
-                Bezier bezier = new Bezier(controlPointsArray);
+                Bezier bezier = (Bezier)toolParameters;
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     Draw(g, bezier.pointArray, bezier.pen);

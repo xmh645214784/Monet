@@ -21,7 +21,7 @@ namespace Monet.src.tools
         {
             try
             {
-                BSpline bSpline = new BSpline(controlPointsArray);
+                BSpline bSpline = (BSpline)(toolParameters);
                 using (Graphics g = Graphics.FromImage(mainView.Image))
                 {
                     Draw(g, bSpline.pointArray,bSpline.pen);
