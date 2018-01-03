@@ -148,6 +148,9 @@
     <EmbeddedResource Include="src\RotatingForm.resx">
       <DependentUpon>RotatingForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\ui\3D\ThreeDimeForm.resx">
+      <DependentUpon>ThreeDimeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

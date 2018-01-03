@@ -47,8 +47,31 @@ namespace Monet.src.ui
 
         public ThreeDimeForm()
         {
+            InitializeComponent();
             this.Width = CanvasWidth;
             this.Height = CanvasHeight;
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // ThreeDimeForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ThreeDimeForm";
+            this.Paint += new PaintEventHandler(this.ThreeDimeForm_Paint);
+            this.MouseDown += new MouseEventHandler(threeDime_MouseDown);
+            this.MouseMove += new MouseEventHandler(threeDime_MouseMove);
+            this.ResumeLayout(false);
+            this.Width = CanvasWidth;
+            this.Height = CanvasHeight;
+
+        }
+
+        private void ThreeDimeForm_Paint(object sender, PaintEventArgs e)
+        {
+            ReDraw();
         }
 
         protected void ReDraw()

@@ -88,15 +88,16 @@
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.listView = new System.Windows.Forms.ListView();
+            this.pointNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pointXColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pointYColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.curveMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bezierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSplineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pointNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pointXColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pointYColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.threeDButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -504,6 +505,7 @@
             this.tableLayoutPanel3.Controls.Add(this.resizeButton, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.rotatingButton, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.fillButton, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.threeDButton, 1, 1);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(212, 5);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -827,6 +829,23 @@
             this.listView.UseCompatibleStateImageBehavior = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
+            // pointNameColumn
+            // 
+            this.pointNameColumn.Text = "点";
+            this.pointNameColumn.Width = 30;
+            // 
+            // pointXColumn
+            // 
+            this.pointXColumn.Text = "X";
+            this.pointXColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pointXColumn.Width = 40;
+            // 
+            // pointYColumn
+            // 
+            this.pointYColumn.Text = "Y";
+            this.pointYColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pointYColumn.Width = 40;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -871,22 +890,15 @@
             this.bSplineToolStripMenuItem.Text = "BSpline";
             this.bSplineToolStripMenuItem.Click += new System.EventHandler(this.bSplineToolStripMenuItem_Click);
             // 
-            // pointNameColumn
+            // threeDButton
             // 
-            this.pointNameColumn.Text = "点";
-            this.pointNameColumn.Width = 30;
-            // 
-            // pointXColumn
-            // 
-            this.pointXColumn.Text = "X";
-            this.pointXColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.pointXColumn.Width = 40;
-            // 
-            // pointYColumn
-            // 
-            this.pointYColumn.Text = "Y";
-            this.pointYColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.pointYColumn.Width = 40;
+            this.threeDButton.Location = new System.Drawing.Point(33, 35);
+            this.threeDButton.Name = "threeDButton";
+            this.threeDButton.Size = new System.Drawing.Size(24, 23);
+            this.threeDButton.TabIndex = 9;
+            this.threeDButton.Text = "threeDButton";
+            this.threeDButton.UseVisualStyleBackColor = true;
+            this.threeDButton.Click += new System.EventHandler(this.threeDButton_Click);
             // 
             // MainWin
             // 
@@ -994,5 +1006,6 @@
         private System.Windows.Forms.ColumnHeader pointNameColumn;
         private System.Windows.Forms.ColumnHeader pointXColumn;
         private System.Windows.Forms.ColumnHeader pointYColumn;
+        private System.Windows.Forms.Button threeDButton;
     }
 }

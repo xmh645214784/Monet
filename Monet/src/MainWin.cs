@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using Monet.src.tools;
 using Monet.src;
+using Monet.src.ui;
 
 namespace Monet
 {
@@ -256,6 +257,9 @@ namespace Monet
             curveMenuStrip.Show(MousePosition);
         }
 
-       
+        private void threeDButton_Click(object sender, EventArgs e)
+        {
+            new ThreeDimeForm().Show();
+        }
     }
 }
