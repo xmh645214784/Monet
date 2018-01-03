@@ -107,6 +107,8 @@ namespace Monet
             resizePictureBoxButton = new ResizeCanvasButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
 
+            threeDButton.BackgroundImage = Resource1.cube;
+
 
         }
         ///-------------------------------------------------------------------------------------------------

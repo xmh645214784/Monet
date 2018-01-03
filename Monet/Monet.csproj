@@ -213,6 +213,7 @@
   <ItemGroup>
     <None Include="icon\clip.png" />
     <None Include="icon\curve.png" />
+    <None Include="icon\cube.png" />
     <Content Include="icon\polygon.png" />
     <None Include="icon\rotating.png" />
     <None Include="icon\resize.png" />

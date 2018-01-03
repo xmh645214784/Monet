@@ -69,6 +69,7 @@
             this.resizeButton = new Monet.src.tools.ToolButton();
             this.rotatingButton = new Monet.src.tools.ToolButton();
             this.fillButton = new System.Windows.Forms.Button();
+            this.threeDButton = new System.Windows.Forms.Button();
             this.colorTableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.colorTableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
@@ -97,7 +98,6 @@
             this.curveMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bezierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSplineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.threeDButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -563,6 +563,17 @@
             this.fillButton.UseVisualStyleBackColor = true;
             this.fillButton.Click += new System.EventHandler(this.fillButton_Click);
             // 
+            // threeDButton
+            // 
+            this.threeDButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.threeDButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.threeDButton.Location = new System.Drawing.Point(33, 35);
+            this.threeDButton.Name = "threeDButton";
+            this.threeDButton.Size = new System.Drawing.Size(24, 26);
+            this.threeDButton.TabIndex = 9;
+            this.threeDButton.UseVisualStyleBackColor = true;
+            this.threeDButton.Click += new System.EventHandler(this.threeDButton_Click);
+            // 
             // colorTableLayoutPanel
             // 
             this.colorTableLayoutPanel.ColumnCount = 4;
@@ -889,16 +900,6 @@
             this.bSplineToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.bSplineToolStripMenuItem.Text = "BSpline";
             this.bSplineToolStripMenuItem.Click += new System.EventHandler(this.bSplineToolStripMenuItem_Click);
-            // 
-            // threeDButton
-            // 
-            this.threeDButton.Location = new System.Drawing.Point(33, 35);
-            this.threeDButton.Name = "threeDButton";
-            this.threeDButton.Size = new System.Drawing.Size(24, 23);
-            this.threeDButton.TabIndex = 9;
-            this.threeDButton.Text = "threeDButton";
-            this.threeDButton.UseVisualStyleBackColor = true;
-            this.threeDButton.Click += new System.EventHandler(this.threeDButton_Click);
             // 
             // MainWin
             // 
