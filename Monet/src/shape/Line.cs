@@ -32,12 +32,18 @@ namespace Monet.src.shape
         public Point b;
         
 
+        /// \brief The adjust button a
         public AdjustButton adjustButtonA;
+        /// \brief The adjust button b
         public AdjustButton adjustButtonB;
+        /// \brief The move button
         public MoveButton moveButton;
 
-        
-        
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public Line()
+        ///
+        /// \brief Default constructor
+        ///-------------------------------------------------------------------------------------------------
 
         public Line()
         {
@@ -60,6 +66,12 @@ namespace Monet.src.shape
             return dis < 10 ? true : false;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsNotSelected()
+        ///
+        /// \brief Shows as not selected
+        ///-------------------------------------------------------------------------------------------------
+
         public override void ShowAsNotSelected()
         {
             base.ShowAsNotSelected();
@@ -81,6 +93,12 @@ namespace Monet.src.shape
                 moveButton = null;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsSelected()
+        ///
+        /// \brief Shows as selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsSelected()
         {
@@ -127,6 +145,15 @@ namespace Monet.src.shape
             
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseUp(object sender, MouseEventArgs e)
         {
             if (isMoving)
@@ -138,6 +165,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMoving)
@@ -145,6 +181,15 @@ namespace Monet.src.shape
                 RetMAction().Action();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MoveButton_MouseDown(object sender, MouseEventArgs e)
         {
@@ -157,6 +202,15 @@ namespace Monet.src.shape
                 his.AddBackUpClone(mAction);
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButtonA_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButtonA for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void ResizeButtonA_MouseDown(object sender, MouseEventArgs e)
         {
@@ -171,6 +225,15 @@ namespace Monet.src.shape
 
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButtonA_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButtonA for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void ResizeButtonA_MouseMove(object sender, MouseEventArgs e)
         {
             if (isAdjusting)
@@ -179,6 +242,15 @@ namespace Monet.src.shape
                 moveButton.Location = new Point(a.X / 2 + b.X / 2, a.Y / 2 + b.Y / 2);
             } 
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButtonA_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButtonA for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void ResizeButtonA_MouseUp(object sender, MouseEventArgs e)
         {
@@ -191,6 +263,18 @@ namespace Monet.src.shape
             }
             
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public static double DistanceOfPoint2Line(PointF pt1, PointF pt2, PointF pt3)
+        ///
+        /// \brief Distance of point 2 line
+        ///
+        /// \param pt1 The first point.
+        /// \param pt2 The second point.
+        /// \param pt3 The third point.
+        ///
+        /// \return A double.
+        ///-------------------------------------------------------------------------------------------------
 
         public static double DistanceOfPoint2Line(PointF pt1, PointF pt2, PointF pt3)
 
@@ -211,6 +295,14 @@ namespace Monet.src.shape
             return dis;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override object Clone()
+        ///
+        /// \brief Makes a deep copy of this object
+        ///
+        /// \return A copy of this object.
+        ///-------------------------------------------------------------------------------------------------
+
         public override object Clone()
         {
             Line copy = new Line();
@@ -220,7 +312,18 @@ namespace Monet.src.shape
             return copy;
         }
 
+        /// \brief The preangle
         double preangle=0;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Rotate(Point midPoint, double angle)
+        ///
+        /// \brief Rotates
+        ///
+        /// \param midPoint The middle point.
+        /// \param angle    The angle.
+        ///-------------------------------------------------------------------------------------------------
+
         public void Rotate(Point midPoint, double angle)
         {
             if (angle <= 0)
@@ -237,6 +340,18 @@ namespace Monet.src.shape
             moveButton.Location = Common.RotatingPoint(moveButton.Location, midPoint, angle);
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public Point Line2LineIntersectionPoint(int X0, int Y0, int X1, int Y1)
+        ///
+        /// \brief Line 2 line intersection point
+        ///
+        /// \param X0 The x coordinate 0.
+        /// \param Y0 The y coordinate 0.
+        /// \param X1 The first x value.
+        /// \param Y1 The first y value.
+        ///
+        /// \return A Point.
+        ///-------------------------------------------------------------------------------------------------
 
         public Point Line2LineIntersectionPoint(int X0, int Y0, int X1, int Y1)
         {
@@ -244,6 +359,19 @@ namespace Monet.src.shape
             int y = (X0 * Y1 * a.Y - X1 * Y0 * a.Y - X0 * Y1 * b.Y + X1 * Y0 * b.Y - Y0 * a.X * b.Y + Y0 * b.X * a.Y + Y1 * a.X * b.Y - Y1 * b.X * a.Y) / (X0 * a.Y - Y0 * a.X - X0 * b.Y - X1 * a.Y + Y0 * b.X + Y1 * a.X + X1 * b.Y - Y1 * b.X);
             return new Point(x, y);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public static Point Line2LineIntersectionPoint(Point a,Point b, Point c, Point d)
+        ///
+        /// \brief Line 2 line intersection point
+        ///
+        /// \param a A Point to process.
+        /// \param b A Point to process.
+        /// \param c A Point to process.
+        /// \param d A Point to process.
+        ///
+        /// \return A Point.
+        ///-------------------------------------------------------------------------------------------------
 
         public static Point Line2LineIntersectionPoint(Point a,Point b, Point c, Point d)
         {
@@ -256,7 +384,17 @@ namespace Monet.src.shape
             return new Point(x, y);
         }
 
-        //use a line to clip old line
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void LineClip(int X0, int Y0, int X1, int Y1)
+        ///
+        /// \brief use a line to clip old line
+        ///
+        /// \param X0 The x coordinate 0.
+        /// \param Y0 The y coordinate 0.
+        /// \param X1 The first x value.
+        /// \param Y1 The first y value.
+        ///-------------------------------------------------------------------------------------------------
+
         public void LineClip(int X0, int Y0, int X1, int Y1)
         {
             Point t;
@@ -284,6 +422,19 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn static public bool PointInUpEdge(Point point, int x0, int y0, int x1, int y1)
+        ///
+        /// \brief Point in up edge
+        ///
+        /// \param point The point.
+        /// \param x0    The x coordinate 0.
+        /// \param y0    The y coordinate 0.
+        /// \param x1    The first x value.
+        /// \param y1    The first y value.
+        ///
+        /// \return True if it succeeds, false if it fails.
+        ///-------------------------------------------------------------------------------------------------
 
         static public bool PointInUpEdge(Point point, int x0, int y0, int x1, int y1)
         {
@@ -292,7 +443,14 @@ namespace Monet.src.shape
             return -(point.X - x0) * dy + (point.Y - y0) * dx > 0;
         }
 
-        //矩形框裁剪
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Clip(Rectangle rect)
+        ///
+        /// \brief 矩形框裁剪
+        ///
+        /// \param rect The rectangle.
+        ///-------------------------------------------------------------------------------------------------
+
         public void Clip(Rectangle rect)
         {
             LineClip(rect.Left, rect.Bottom, rect.Left, rect.Top);

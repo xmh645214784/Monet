@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\shape\Circle.cs.
+///
+/// \brief Implements the circle class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.ui;
 using System;
 using System.Collections.Generic;
@@ -10,14 +16,31 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Circle
+    ///
+    /// \brief A circle.
+    ///-------------------------------------------------------------------------------------------------
+
     public class Circle : Shape,Resizeable
     {
+        /// \brief The start point
         public Point startPoint;
+        /// \brief The end point
         public Point endPoint;
 
+        /// \brief The resize button
         public MoveableButtonWithDoubleBuffering resizeButton;
+        /// \brief The move button
         public MoveableButtonWithDoubleBuffering moveButton;
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override object Clone()
+        ///
+        /// \brief Makes a deep copy of this object
+        ///
+        /// \return A copy of this object.
+        ///-------------------------------------------------------------------------------------------------
 
         public override object Clone()
         {
@@ -29,11 +52,27 @@ namespace Monet.src.shape
             return copy;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override bool IsSelectMe(Point point)
+        ///
+        /// \brief Query if 'point' is select me
+        ///
+        /// \param point The point.
+        ///
+        /// \return True if select me, false if not.
+        ///-------------------------------------------------------------------------------------------------
+
         public override bool IsSelectMe(Point point)
         {
             return Math.Abs(Math.Sqrt(Math.Pow(point.X - startPoint.X, 2) + Math.Pow(point.Y - startPoint.Y, 2))
                 - Math.Sqrt(Math.Pow(endPoint.X - startPoint.X, 2) + Math.Pow(endPoint.Y - startPoint.Y, 2)))<10 ? true:false ;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsNotSelected()
+        ///
+        /// \brief Shows as not selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsNotSelected()
         {
@@ -54,6 +93,12 @@ namespace Monet.src.shape
                 moveButton = null;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsSelected()
+        ///
+        /// \brief Shows as selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsSelected()
         {
@@ -81,6 +126,15 @@ namespace Monet.src.shape
             Log.LogText("Select Circle");
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMoving)
@@ -88,6 +142,15 @@ namespace Monet.src.shape
                 RetMAction().Action();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MoveButton_MouseUp(object sender, MouseEventArgs e)
         {
@@ -103,6 +166,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -116,6 +188,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void ResizeButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isAdjusting)
@@ -123,6 +204,15 @@ namespace Monet.src.shape
                 RetMAction().Action();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void ResizeButton_MouseUp(object sender, MouseEventArgs e)
         {
@@ -138,6 +228,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void ResizeButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by ResizeButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void ResizeButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -150,10 +249,22 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ShowAsResizing()
+        ///
+        /// \brief Shows as resizing
+        ///-------------------------------------------------------------------------------------------------
+
         public void ShowAsResizing()
         {
             ShowAsSelected();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ShowAsNotResizing()
+        ///
+        /// \brief Shows as not resizing
+        ///-------------------------------------------------------------------------------------------------
 
         public void ShowAsNotResizing()
         {

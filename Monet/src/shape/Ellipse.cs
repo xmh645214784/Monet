@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\shape\Ellipse.cs.
+///
+/// \brief Implements the ellipse class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.ui;
 using System;
 using System.Collections.Generic;
@@ -10,16 +16,36 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Ellipse
+    ///
+    /// \brief An ellipse. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     public sealed class Ellipse : Shape,Rotatable,Resizeable
     {
 
+        /// \brief The adjust button
         public AdjustButton adjustButton;
+        /// \brief The move button
         public MoveButton moveButton;
 
+        /// \brief The rectangle
         public Rectangle rect;
 
+        /// \brief The angle
         public double angle = 0.0F;
+        /// \brief The middle point
         public Point midPoint;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override object Clone()
+        ///
+        /// \brief Makes a deep copy of this object
+        ///
+        /// \return A copy of this object.
+        ///-------------------------------------------------------------------------------------------------
+
         public override object Clone()
         {
             Ellipse ellipse = new Ellipse();
@@ -30,6 +56,16 @@ namespace Monet.src.shape
             ellipse.backColor = this.backColor;
             return ellipse;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override bool IsSelectMe(Point point)
+        ///
+        /// \brief Query if 'point' is select me
+        ///
+        /// \param point The point.
+        ///
+        /// \return True if select me, false if not.
+        ///-------------------------------------------------------------------------------------------------
 
         public override bool IsSelectMe(Point point)
         {
@@ -53,12 +89,29 @@ namespace Monet.src.shape
             return Math.Abs(DisOfPoint2Point(point, focusA) + DisOfPoint2Point(point, focusB)-2*ellipseA)<5;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn static double DisOfPoint2Point(Point a,Point b)
+        ///
+        /// \brief Dis of point 2 point
+        ///
+        /// \param a A Point to process.
+        /// \param b A Point to process.
+        ///
+        /// \return A double.
+        ///-------------------------------------------------------------------------------------------------
+
         static double DisOfPoint2Point(Point a,Point b)
         {
             return Math.Sqrt(
                 Math.Pow(a.X-b.X,2)+ Math.Pow(a.Y - b.Y, 2)
                 );
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsNotSelected()
+        ///
+        /// \brief Shows as not selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsNotSelected()
         {
@@ -79,6 +132,12 @@ namespace Monet.src.shape
                 moveButton = null;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsSelected()
+        ///
+        /// \brief Shows as selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsSelected()
         {
@@ -109,6 +168,15 @@ namespace Monet.src.shape
             Log.LogText(string.Format("Select Ellipse ({0},{1}),({2},{3})", rect.Left, rect.Top, rect.Right, rect.Bottom));
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseUp(object sender, MouseEventArgs e)
         {
             if (isMoving)
@@ -120,6 +188,15 @@ namespace Monet.src.shape
             }         
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isMoving)
@@ -130,6 +207,15 @@ namespace Monet.src.shape
                 RetMAction().Action();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MoveButton_MouseDown(object sender, MouseEventArgs e)
         {
@@ -144,7 +230,17 @@ namespace Monet.src.shape
             }
         }
 
+        /// \brief True if this object is adjusting
         bool isAdjusting=false;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void AdjustButton_MouseDown(object sender, MouseEventArgs e)
         {
@@ -158,6 +254,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void AdjustButton_MouseUp(object sender, MouseEventArgs e)
         {
             if (isAdjusting)
@@ -168,6 +273,16 @@ namespace Monet.src.shape
                 ShowAsNotSelected();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void AdjustButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isAdjusting)
@@ -181,6 +296,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Rotate(Point midPoint, double angle)
+        ///
+        /// \brief Rotates
+        ///
+        /// \param midPoint The middle point.
+        /// \param angle    The angle.
+        ///-------------------------------------------------------------------------------------------------
+
         public void Rotate(Point midPoint, double angle)
         {
             this.angle = angle;
@@ -188,11 +312,22 @@ namespace Monet.src.shape
             this.ShowAsNotSelected();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ShowAsResizing()
+        ///
+        /// \brief Shows as resizing
+        ///-------------------------------------------------------------------------------------------------
+
         public void ShowAsResizing()
         {
             ShowAsSelected();            
         }
-        
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ShowAsNotResizing()
+        ///
+        /// \brief Shows as not resizing
+        ///-------------------------------------------------------------------------------------------------
 
         public void ShowAsNotResizing()
         {

@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\shape\bezier.cs.
+///
+/// \brief Implements the bezier class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.ui;
 using System;
 using System.Collections.Generic;
@@ -10,22 +16,53 @@ using System.Windows.Forms;
 
 namespace Monet.src.shape
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Bezier
+    ///
+    /// \brief A bezier.
+    ///-------------------------------------------------------------------------------------------------
+
     class Bezier : Shape
     {
+        /// \brief Array of points
         public List<Point> pointArray = new List<Point>();
 
+        /// \brief The adjust buttons
         List<AdjustButton> adjustButtons = new List<AdjustButton>();
 
+        /// \brief The move button
         MoveButton moveButton;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public Bezier(List<Point> pointArray)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param pointArray Array of points.
+        ///-------------------------------------------------------------------------------------------------
 
         public Bezier(List<Point> pointArray)
         {
             this.pointArray = pointArray;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn protected Bezier()
+        ///
+        /// \brief Specialised default constructor for use only by derived class
+        ///-------------------------------------------------------------------------------------------------
+
         protected Bezier()
         {
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override object Clone()
+        ///
+        /// \brief Makes a deep copy of this object
+        ///
+        /// \return A copy of this object.
+        ///-------------------------------------------------------------------------------------------------
 
         public override object Clone()
         {
@@ -36,6 +73,16 @@ namespace Monet.src.shape
             return bezier;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override bool IsSelectMe(Point point)
+        ///
+        /// \brief Query if 'point' is select me
+        ///
+        /// \param point The point.
+        ///
+        /// \return True if select me, false if not.
+        ///-------------------------------------------------------------------------------------------------
+
         public override bool IsSelectMe(Point point)
         {
             if (Common.DistanceOf2Point(point, pointArray[0]) <= 5 || Common.DistanceOf2Point(point, pointArray[pointArray
@@ -43,6 +90,12 @@ namespace Monet.src.shape
                 return true;
             return false;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsNotSelected()
+        ///
+        /// \brief Shows as not selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsNotSelected()
         {
@@ -67,6 +120,12 @@ namespace Monet.src.shape
                 moveButton = null;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void ShowAsSelected()
+        ///
+        /// \brief Shows as selected
+        ///-------------------------------------------------------------------------------------------------
 
         public override void ShowAsSelected()
         {
@@ -100,14 +159,35 @@ namespace Monet.src.shape
             Log.LogText("Select Bezier");
         }
 
+        /// \brief True if this object is moving
         bool isMoving = false;
+        /// \brief The move buttonstartpoint
         Point moveButtonstartpoint;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseUp(object sender, MouseEventArgs e)
         {
             isMoving = false;
             Log.LogText(string.Format("Moving Bezier"));
             ShowAsNotSelected();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MoveButton_MouseMove(object sender, MouseEventArgs e)
         {
@@ -125,6 +205,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MoveButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MoveButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MoveButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (isMoving == false)
@@ -138,7 +227,18 @@ namespace Monet.src.shape
                 }
             }
         }
+        /// \brief True if this object is resizing
         bool isResizing = false;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void AdjustButton_MouseMove(object sender, MouseEventArgs e)
         {
             if (isResizing)
@@ -150,6 +250,15 @@ namespace Monet.src.shape
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void AdjustButton_MouseUp(object sender, MouseEventArgs e)
         {
             isResizing = false;
@@ -157,6 +266,15 @@ namespace Monet.src.shape
             Log.LogText(string.Format("Adjust Bezier"));
             ShowAsNotSelected();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void AdjustButton_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by AdjustButton for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void AdjustButton_MouseDown(object sender, MouseEventArgs e)
         {
