@@ -1,4 +1,10 @@
-﻿using System;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\MainWin.cs.
+///
+/// \brief Implements the main Windows Form
+///-------------------------------------------------------------------------------------------------
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -27,14 +33,28 @@ namespace Monet
         ToolKit toolKit;
         /// \brief This variable shows which colorBox is now setting.
         Button currentSettingColorButton;
+        /// \brief The resize picture box button
         public ResizeCanvasButton resizePictureBoxButton;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public PictureBox MainView()
+        ///
+        /// \brief Main view
+        ///
+        /// \return A PictureBox.
+        ///-------------------------------------------------------------------------------------------------
 
         public PictureBox MainView()
         {
             return mainView;
         }
 
-        
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn internal void ClearScreen()
+        ///
+        /// \brief Clears the screen
+        ///-------------------------------------------------------------------------------------------------
+
         internal void ClearScreen()
         {
             mainView.Image = new Bitmap(mainView.Image.Width, mainView.Image.Height);
@@ -45,12 +65,27 @@ namespace Monet
 
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn internal void ClearAllControlsInMainView()
+        ///
+        /// \brief Clears all controls in main view
+        ///-------------------------------------------------------------------------------------------------
+
         internal void ClearAllControlsInMainView()
         {
             mainView.Controls.Clear();
         }
 
+        /// \brief The instance
         static MainWin mInstance=null;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public static MainWin GetInstance()
+        ///
+        /// \brief Gets the instance
+        ///
+        /// \return The instance.
+        ///-------------------------------------------------------------------------------------------------
 
         public static MainWin GetInstance()
         {
@@ -111,11 +146,12 @@ namespace Monet
 
 
         }
+
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)
         ///
-        /// \brief Event handler. Called by mainView for mouse move events to show current
-        ///        mouse position in the status bar.
+        /// \brief Event handler. Called by mainView for mouse move events to show current mouse
+        ///     position in the status bar.
         ///
         /// \param sender Source of the event.
         /// \param e      Mouse event information.
@@ -126,11 +162,11 @@ namespace Monet
             statusLabelText1.Text = String.Format("({0},{1})pix", e.X.ToString(), e.Y.ToString());
         }
 
-         ///-------------------------------------------------------------------------------------------------
+        ///-------------------------------------------------------------------------------------------------
         /// \fn private void colorButton_Click(object sender, EventArgs e)
         ///
-        /// \brief Event handler. Called by colorButton for click events to set the front and
-        ///        background color.
+        /// \brief Event handler. Called by colorButton for click events to set the front and background
+        ///     color.
         ///
         /// \param sender Source of the event.
         /// \param e      Event information.
@@ -159,8 +195,16 @@ namespace Monet
                 }
             }
         }
-       
-        
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void colorBoxButton1_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by colorBoxButton1 for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void colorBoxButton1_Click(object sender, EventArgs e)
         {
             currentSettingColorButton = colorBoxButton1;
@@ -168,12 +212,30 @@ namespace Monet
             colorTableLayoutPanel2.BackColor = Color.FromArgb(245, 246, 247);
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void colorBoxButton2_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by colorBoxButton2 for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void colorBoxButton2_Click(object sender, EventArgs e)
         {
             currentSettingColorButton = colorBoxButton2;
             colorTableLayoutPanel2.BackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
             colorTableLayoutPanel1.BackColor = Color.FromArgb(245, 246, 247);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void undoButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by undoButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void undoButton_Click(object sender, EventArgs e)
         {
@@ -183,6 +245,15 @@ namespace Monet
             History.GetInstance().Update();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void redoButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by redoButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void redoButton_Click(object sender, EventArgs e)
         {
             History.GetInstance().UnSelectAll();
@@ -190,6 +261,15 @@ namespace Monet
             ClearAllControlsInMainView();
             History.GetInstance().Update();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void openButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by openButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void openButton_Click(object sender, EventArgs e)
         {
@@ -203,6 +283,15 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void saveButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by saveButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -213,10 +302,28 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void fillButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by fillButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void fillButton_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show(MousePosition);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by toolStripMenuItem2 for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
@@ -225,12 +332,30 @@ namespace Monet
             ToolKit.GetInstance().currentTool.RegisterTool();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by toolStripMenuItem3 for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void toolStripMenuItem3_Click(object sender, EventArgs e)
         {
             ToolKit.GetInstance().currentTool.UnRegisterTool();
             ToolKit.GetInstance().currentTool = ToolKit.GetInstance().scanFillTool;
             ToolKit.GetInstance().currentTool.RegisterTool();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void thickButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by thickButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void thickButton_Click(object sender, EventArgs e)
         {
@@ -240,12 +365,30 @@ namespace Monet
             Setting.GetInstance().Pen.Width = penWidthForm.RetValue();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void bezierToolStripMenuItem_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by bezierToolStripMenuItem for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void bezierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolKit.GetInstance().currentTool.UnRegisterTool();
             ToolKit.GetInstance().currentTool = ToolKit.GetInstance().bezierTool;
             ToolKit.GetInstance().currentTool.RegisterTool();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void bSplineToolStripMenuItem_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by bSplineToolStripMenuItem for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void bSplineToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -254,10 +397,28 @@ namespace Monet
             ToolKit.GetInstance().currentTool.RegisterTool();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void curveButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by curveButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void curveButton_Click(object sender, EventArgs e)
         {
             curveMenuStrip.Show(MousePosition);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void threeDButton_Click(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by threeDButton for click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void threeDButton_Click(object sender, EventArgs e)
         {

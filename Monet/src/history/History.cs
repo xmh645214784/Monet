@@ -31,8 +31,7 @@ namespace Monet
         public ArrayList historyArray;
 
 
-        /// \brief Zero-based index of the last valid element in array. 
-        ///        【重要】index为当前最后的Action
+        /// \brief Zero-based index of the last valid element in array. 【重要】index为当前最后的Action
         int index =-1;
 
         /// \brief The instance.
@@ -91,6 +90,14 @@ namespace Monet
                     MainWin.GetInstance().redoButton.Cursor = Cursors.Default;
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \property public int Index
+        ///
+        /// \brief Gets the zero-based index of this object
+        ///
+        /// \return The index.
+        ///-------------------------------------------------------------------------------------------------
 
         public int Index { get => index;}
 
@@ -205,7 +212,7 @@ namespace Monet
         }
 
         ///-------------------------------------------------------------------------------------------------
-        /// \fn public void RedrawAllActions()
+        /// \fn public void Update()
         ///
         /// \brief Redraw all actions
         ///-------------------------------------------------------------------------------------------------
@@ -219,6 +226,17 @@ namespace Monet
                 p.Action();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public bool FindShapeInHistory(Shape shape,out MAction mActionInPosition)
+        ///
+        /// \brief Searches for the first shape in history
+        ///
+        /// \param       shape             The shape.
+        /// \param [out] mActionInPosition The action in position.
+        ///
+        /// \return True if it succeeds, false if it fails.
+        ///-------------------------------------------------------------------------------------------------
 
         public bool FindShapeInHistory(Shape shape,out MAction mActionInPosition)
         {
@@ -245,11 +263,25 @@ namespace Monet
             return false;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void AddBackUpClone(MAction mAction)
+        ///
+        /// \brief Adds a back up clone
+        ///
+        /// \param mAction The action.
+        ///-------------------------------------------------------------------------------------------------
+
         public void AddBackUpClone(MAction mAction)
         {
             Shape shape=(Shape)mAction.ActionParameters;
             PushBackAction(new BackUpMAction((MAction)mAction.Clone(), mAction));
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void UnSelectAll()
+        ///
+        /// \brief Un select all
+        ///-------------------------------------------------------------------------------------------------
 
         public void UnSelectAll()
         {
