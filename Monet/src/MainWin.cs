@@ -106,6 +106,7 @@ namespace Monet
             resizePictureBoxButton = new ResizeCanvasButton(mainView);
             resizePictureBoxButton.Size = new Size(7, 7);
 
+
         }
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void mainView_MouseMove(object sender, MouseEventArgs e)
@@ -254,5 +255,7 @@ namespace Monet
         {
             curveMenuStrip.Show(MousePosition);
         }
+
+       
     }
 }

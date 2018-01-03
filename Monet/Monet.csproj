@@ -83,6 +83,11 @@
     <Compile Include="src\tools\PolygonTool.cs" />
     <Compile Include="src\tools\ResizeTool.cs" />
     <Compile Include="src\tools\ScanFillTool.cs" />
+    <Compile Include="src\ui\3D\ColorCube2.cs" />
+    <Compile Include="src\ui\3D\Matrix3D2.cs" />
+    <Compile Include="src\ui\3D\ThreeDimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="src\ui\MoveableButton.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -87,12 +87,16 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.mainView = new System.Windows.Forms.PictureBox();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.listView = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.curveMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.bezierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bSplineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pointNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pointXColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pointYColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1.SuspendLayout();
             this.tableLayoutWhole.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -761,6 +765,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.66599F));
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 87.33401F));
             this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.listView, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 131);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -808,6 +813,20 @@
             this.richTextBox.TabIndex = 4;
             this.richTextBox.Text = "";
             // 
+            // listView
+            // 
+            this.listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.pointNameColumn,
+            this.pointXColumn,
+            this.pointYColumn});
+            this.listView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView.Location = new System.Drawing.Point(3, 3);
+            this.listView.Name = "listView";
+            this.listView.Size = new System.Drawing.Size(118, 529);
+            this.listView.TabIndex = 1;
+            this.listView.UseCompatibleStateImageBehavior = false;
+            this.listView.View = System.Windows.Forms.View.Details;
+            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -851,6 +870,23 @@
             this.bSplineToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.bSplineToolStripMenuItem.Text = "BSpline";
             this.bSplineToolStripMenuItem.Click += new System.EventHandler(this.bSplineToolStripMenuItem_Click);
+            // 
+            // pointNameColumn
+            // 
+            this.pointNameColumn.Text = "点";
+            this.pointNameColumn.Width = 30;
+            // 
+            // pointXColumn
+            // 
+            this.pointXColumn.Text = "X";
+            this.pointXColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pointXColumn.Width = 40;
+            // 
+            // pointYColumn
+            // 
+            this.pointYColumn.Text = "Y";
+            this.pointYColumn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pointYColumn.Width = 40;
             // 
             // MainWin
             // 
@@ -954,5 +990,9 @@
         private System.Windows.Forms.ContextMenuStrip curveMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem bezierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bSplineToolStripMenuItem;
+        private System.Windows.Forms.ListView listView;
+        private System.Windows.Forms.ColumnHeader pointNameColumn;
+        private System.Windows.Forms.ColumnHeader pointXColumn;
+        private System.Windows.Forms.ColumnHeader pointYColumn;
     }
 }
