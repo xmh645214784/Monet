@@ -424,5 +424,10 @@ namespace Monet
         {
             new ThreeDimeForm().Show();
         }
+
+        private void richTextBox_TextChanged(object sender, EventArgs e)
+        {
+            System.Console.WriteLine(richTextBox.Text);
+        }
     }
 }
