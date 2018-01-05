@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\FloodFillTool.cs.
+///
+/// \brief Implements the flood fill tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,18 +16,50 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class FloodFillTool
+    ///
+    /// \brief A flood fill tool. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class FloodFillTool : Tool
     {
+        /// \brief The queue
         static Queue<Point> queue = new Queue<Point>(capacity: 1000000);
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public FloodFillTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
+
         public FloodFillTool(PictureBox mainView) : base(mainView)
         {
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
+
         public override void RegisterTool()
         {
             base.RegisterTool();
             mainView.Cursor = Cursors.Hand;
             mainView.MouseClick += MainView_MouseClick;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseClick(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -39,6 +77,15 @@ namespace Monet.src.tools
             History.GetInstance().PushBackAction(
                 new MAction(this, fillParam));
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void FillAction(Point p,Color newColor)
+        ///
+        /// \brief Fill action
+        ///
+        /// \param p        A Point to process.
+        /// \param newColor The new color.
+        ///-------------------------------------------------------------------------------------------------
 
         private void FillAction(Point p,Color newColor)
         {
@@ -66,6 +113,12 @@ namespace Monet.src.tools
             mainView.Image = bitmap;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
+
         public override void UnRegisterTool()
         {
             base.UnRegisterTool();
@@ -73,7 +126,15 @@ namespace Monet.src.tools
             mainView.MouseClick -= MainView_MouseClick;
         }
 
-
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \exception InvalidCastException Thrown when an object cannot be cast to a required type.
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {
@@ -89,15 +150,42 @@ namespace Monet.src.tools
             }
             
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \class FloodFillParam
+        ///
+        /// \brief A flood fill parameter. This class cannot be inherited..
+        ///-------------------------------------------------------------------------------------------------
+
         private sealed class FloodFillParam : ActionParameters_t
         {
+            /// \brief The point
             public readonly Point point;
+            /// \brief The color
             public readonly Color color;
+
+            ///-------------------------------------------------------------------------------------------------
+            /// \fn public FloodFillParam(Point point,Color color)
+            ///
+            /// \brief Constructor
+            ///
+            /// \param point The point.
+            /// \param color The color.
+            ///-------------------------------------------------------------------------------------------------
+
             public FloodFillParam(Point point,Color color)
             {
                 this.point = point;
                 this.color = color;
             }
+
+            ///-------------------------------------------------------------------------------------------------
+            /// \fn public object Clone()
+            ///
+            /// \brief Makes a deep copy of this object
+            ///
+            /// \return A copy of this object.
+            ///-------------------------------------------------------------------------------------------------
 
             public object Clone()
             {

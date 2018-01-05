@@ -1,4 +1,10 @@
-﻿using Monet.src.shape;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\EllipseTool.cs.
+///
+/// \brief Implements the ellipse tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.shape;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +15,12 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class EllipseTool
+    ///
+    /// \brief An ellipse tool.
+    ///-------------------------------------------------------------------------------------------------
+
     class EllipseTool: DrawShapeTool
     {
         /// \brief The start point
@@ -16,10 +28,27 @@ namespace Monet.src.tools
         /// \brief The now point
         Point nowPoint;
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public EllipseTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
+
         public EllipseTool(PictureBox mainView) : base(mainView)
         {
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \exception InvalidCastException Thrown when an object cannot be cast to a required type.
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {
@@ -90,17 +119,59 @@ namespace Monet.src.tools
                 }
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void Draw(Pen pen, Rectangle rect,Point midPoint,double angle,Color backColor)
+        ///
+        /// \brief Draws
+        ///
+        /// \param pen       The pen.
+        /// \param rect      The rectangle.
+        /// \param midPoint  The middle point.
+        /// \param angle     The angle.
+        /// \param backColor The back color.
+        ///-------------------------------------------------------------------------------------------------
+
         private void Draw(Pen pen, Rectangle rect,Point midPoint,double angle,Color backColor)
         {
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
                 , rect.Width / 2, rect.Height / 2, midPoint, angle,backColor);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void Draw(Pen pen ,Point a,Point b, Point midPoint, double angle, Color backColor)
+        ///
+        /// \brief Draws
+        ///
+        /// \param pen       The pen.
+        /// \param a         A Point to process.
+        /// \param b         A Point to process.
+        /// \param midPoint  The middle point.
+        /// \param angle     The angle.
+        /// \param backColor The back color.
+        ///-------------------------------------------------------------------------------------------------
+
         private void Draw(Pen pen ,Point a,Point b, Point midPoint, double angle, Color backColor)
         {
             Rectangle rect = Common.Rectangle(a, b);
             MidPoint_Ellipse(pen, rect.Location.X + rect.Width / 2, rect.Location.Y + rect.Height / 2
                 , rect.Width / 2, rect.Height / 2, midPoint, angle,backColor);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b,Point midPoint,double angle,Color backColor)
+        ///
+        /// \brief Middle point ellipse
+        ///
+        /// \param pen       The pen.
+        /// \param x0        The x coordinate 0.
+        /// \param y0        The y coordinate 0.
+        /// \param a         An int to process.
+        /// \param b         An int to process.
+        /// \param midPoint  The middle point.
+        /// \param angle     The angle.
+        /// \param backColor The back color.
+        ///-------------------------------------------------------------------------------------------------
 
         void MidPoint_Ellipse(Pen pen,int x0, int y0, int a, int b,Point midPoint,double angle,Color backColor)
         {
@@ -152,6 +223,20 @@ namespace Monet.src.tools
             
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void Ellipsepot(Pen pen,int x0, int y0, int x, int y,Point midPoint,double angle)
+        ///
+        /// \brief Ellipsepots
+        ///
+        /// \param pen      The pen.
+        /// \param x0       The x coordinate 0.
+        /// \param y0       The y coordinate 0.
+        /// \param x        The x coordinate.
+        /// \param y        The y coordinate.
+        /// \param midPoint The middle point.
+        /// \param angle    The angle.
+        ///-------------------------------------------------------------------------------------------------
+
         private void Ellipsepot(Pen pen,int x0, int y0, int x, int y,Point midPoint,double angle)
         {
             using (Graphics g = Graphics.FromImage(mainView.Image))
@@ -167,7 +252,6 @@ namespace Monet.src.tools
             }
                 
         }
-
 
         ///-------------------------------------------------------------------------------------------------
         /// \fn private void MainView_MouseDown(object sender, MouseEventArgs e)

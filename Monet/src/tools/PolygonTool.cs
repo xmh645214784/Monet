@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\PolygonTool.cs.
+///
+/// \brief Implements the polygon tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.shape;
 using Monet.src.ui;
 using System;
@@ -12,15 +18,37 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class PolygonTool
+    ///
+    /// \brief A polygon tool.
+    ///-------------------------------------------------------------------------------------------------
+
     class PolygonTool: DrawShapeTool
     {
+        /// \brief List of arrays
         List<Point> arrayList;
+        /// \brief Buffer for double data
         Image doubleBuffer;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public PolygonTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
 
         public PolygonTool(PictureBox mainView) : base(mainView)
         {
             arrayList = new List<Point>();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void RegisterTool()
         {
@@ -29,6 +57,15 @@ namespace Monet.src.tools
             mainView.MouseClick += MainView_MouseClick;
             mainView.MouseMove += MainView_MouseMove;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -44,6 +81,15 @@ namespace Monet.src.tools
                 }
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseClick(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -85,13 +131,28 @@ namespace Monet.src.tools
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
+
         public override void UnRegisterTool()
         {
             base.UnRegisterTool();
             mainView.Cursor = Cursors.Default;
             mainView.MouseClick -= MainView_MouseClick;
         }
-       
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \exception InvalidCastException Thrown when an object cannot be cast to a required type.
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {

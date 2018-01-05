@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\ScanFillTool.cs.
+///
+/// \brief Implements the scan fill tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.shape;
 using System;
 using System.Collections;
@@ -11,13 +17,34 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class ScanFillTool
+    ///
+    /// \brief A scan fill tool. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class ScanFillTool : Tool
     {
+        /// \brief The queue
         static Queue<Point> queue = new Queue<Point>(capacity: 1000000);
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public ScanFillTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
 
         public ScanFillTool(PictureBox mainView) : base(mainView)
         {
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void RegisterTool()
         {
@@ -25,6 +52,15 @@ namespace Monet.src.tools
             mainView.Cursor = Cursors.Hand;
             mainView.MouseClick += MainView_MouseClick;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseClick(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -61,6 +97,11 @@ namespace Monet.src.tools
             History.GetInstance().Update();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void UnRegisterTool()
         {
@@ -69,7 +110,13 @@ namespace Monet.src.tools
             mainView.MouseClick -= MainView_MouseClick;
         }
 
-
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {

@@ -27,10 +27,13 @@ namespace Monet.src.tools
     {
         /// \brief The rotating button
         RotatingButton rotatingButton_mid;
+        /// \brief The track bar
         TrackBar trackBar;
 
+        /// \brief The which to be rotated
         Rotatable whichToBeRotated;
 
+        /// \brief Buffer for double data
         Image doubleBuffer;
 
         ///-------------------------------------------------------------------------------------------------
@@ -135,6 +138,11 @@ namespace Monet.src.tools
             History.GetInstance().Update();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn void ShowRotatingWin()
+        ///
+        /// \brief Shows the rotating window
+        ///-------------------------------------------------------------------------------------------------
 
         void ShowRotatingWin()
         {
@@ -145,10 +153,28 @@ namespace Monet.src.tools
             form.ShowDialog();
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        ///
+        /// \brief Event handler. Called by Form for form closed events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Form closed event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void Form_FormClosed(object sender, FormClosedEventArgs e)
         {
             ((Shape)whichToBeRotated).ShowAsNotSelected();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void TrackBar1_Scroll(object sender, EventArgs e)
+        ///
+        /// \brief Event handler. Called by TrackBar1 for scroll events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void TrackBar1_Scroll(object sender, EventArgs e)
         {

@@ -1,4 +1,10 @@
-﻿using Monet.src.history;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\PointerTool.cs.
+///
+/// \brief Implements the pointer tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.history;
 using Monet.src.shape;
 using System;
 using System.Collections;
@@ -10,17 +16,45 @@ using System.Windows.Forms;
 
 namespace Monet
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class PointerTool
+    ///
+    /// \brief A pointer tool.
+    ///-------------------------------------------------------------------------------------------------
+
     class PointerTool:Tool
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public PointerTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
+
         public PointerTool(PictureBox mainView) : base(mainView)
         {
 
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
+
         public override void MakeAction(ActionParameters_t toolParameters)
         {
             ;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void RegisterTool()
         {
@@ -29,6 +63,15 @@ namespace Monet
             mainView.MouseClick += MainView_MouseClick;
 
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseClick(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -77,6 +120,12 @@ namespace Monet
             // VERY IMPORTANT
             History.GetInstance().Update();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void UnRegisterTool()
         {

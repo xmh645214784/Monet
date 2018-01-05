@@ -41,6 +41,7 @@ namespace Monet
         public ScanFillTool scanFillTool;
 
 
+        /// \brief The flood fill tool
         public FloodFillTool floodFillTool;
 
         /// \brief The ellipse tool
@@ -49,10 +50,14 @@ namespace Monet
         /// \brief The polygon tool
         public Tool polygonTool;
 
+        /// \brief The resize tool
         public ResizeTool resizeTool;
 
+        /// \brief The rotating tool
         public RotatingTool rotatingTool;
+        /// \brief The BSpline tool
         public BSplineTool bSplineTool;
+        /// \brief The bezier tool
         public BezierTool bezierTool;
 
 
@@ -99,11 +104,6 @@ namespace Monet
         /// \brief Constructor
         ///
         /// \param mainView The main view control.
-        ///
-        /// ### param pointerButton The pointer control.
-        /// ### param lineButton    The line control.
-        /// ### param pencilButton  The pencil control.
-        /// ### param circleButton  The circle control.
         ///-------------------------------------------------------------------------------------------------
 
         private ToolKit(PictureBox mainView)

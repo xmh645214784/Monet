@@ -17,7 +17,7 @@ using System.Windows.Forms;
 namespace Monet
 {
     ///-------------------------------------------------------------------------------------------------
-    /// \class DrawCircleAdapter
+    /// \class DrawCircleAgent
     ///
     /// \brief A draw circle adapter.
     ///-------------------------------------------------------------------------------------------------
@@ -25,14 +25,15 @@ namespace Monet
     abstract class DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
-        /// \fn abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border);
+        /// \fn abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border,Color backColor);
         ///
         /// \brief Draw circle
         ///
-        /// \param g      The Graphics to process.
-        /// \param pen    The pen.
-        /// \param center The cirle center point.
-        /// \param border The border point.
+        /// \param g         The Graphics to process.
+        /// \param pen       The pen.
+        /// \param center    The cirle center point.
+        /// \param border    The border point.
+        /// \param backColor The back color.
         ///-------------------------------------------------------------------------------------------------
 
         abstract public void DrawCircle(Graphics g, Pen pen, Point center, Point border,Color backColor);
@@ -79,12 +80,13 @@ namespace Monet
         Point nowPoint;
 
         ///-------------------------------------------------------------------------------------------------
-        /// \fn public CircleTool(PictureBox mainView, Button button) : base(mainView, button)
+        /// \fn public CircleTool(PictureBox mainView) : base(mainView)
         ///
         /// \brief Constructor
         ///
         /// \param mainView The main view control.
-        /// \param button   The button control.
+        ///
+        /// ### param button The button control.
         ///-------------------------------------------------------------------------------------------------
 
         public CircleTool(PictureBox mainView) : base(mainView)
@@ -113,7 +115,7 @@ namespace Monet
         }
 
         ///-------------------------------------------------------------------------------------------------
-        /// \fn public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint)
+        /// \fn public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint,Color backColor)
         ///
         /// \brief Draws
         ///
@@ -121,6 +123,7 @@ namespace Monet
         /// \param pen         The pen.
         /// \param centerPoint The circle center Point.
         /// \param borderPoint The circle border Point.
+        /// \param backColor   The back color.
         ///-------------------------------------------------------------------------------------------------
 
         public void Draw(Graphics g, Pen pen, Point centerPoint, Point borderPoint,Color backColor)
@@ -229,6 +232,16 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \exception InvalidCastException Thrown when an object cannot be cast to a required type.
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
+
         public override void MakeAction(ActionParameters_t toolParameters)
         {
             try
@@ -259,14 +272,15 @@ namespace Monet
     sealed class MidPointCircle : DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
-        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point boader)
+        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point boader,Color backColor)
         ///
         /// \brief Draw circle.
         ///
-        /// \param g      The Graphics to process.
-        /// \param pen    The pen.
-        /// \param center The circle center Point.
-        /// \param boader The border Point.
+        /// \param g         The Graphics to process.
+        /// \param pen       The pen.
+        /// \param center    The circle center Point.
+        /// \param boader    The border Point.
+        /// \param backColor The back color.
         ///-------------------------------------------------------------------------------------------------
 
         override public sealed 
@@ -313,14 +327,15 @@ namespace Monet
     sealed class BresenhamCircle : DrawCircleAgent
     {
         ///-------------------------------------------------------------------------------------------------
-        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point border)
+        /// \fn override public sealed void DrawCircle(Graphics g, Pen pen, Point center, Point border,Color backColor)
         ///
         /// \brief Draw circle
         ///
-        /// \param g      The Graphics to process.
-        /// \param pen    The pen.
-        /// \param center The center.
-        /// \param border The border.
+        /// \param g         The Graphics to process.
+        /// \param pen       The pen.
+        /// \param center    The center.
+        /// \param border    The border.
+        /// \param backColor The back color.
         ///-------------------------------------------------------------------------------------------------
 
         override public sealed

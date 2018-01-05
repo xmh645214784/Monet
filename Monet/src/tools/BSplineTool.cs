@@ -1,4 +1,10 @@
-﻿using Monet.src.shape;
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\BSplineTool.cs.
+///
+/// \brief Implements the BSpline tool class
+///-------------------------------------------------------------------------------------------------
+
+using Monet.src.shape;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,13 +15,38 @@ using System.Windows.Forms;
 
 namespace Monet.src.tools
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \class BSplineTool
+    ///
+    /// \brief A BSpline tool.
+    ///-------------------------------------------------------------------------------------------------
+
     class BSplineTool : Tool
     {
+        /// \brief Array of control points
         List<Point> controlPointsArray=new List<Point>();
+        /// \brief Buffer for double data
         Image doubleBuffer;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public BSplineTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
+
         public BSplineTool(PictureBox mainView) : base(mainView)
         {
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
 
         public override void MakeAction(ActionParameters_t toolParameters)
         {
@@ -34,12 +65,27 @@ namespace Monet.src.tools
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
+
         public override void RegisterTool()
         {
             base.RegisterTool();
             mainView.MouseClick += MainView_MouseClick;
             mainView.MouseMove += MainView_MouseMove;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -53,8 +99,20 @@ namespace Monet.src.tools
                 }
             }
         }
+        /// \brief True if this object is drawing
         bool isDrawing = false;
+        /// \brief True if this object is first click
         bool isFirstClick = true;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseClick(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse click events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MainView_MouseClick(object sender, MouseEventArgs e)
         {
             if(isFirstClick)
@@ -78,12 +136,28 @@ namespace Monet.src.tools
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
+
         public override void UnRegisterTool()
         {
             mainView.MouseClick -= MainView_MouseClick;
             mainView.MouseMove -= MainView_MouseMove;
             base.UnRegisterTool();
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void Draw(Graphics g,List<Point> controlPointsArray,Pen pen)
+        ///
+        /// \brief Draws
+        ///
+        /// \param g                  The Graphics to process.
+        /// \param controlPointsArray Array of control points.
+        /// \param pen                The pen.
+        ///-------------------------------------------------------------------------------------------------
 
         private  void Draw(Graphics g,List<Point> controlPointsArray,Pen pen)
         {

@@ -1,4 +1,10 @@
-﻿#define DDA
+﻿///-------------------------------------------------------------------------------------------------
+/// \file src\tools\LineTool.cs.
+///
+/// \brief Implements the line tool class
+///-------------------------------------------------------------------------------------------------
+
+#define DDA
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,27 +18,78 @@ using Monet.src.ui;
 
 namespace Monet
 {
+    ///-------------------------------------------------------------------------------------------------
+    /// \enum LineImplementMethod
+    ///
+    /// \brief Values that represent line implement methods
+    ///-------------------------------------------------------------------------------------------------
 
     public enum LineImplementMethod
     {
+        ///< An enum constant representing the line system option
         LINE_SYSTEM, LINE_DDA, LINE_BRESENHAM, LINE_MIDPOINT
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \interface DrawLinerAgent
+    ///
+    /// \brief Interface for draw liner agent.
+    ///-------------------------------------------------------------------------------------------------
+
     interface DrawLinerAgent
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn void DrawLine(Graphics g, Pen pen, Point p1, Point p2);
+        ///
+        /// \brief Draw line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         void DrawLine(Graphics g, Pen pen, Point p1, Point p2);
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class LineTool
+    ///
+    /// \brief A line tool. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class LineTool : DrawShapeTool
     {
+        /// \brief The line agent
         public DrawLinerAgent lineAgent;
+        /// \brief The start point
         Point startPoint;
+        /// \brief The now point
         Point nowPoint;
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public LineTool(PictureBox mainView) : base(mainView)
+        ///
+        /// \brief Constructor
+        ///
+        /// \param mainView The main view control.
+        ///-------------------------------------------------------------------------------------------------
+
         public LineTool(PictureBox mainView) : base(mainView)
         {
             lineAgent = new Dda();
             isEnabled = false;
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void ChangeImplementMethod(LineImplementMethod newmtd)
+        ///
+        /// \brief Change implement method
+        ///
+        /// \exception Exception Thrown when an exception error condition occurs.
+        ///
+        /// \param newmtd The newmtd.
+        ///-------------------------------------------------------------------------------------------------
 
         public void ChangeImplementMethod(LineImplementMethod newmtd)
         {
@@ -55,11 +112,27 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void Draw(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draws
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
 
         public void Draw(Graphics g, Pen pen, Point p1, Point p2)
         {
             lineAgent.DrawLine(g, pen, p1, p2);
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void RegisterTool()
+        ///
+        /// \brief Registers the tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void RegisterTool()
         {
@@ -70,6 +143,11 @@ namespace Monet
             mainView.MouseUp += MainView_MouseUp;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void UnRegisterTool()
+        ///
+        /// \brief Un register tool
+        ///-------------------------------------------------------------------------------------------------
 
         public override void UnRegisterTool()
         {
@@ -80,6 +158,14 @@ namespace Monet
             mainView.MouseUp -= MainView_MouseUp;
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseMove(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse move events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseMove(object sender, MouseEventArgs e)
         {
@@ -94,6 +180,16 @@ namespace Monet
                 }
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseDown(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse down events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
+
         private void MainView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) 
@@ -103,6 +199,15 @@ namespace Monet
                 doubleBuffer = (Image)mainView.Image.Clone();
             }
         }
+
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void MainView_MouseUp(object sender, MouseEventArgs e)
+        ///
+        /// \brief Event handler. Called by MainView for mouse up events
+        ///
+        /// \param sender Source of the event.
+        /// \param e      Mouse event information.
+        ///-------------------------------------------------------------------------------------------------
 
         private void MainView_MouseUp(object sender, MouseEventArgs e)
         {
@@ -130,6 +235,16 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public override void MakeAction(ActionParameters_t toolParameters)
+        ///
+        /// \brief Makes an action
+        ///
+        /// \exception InvalidCastException Thrown when an object cannot be cast to a required type.
+        ///
+        /// \param toolParameters Options for controlling the tool.
+        ///-------------------------------------------------------------------------------------------------
+
         public override void MakeAction(ActionParameters_t toolParameters)
         {
             try
@@ -148,9 +263,25 @@ namespace Monet
         
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Dda
+    ///
+    /// \brief A dda. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
 
     sealed class Dda : DrawLinerAgent
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw wid eq one line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             //System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
@@ -170,14 +301,42 @@ namespace Monet
             }
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Midpoint
+    ///
+    /// \brief A midpoint. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class Midpoint : DrawLinerAgent
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw wid eq one line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
@@ -209,15 +368,42 @@ namespace Monet
         
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         void DrawLinerAgent.DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class Bresenham
+    ///
+    /// \brief A bresenham. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
 
     sealed class Bresenham : DrawLinerAgent
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw wid eq one line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         private void DrawWidEqOneLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             System.Diagnostics.Debug.Assert(pen.Width == 1, "Draw a line whose width not equal 1");
@@ -244,14 +430,42 @@ namespace Monet
 
         }
 
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
         {
             DrawWidEqOneLine(g, pen, p1, p2);
         }
     }
 
+    ///-------------------------------------------------------------------------------------------------
+    /// \class SystemDraw
+    ///
+    /// \brief A system draw. This class cannot be inherited..
+    ///-------------------------------------------------------------------------------------------------
+
     sealed class SystemDraw : DrawLinerAgent
     {
+        ///-------------------------------------------------------------------------------------------------
+        /// \fn public void DrawLine(Graphics g, Pen pen, Point p1, Point p2)
+        ///
+        /// \brief Draw line
+        ///
+        /// \param g   The Graphics to process.
+        /// \param pen The pen.
+        /// \param p1  The first Point.
+        /// \param p2  The second Point.
+        ///-------------------------------------------------------------------------------------------------
+
         public void DrawLine(Graphics g,  Pen pen, Point p1, Point p2)
         {
             g.DrawLine(pen, p1, p2);
